@@ -1,13 +1,12 @@
 <template>
-  <header class="w-full bg-slate-900 fixed z-50 text-white">
+  <header class="w-full bg-gray-950 fixed z-50 text-yellow-50">
     <nav
       class="max-w-7xl mx-auto px-4 py-2 md:flex md:justify-between md:items-center font-semibold"
     >
       <div class="flex justify-between items-center">
         <Logo />
         <!--Mobile Friendly Header-->
-        <div class="flex">
-          <lang-selector v-if="!isMenuVisible" class="md:hidden" />
+        <div class="flex">          
           <div class="md:hidden" @click="showMobileMenu">
             <svg
               v-if="!isMenuVisible"
@@ -43,10 +42,10 @@
         </div>
       </div>
       <div
-        class="bg-slate-900 absolute md:relative opacity-90 w-full md:w-auto left-0"
+        class="absolute md:relative opacity-90 w-full md:w-auto left-0"
       >
         <ul
-          class="bg-slate-900 md:flex md:items-center z-[-1] md:z-auto md:static md:w-auto pb-6 md:p-auto"
+          class="md:flex md:items-center z-[-1] md:z-auto md:static md:w-auto pb-6 md:p-auto"
           :class="{ hidden: !isMenuVisible, block: isMenuVisible }"
         >
           <li
@@ -55,10 +54,10 @@
             class="mx-6 md:mx-3 lg:mx-6 pt-6 md:my-0"
           >
             <NuxtLink
-              class="uppercase relative text-sm lg:text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-amber-600 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+              class="uppercase relative text-sm lg:text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
               :to="item.link"
               @click="delaydMobileMenuClick"
-              >{{ $t(item.name) }}</NuxtLink
+              >{{ item.name}}</NuxtLink
             >
           </li>
         </ul>
@@ -67,23 +66,21 @@
             target="_blank"
             v-if="isMenuVisible"
             to="https://www.thefork.pt/restaurante/jambu-rest-bar-r805263#booking="
-            class="uppercase transition duration-100 delay-75 mx-4 px-5 py-1 text-slate-900 bg-amber-600 hover:bg-amber-500 rounded-[120px] text-sm"
+            class="uppercase transition duration-100 delay-75 mx-4 px-5 py-1 text-slate-900 bg-indigo-900 hover:bg-indigo-950 rounded-[120px] text-sm"
             >{{ $t("reservation") }}</NuxtLink
           >
         </div>
       </div>
-      <div class="hidden md:flex items-center">
-        <div class="mr-2 lg:mr-4"></div>
-        <lang-selector />
-        <div class="border-solid border-white border-l-2">
-          <span class="mx-2 lg:mx-4 text-xs lg:text-sm whitespace-nowrap">+351 910 444 333</span>
-        </div>
+      <div class="hidden md:flex items-center relative">
         <NuxtLink
           to="https://www.thefork.pt/restaurante/jambu-rest-bar-r805263#booking="
           target="_blank"
-          class="uppercase transition duration-100 delay-75 px-5 lg:px-8 py-1 lg:py-2 text-slate-900 bg-amber-600 hover:bg-amber-500 rounded-[120px] text-sm lg:text-xl"
-          >{{ $t("reservation") }}</NuxtLink
+          class="uppercase transition duration-100 delay-75 text-white hover:text-yellow-500 text-sm lg:text-xl relative"
         >
+          <span class="z-10">MARCAÇÃO</span>
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 w-10 h-4 bg-yellow-500 square"></div>
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45 w-10 h-4 bg-yellow-500 square"></div>
+        </NuxtLink>
       </div>
     </nav>
   </header>
@@ -98,10 +95,10 @@ interface menuItems {
 }
 
 const menuItems: menuItems[] = [
-  { name: "about", link: "#about_section" },
-  { name: "menu", link: "#menu_section" },
-  { name: "gallery", link: "#our_drinks_section" },
-  { name: "information", link: "#footer_section" },
+  { name: "home", link: "#home_section" },
+  { name: "serviços", link: "#about_section" },
+  { name: "sobre nós", link: "#our_drinks_section" },
+  { name: "contato", link: "#footer_section" },
 ];
 
 const isMenuVisible = ref(false);
