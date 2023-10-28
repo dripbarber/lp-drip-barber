@@ -1,141 +1,163 @@
 <template>
   <section
     id="services_section"
-    class="relative w-full flex flex-col justify-center p-6 pt-16 sm:pt-8 md:pb-10 md:pt-20 lg:pt-10"
+    class="w-full pb-5 md:pb-0 pt-4 md:pt-0 relative overflow-hidden z-[5]"
   >
-    <h1
-      class="text-amber-600 text-4xl md:text-5xl text-center font-semibold pt-2 pb-6 md:pb-10 lg:pt-20 z-10"
-    >
-      Serviços
-    </h1>
+    
     <div
-      id="menu-container"
-      class="w-full max-w-7xl lg:self-center sm:flex flex-row md:flex-col lg:flex-row justify-evenly lg:justify-center lg:px-auto pt-4 sm:pt-0 lg:pt-10 md:pb-4 lg:pb-10 z-10"
+      id="testimonial-container"
+      class="flex items-center justify-between h-full z-5 relative"
     >
-      <div class="flex-col w-full max-w-xl lg:max-w-3xl hidden md:flex lg:flex-1 lg:mr-20 lg:ml-auto mx-auto">
-        <NuxtImg
-          format="webp"
-          src="assets/menu-image-01.png"
-          loading="lazy"
-          class="h-52 sm:h-2/6 lg:h-80 object-cover w-auto lg:w-full pb-2"
-          :alt="$t('greenDish')"
-        />
-        <div class="flex justify-evenly gap-2 sm:h-3/5 lg:h-80">
-          <div class="flex flex-col w-full md:w-auto lg:w-full h-2/6 sm:h-full ">
-            <NuxtImg
-              format="webp"
-              src="assets/menu-image-02.png"
-              loading="lazy"
-              class="object-center object-cover w-auto lg:w-full h-28 sm:h-2/4 pb-1"
-              :alt="$t('breadDish')"
-            />
-            <NuxtImg
-              src="assets/menu-image-03.png"
-              loading="lazy"
-              class="object-bottom object-cover w-auto lg:w-full h-28 sm:h-2/4 pt-1"
-              :alt="$t('hamgurguerDish')"
-            />
-          </div>
+      <div class="columns-3 md:flex hidden mt-20">
+        <div
+          class=" card relative group text-center text-white flex flex-col items-center justify-center h-auto grayscale hover:grayscale-0 overflow-hidden hover:scale-110 transition duration-500 cursor-pointer max-w-[1800px]"
+          v-for="n in 3"
+          :key="n"
+        >
           <NuxtImg
             format="webp"
-            src="assets/menu-image-04.png"
+            src="assets/cortes.png"
+            alt="corte de cabelo"
+            class="transition-transform transform scale-100 hover:scale-120"
+            fit="fill"
+            height="1600"
+            width="1800"            
             loading="lazy"
-            class="h-56 sm:h-full w-1/2 w-auto lg:w-full object-center object-cover"
-            :alt="$t('shrimpDish2')"
-          />
+          />       
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <h2 class="font-bold text-xl z-10">Cortes</h2>
+            <h2 class=" opacity-0 group-hover:opacity-100 duration-300 absolute transition-opacity font-bold text-xl z-10">Veja mais</h2>
+          </div>         
+          
         </div>
+
+        
       </div>
-      <div class="lg:flex-1 md:pl-10 lg:pl-0 pb-6 md:py-0 mx-auto md:mt-8 lg:mt-2">
-        <div
-          class="md:max-w-lg lg:max-w-2xl w-4/5 sm:w-fit lg:h-fill m-auto md:mr-6 lg:mr-0 flex flex-col sm:justify-evenly sm:pt-0 sm:grid sm:grid-cols-2 md:block lg:flex lg:flex-col" 
+
+      <div class="md:hidden w-11/12 mx-auto mt-8">
+        <Swiper
+          :modules="[SwiperAutoplay, SwiperNavigation]"
+          :slides-per-view="1"
+          :loop="true"
+          :autoplay="{
+            delay: 4000,
+            disableOnInteraction: true,
+          }"
         >
-          <div
-            class="mt-10 md:mt-6 lg:mt-0 lg:flex-auto relative md:h-1/4 lg:h-fill md:pl-24 md:pl-16 lg:pl-32 pt-2 p-4 sm:p-6 md:pr-6 lg:pr-8 bg-slate-900 rounded-tr-md rounded-bl-md rounded-3xl md:rounded-br-3xl"
-          >
-            <NuxtImg
-              format="webp"
-              src="assets/menu-item-01.png"
-              loading="lazy"
-              :alt="$t('ribCroquetes')"
-              class="w-1/2 md:absolute md:top-0 md:left-0 md:w-1/5 md:-ml-4 md:-mt-4 mx-auto md:mx-0 -mt-8"
-            />
-            <h2
-              class="text-xl text-amber-600 pb-1 text-center md:text-left font-semibold"
+          <SwiperSlide>
+            <div
+              class="card p-5 mt-20 text-center mr-4 w-full flex flex-col items-center"
             >
-              {{ $t("menuItemTitle1") }}
-            </h2>
-            <p class="text-base text-white hidden sm:block">
-              {{ $t("menuItemDescription1") }}
-            </p>
-          </div>
-          <div
-            class="mt-10 md:mt-6 lg:mt-4 lg:flex-auto relative md:h-1/4 lg:h-fill md:pl-24 md:pl-16 lg:pl-32 pt-2 p-4 sm:p-6 mb:pb-4 md:pr-6 lg:pr-8 bg-slate-900 rounded-tr-md rounded-bl-md rounded-3xl md:rounded-br-3xl"
-          >
-            <NuxtImg
-              format="webp"
-              src="assets/menu-item-02.png"
-              loading="lazy"
-              :alt="$t('jambuMix')"
-              class="w-1/2 md:absolute md:top-0 md:left-0 md:w-1/5 md:-ml-4 md:-mt-4 mx-auto md:mx-0 -mt-8"
-            />
-            <h2
-              class="text-xl text-amber-600 pb-1 text-center md:text-left font-semibold"
+              <div>
+                
+                <NuxtImg
+                  format="webp"
+                  class="perfil"
+                  width="120px"
+                  height="120px"
+                  src="assets/testimonial-01.png"
+                  :alt="$t('roundedUserIcon')"
+                />
+              </div>
+              <p class="font-bold text-xl">Ni Marques</p>
+              <div class="flex mb-4 mx-auto" >
+                <NuxtImg
+                  v-for="n in 5"
+                  :key="n"
+                  format="webp"
+                  width="20px"
+                  height="20px"
+                  src="assets/star.svg"
+                  :alt="$t('ratingStar')"
+                />
+              </div>
+              <p class="italic">
+                Espetacular! Sabe aquele lugar que você queria encontrar, comer
+                com vontade, lugar agradável, bonito, com ótimos drinks?! Pois
+                lá eu achei. Fiquei surpreso! O lugar é novo e superou minhas
+                expectativas. Recomendo, vou voltar e levar mais gente com
+                certeza!
+              </p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              class="card p-5 mt-20 text-center flex flex-col items-center h-auto"
             >
-              {{ $t("menuItemTitle2") }}
-            </h2>
-            <p class="text-base text-white hidden sm:block">
-              {{ $t("menuItemDescription2") }}
-            </p>
-          </div>
-          <div
-            class="mt-10 md:mt-6 lg:mt-4 lg:flex-auto relative md:h-1/4 lg:h-fill md:pl-24 md:pl-16 lg:pl-32 pt-2 p-4 sm:p-6 mb:pb-4 md:pr-6 lg:pr-8 bg-slate-900 rounded-tr-md rounded-bl-md rounded-3xl md:rounded-br-3xl"
-          >
-            <NuxtImg
-              format="webp"
-              src="assets/menu-item-03.png"
-              loading="lazy"
-              :alt="$t('acarajePlatter')"
-              class="w-1/2 md:absolute md:top-0 md:left-0 md:w-1/5 md:-ml-4 md:-mt-4 mx-auto md:mx-0 -mt-8"
-            />
-            <h2
-              class="text-xl text-amber-600 pb-1 text-center md:text-left font-semibold"
+              <div>
+                <NuxtImg
+                  format="webp"
+                  class="perfil"
+                  width="120px"
+                  height="120px"
+                  src="assets/testimonial-02.png"
+                  :alt="$t('roundedUserIcon')"
+                />
+              </div>
+              <p class="font-bold text-xl">Valter F</p>
+              <div class="flex mb-4">
+                <NuxtImg
+                  v-for="n in 5"
+                  :key="n"
+                  format="webp"
+                  width="20px"
+                  height="20px"
+                  src="assets/star.svg"
+                  :alt="$t('ratingStar')"
+                />
+              </div>
+              <p class="italic">
+                Excelente atendimento, decoração de bom gosto, boa música e
+                ambiente aconchegante. Quanto aos pratos: melhor acarajé e abará
+                que já experimentei no Porto, além dos acompanhamentos que
+                estavam todos deliciosos, especialmente o camarão. Saí de lá já
+                pensando em voltar.
+              </p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              class="card p-5 mt-20 text-center flex flex-col items-center h-auto"
             >
-              {{ $t("menuItemTitle3") }}
-            </h2>
-            <p class="text-base text-white hidden sm:block">
-              {{ $t("menuItemDescription3") }}
-            </p>
-          </div>
-          <div
-            class="mt-10 md:mt-6 lg:mt-4 lg:flex-auto relative md:h-1/4 lg:h-fill md:pl-24 md:pl-16 lg:pl-32 pt-2 p-4 sm:p-6 mb:pb-4 md:pr-6 lg:pr-8 bg-slate-900 rounded-tr-md rounded-bl-md rounded-3xl md:rounded-br-3xl"
-          >
-            <NuxtImg
-              format="webp"
-              src="assets/menu-item-04.png"
-              loading="lazy"
-              :alt="$t('northeasternDish')"
-              class="w-1/2 md:absolute md:top-0 md:left-0 md:w-1/5 md:-ml-4 md:-mt-4 mx-auto md:mx-0 -mt-8"
-            />
-            <h2
-              class="text-xl text-amber-600 pb-1 text-center md:text-left font-semibold"
-            >
-              {{ $t("menuItemTitle4") }}
-            </h2>
-            <p class="text-base text-white hidden sm:block">
-              {{ $t("menuItemDescription4") }}
-            </p>
-          </div>
-        </div>
-        <div class="flex ">
-          <NuxtLink
-            to="https://www.thefork.pt/restaurante/jambu-rest-bar-r805263#booking="
-            target="_blank"
-            class="text-sm md:text-lg lg:text-xl uppercase hover:bg-amber-500 text-slate-900 font-semibold transition duration-100 delay-75 px-7 lg:px-10 py-3 lg:py-4 bg-amber-600 rounded-[120px] mt-6 lg:mt-8 mx-auto self-center"
-          >
-            {{ $t("MenuButton") }}
-          </NuxtLink>
-        </div>
+              <div>
+                <NuxtImg
+                  format="webp"
+                  class="perfil"
+                  width="120px"
+                  height="120px"
+                  src="assets/testimonial-03.png"
+                  :alt="$t('roundedUserIcon')"
+                />
+              </div>
+              <p class="font-bold text-xl">Rui P</p>
+              <div class="flex mb-4">
+                <NuxtImg
+                  v-for="n in 5"
+                  :key="n"
+                  format="webp"
+                  width="20px"
+                  height="20px"
+                  src="assets/star.svg"
+                  :alt="$t('ratingStar')"
+                />
+              </div>
+              <p class="italic">
+                Lugar excelente, cheio de boa gente e um ambiente espetacular… a
+                comida foi simplesmente espetacular e diferente … Recomendo 100%
+                a experiencia do Jambu !
+              </p>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
     </div>
   </section>
-</template>
+</template> 
+
+<style scoped>
+
+
+.perfil {
+  margin-top: -94px;
+}
+</style>
