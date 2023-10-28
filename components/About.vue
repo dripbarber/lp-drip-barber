@@ -8,7 +8,7 @@
       class="md:flex items-center justify-center h-full overflow-hidden lg:pt-16 lg:pb-6 px-6 z-[5]"
     >
       <div
-        class="text-white text-center font-poppins md:w-1/2 p-4 md:p-6 xl:p-20"
+        class="text-center font-poppins md:w-1/2 p-4 md:p-6 xl:p-20"
       >
         <h1 class="md:text-5xl text-4xl mb-6 font-semibold md:mb-10">
           {{ $t("aboutTitle1") }} <span class="text-amber-600">&</span>
