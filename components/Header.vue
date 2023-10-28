@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full  bg-gradient-to-r from-gray-950 fixed z-50 text-yellow-50">
+  <header class="w-full  bg-gray-950/75 fixed z-50 text-yellow-50">
     <nav
       class="max-w-7xl mx-auto px-4 md:py-2 md:flex md:justify-between md:items-center font-semibold"
     >

@@ -11,22 +11,22 @@
       <div class="columns-3 md:flex hidden mt-20">
         <div
           class=" card relative group text-center text-white flex flex-col items-center justify-center h-auto grayscale hover:grayscale-0 overflow-hidden hover:scale-110 transition duration-500 cursor-pointer max-w-[1800px]"
-          v-for="n in 3"
-          :key="n"
+          v-for="(img, index) in imgCard"
+          :key="index"
         >
           <NuxtImg
             format="webp"
-            src="assets/cortes.png"
+            :src=img.src
             alt="corte de cabelo"
             class="transition-transform transform scale-100 hover:scale-120"
             fit="fill"
-            height="1600"
-            width="1800"            
+            height="700"
+            width="1100"            
             loading="lazy"
           />       
           <div class="absolute group inset-0 flex flex-col items-center justify-center">
-            <h2 class="font-bold text-xl z-10">Cortes</h2>
-            <h2 class=" opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold text-xl z-10">Veja mais</h2>
+            <h2 class="font-bold text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>
+            <h2 class="opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold text-2xl z-10 mt-4" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">VEJA MAIS</h2>
           </div>         
           
         </div>
@@ -96,15 +96,7 @@
               </div>
               <p class="font-bold text-xl">Valter F</p>
               <div class="flex mb-4">
-                <NuxtImg
-                  v-for="n in 5"
-                  :key="n"
-                  format="webp"
-                  width="20px"
-                  height="20px"
-                  src="assets/star.svg"
-                  :alt="$t('ratingStar')"
-                />
+                
               </div>
               <p class="italic">
                 Excelente atendimento, decoração de bom gosto, boa música e
@@ -153,6 +145,23 @@
     </div>
   </section>
 </template> 
+
+<script setup lang="ts">
+interface imgCard {
+  name: string;
+  link: string;
+  src: string;
+}
+
+const imgCard: imgCard[] = [
+  { name: "CORTE", link: "#", src: "assets/services-haircut.png" },
+  { name: "BARBA", link: "#", src: "assets/services-shave.jpg" },
+  { name: "CORTE & BARBA", link: "#", src: "assets/services-shave-haircut.jpg" },
+  
+];
+
+
+</script>
 
 <style scoped>
 

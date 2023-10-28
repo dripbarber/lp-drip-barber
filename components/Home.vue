@@ -7,7 +7,7 @@
       format="webp"
       src="/assets/home-background.jpg"
       alt="homeBackground"            
-      class="absolute h-full w-full object-fill object-center z-[5]"
+      class="absolute h-full w-full object-cover object-center z-[5]"
     />
     
   </section>
