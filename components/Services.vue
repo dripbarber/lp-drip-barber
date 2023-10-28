@@ -1,12 +1,12 @@
 <template>
   <section
-    id="menu_section"
+    id="services_section"
     class="relative w-full flex flex-col justify-center p-6 pt-16 sm:pt-8 md:pb-10 md:pt-20 lg:pt-10"
   >
     <h1
       class="text-amber-600 text-4xl md:text-5xl text-center font-semibold pt-2 pb-6 md:pb-10 lg:pt-20 z-10"
     >
-      {{ $t("menuTitle") }}
+      Serviços
     </h1>
     <div
       id="menu-container"

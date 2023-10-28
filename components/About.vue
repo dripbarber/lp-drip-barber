@@ -11,14 +11,13 @@
         class="text-center font-poppins md:w-1/2 p-4 md:p-6 xl:p-20"
       >
         <h1 class="md:text-5xl text-4xl mb-6 font-semibold md:mb-10">
-          {{ $t("aboutTitle1") }} <span class="text-amber-600">&</span>
-          {{ $t("aboutTitle2") }}
+          Sobre Nós
         </h1>
         <p class="lg:text-lg text-base mb-2">
-          {{ $t("aboutParagraph1") }}
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, minima amet fugit eius facilis temporibus. Quae eos aliquam incidunt corrupti, sit maiores vero ea adipisci hic, minus deleniti est eligendi.
         </p>
         <p class="lg:text-lg text-base">
-          {{ $t("aboutParagraph2") }}
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis vero, harum blanditiis dicta, voluptates soluta eligendi excepturi voluptas eum accusantium quam laborum et dolor ipsam rerum quibusdam error similique delectus.
         </p>
       </div>
       <div

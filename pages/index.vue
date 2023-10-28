@@ -55,9 +55,9 @@
     /> -->
     <Header />
     <Home />
-    <About />
+    <Services />
     <Reservation />
-    <Menu />
+    <About />    
     <Testimonial />
     <OurDrinks />
     <OurPlace />

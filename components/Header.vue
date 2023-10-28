@@ -78,8 +78,8 @@ interface menuItems {
 
 const menuItems: menuItems[] = [
   { name: "home", link: "#home_section" },
-  { name: "serviços", link: "#about_section" },
-  { name: "sobre nós", link: "#our_drinks_section" },
+  { name: "serviços", link: "#services_section" },
+  { name: "sobre nós", link: "#about_section" },
   { name: "contato", link: "#footer_section" },
   { name: "marcação", link: "#home_section"}
 ];
