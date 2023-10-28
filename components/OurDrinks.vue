@@ -14,7 +14,7 @@
         id="our-drinks-container"
         class="flex items-center justify-center overflow-hidden md:px-6"
       >
-        <div class="text-center font-poppins z-10 w-full">
+        <div class="text-center z-10 w-full">
           <div class="w-full md:flex hidden max-w-6xl mx-auto">
             <div class="w-1/2 mr-4">
               <NuxtImg

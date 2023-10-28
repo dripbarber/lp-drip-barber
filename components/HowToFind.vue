@@ -7,7 +7,7 @@
       id="our-place-container"
       class="flex items-center justify-center h-full p-6 py-10 lg:pt-2 "
     >
-      <div class="text-white text-center font-poppins w-full z-10">
+      <div class="text-white text-center w-full z-10">
         <h1 class="text-4xl md:text-5xl font-semibold pb-10 md:pb-20">
           {{ $t('HowToFindTitle1') }} <span class="text-amber-600"> {{ $t('HowToFindTitle2') }} </span>
         </h1>

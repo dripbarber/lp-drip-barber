@@ -16,7 +16,7 @@
           title="googleMaps"
         ></iframe>
       </div>
-      <div class="text-white font-poppins px-6 flex flex-col justify-between md:text-left text-center z-[5]">
+      <div class="text-white px-6 flex flex-col justify-between md:text-left text-center z-[5]">
         <div>
           <div class="flex mb-6">
             <Logo class="md:mx-0 mx-auto" />

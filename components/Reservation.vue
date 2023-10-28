@@ -9,7 +9,7 @@
       class="flex flex-col items-center justify-center md:justify-evenly overflow-hidden p-8 lg:p-16 z-10 mx-auto relative lg:w-full"
     >
       <div
-        class="text-white text-center font-poppins z-10"
+        class="text-white text-center z-10"
       >
         <h1
           class="text-2xl sm:text-3xl lg:text-5xl mb-6 font-semibold"

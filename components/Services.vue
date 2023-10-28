@@ -52,7 +52,7 @@
               :src=img.src
               alt="corte de cabelo"
               class=""
-              fit="fill"
+              fit="cover"
               height="700"
               width="1100"            
               loading="lazy"

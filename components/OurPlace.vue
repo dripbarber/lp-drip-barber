@@ -14,7 +14,7 @@
         id="our-place-container"
         class="flex items-center justify-center sm:max-h-[67vh] overflow-hidden md:p-6"
       >
-        <div class="text-center font-poppins z-10 w-full">
+        <div class="text-center z-10 w-full">
           <div class="md:hidden px-6">
             <Swiper
               :modules="[SwiperAutoplay, SwiperNavigation]"

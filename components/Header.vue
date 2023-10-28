@@ -54,7 +54,7 @@
             class="mx-7 md:mx-3 lg:mx-6 pt-6 md:my-0"
           >
             <NuxtLink
-              class="uppercase relative text-sm lg:text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+              class="uppercase relative text-sm lg:text-2xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
               :to="item.link"
               @click="delaydMobileMenuClick"
               >{{ item.name}}</NuxtLink
