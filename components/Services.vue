@@ -24,9 +24,9 @@
             width="1800"            
             loading="lazy"
           />       
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <div class="absolute group inset-0 flex flex-col items-center justify-center">
             <h2 class="font-bold text-xl z-10">Cortes</h2>
-            <h2 class=" opacity-0 group-hover:opacity-100 duration-300 absolute transition-opacity font-bold text-xl z-10">Veja mais</h2>
+            <h2 class=" opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold text-xl z-10">Veja mais</h2>
           </div>         
           
         </div>
