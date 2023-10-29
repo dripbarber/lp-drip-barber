@@ -71,7 +71,7 @@
               </div>
               <NuxtImg
                 format="webp"
-                src="assets/gallery-item-6.png"
+                src="assets/gallery-item-7.png"
                 class="w-full aspect-square"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -148,7 +148,7 @@
                   </div>
                   <NuxtImg
                     format="webp"
-                    src="assets/gallery-item-6.png"
+                    src="assets/gallery-item-7.png"
                     class="w-full aspect-video object-cover object-center"
                     alt="imagem da galeria de fotos"
                     loading="lazy"
