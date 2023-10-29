@@ -27,6 +27,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/nuxt": "^4.11.8",
     "nuxt-storage": "^1.2.2",
-    "nuxt-swiper": "^1.2.2"
+    "nuxt-swiper": "^1.2.2",
+    "vue": "^3.3.7"
   }
 }

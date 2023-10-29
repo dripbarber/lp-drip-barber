@@ -44,20 +44,20 @@
     <Meta name="og:type”" content="website" />
     <Meta name="og:site_name" content="Jambu - Resto Bar" />
   </Head>
-  <div class="relative bg-slate-950">
-    <NuxtImg
+  <div class="relative bg-slate-200">
+    <!-- <NuxtImg
       format="webp"
-      src="/assets/menu-background.png"
+      src="/assets/menu-background.jpg"
       :alt="$t('homeBackground')"
       width="1439"
       height="1444"
-      class="fixed w-full  object-cover object-center z-[3]"
-    />
+      class="fixed w-full h-full object-cover object-center z-[3]"
+    /> -->
     <Header />
     <Home />
-    <About />
     <Reservation />
-    <Menu />
+    <Services />    
+    <About />    
     <Testimonial />
     <OurDrinks />
     <OurPlace />
