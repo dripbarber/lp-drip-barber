@@ -1,7 +1,7 @@
 <template>
   <Head>
     <!-- GENERAL TAGS -->
-    <Title>Jambu Resto Bar</Title>
+    <Title>DRIP BR Barbearia</Title>
     <Meta name="author" content="Raydan by Daniel Soares" />
     <Meta name="author" content="Raydan by Isaac Francelino" />
     <Meta
@@ -57,9 +57,9 @@
     <Home />
     <Reservation />
     <Services />    
-    <About />    
-    <Testimonial />
-    <OurDrinks />
+    <About />
+    <Gallery />    
+    <Testimonial />    
     <OurPlace />
     <HowToFind />
     <Place />

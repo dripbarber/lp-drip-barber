@@ -1,7 +1,7 @@
 <template>
   <section
     id="services_section"
-    class="w-full bg-gray-950 pt-4 md:pt-0 relative overflow-hidden z-[5]"
+    class="w-full bg-gray-950 pt-4 lg:pt-8 relative overflow-hidden z-[5]"
   >    
     <div
       id="testimonial-container"
@@ -24,8 +24,8 @@
             loading="lazy"
           />       
           <div class="absolute group inset-0 flex flex-col items-center justify-center">
-            <h2 class="font-bold text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>
-            <h2 class="opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold text-2xl z-10 mt-4" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">VEJA MAIS</h2>
+            <h2 class="font-bold md:text-2xl lg:text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>
+            <h2 class="opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold lg:text-2xl z-10 md:text-base lg:mt-2 hover:text-yellow-300" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">VEJA MAIS</h2>
           </div>         
         </div>        
       </div>
@@ -58,8 +58,8 @@
               loading="lazy"
               />       
               <div class="absolute group inset-0  flex flex-col items-center justify-center">
-                <h2 class="font-bold text-3xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>
-                <h2 class="opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold text-xl z-10 mt-4" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">VEJA MAIS</h2>
+                <h2 class="font-bold text-2xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>
+                <h2 class="opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold text-sm z-10 hover:text-yellow-300" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">VEJA MAIS</h2>
               </div>                            
             </div>
           </SwiperSlide>

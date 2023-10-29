@@ -12,7 +12,7 @@
         class="text-white text-center z-10"
       >
         <h1
-          class="text-2xl sm:text-3xl lg:text-5xl mb-6 font-semibold"
+          class="text-2xl sm:text-3xl lg:text-5xl lg:mb-6 mb-3 font-semibold"
         >
           ENTRE EM CONTATO CONOSCO
         </h1>

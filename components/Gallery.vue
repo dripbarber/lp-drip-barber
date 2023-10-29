@@ -1,14 +1,13 @@
 <template>
   <section
-    id="our_drinks_section"
+    id="gallery_section"
     class="w-full pb-5 md:pb-10 pt-4 md:pt-6 lg:pt-10 md:px-4 h-full relative overflow-hidden md:flex md:items-center md:justify-center"
   >
     <div>
       <h1
-        class="text-4xl md:text-5xl text-white text-center font-semibold pb-10 md:pb-10 pt-2 lg:pt-16"
+        class="text-4xl md:text-5xl text-center font-semibold pb-10 md:pb-10 pt-2 lg:pt-16"
       >
-        {{ $t("OurDrinksTitle1") }}
-        <span class="text-amber-600"> {{ $t("OurDrinksTitle2") }} </span>
+        GALERIA        
       </h1>
       <div
         id="our-drinks-container"
@@ -19,9 +18,10 @@
             <div class="w-1/2 mr-4">
               <NuxtImg
                 format="webp"
-                src="assets/our-drinks-item-1.png"
-                class="w-full aspect-video"
-                :alt="$t('orangeDrink')"
+                src="assets/gallery-item-1.png"
+                class="w-full aspect-square"
+                alt="imagem da galeria de fotos"
+                fit="inside"
                 loading="lazy"
                 widht="540"
                 height="574"
@@ -29,16 +29,16 @@
               <div class="flex pt-6">
                 <NuxtImg
                   format="webp"
-                  src="assets/our-drinks-item-2.png"
+                  src="assets/gallery-item-2.png"
                   class="w-1/2 aspect-w-1 aspect-h-1 mr-auto"
-                  :alt="$t('orangeDrinkLeaf')"
+                  alt="imagem da galeria de fotos"                  
                   loading="lazy"
                   widht="255"
                   height="274"
                 />
                 <NuxtImg
                   format="webp"
-                  src="assets/our-drinks-item-3.png"
+                  src="assets/gallery-item-3.png"
                   class="w-1/2 aspect-w-1 aspect-h-1 ml-4"
                   :alt="$t('whiteDrink')"
                   loading="lazy"
@@ -52,7 +52,7 @@
               <div class="flex pb-6">
                 <NuxtImg
                   format="webp"
-                  src="assets/our-drinks-item-4.png"
+                  src="assets/gallery-item-4.png"
                   class="w-1/2 aspect-w-1 aspect-h-1 mr-auto"
                   :alt="$t('redDrink')"
                   loading="lazy"
@@ -61,7 +61,7 @@
                 />
                 <NuxtImg
                   format="webp"
-                  src="assets/our-drinks-item-5.png"
+                  src="assets/gallery-item-5.png"
                   class="w-1/2 aspect-w-1 aspect-h-1 ml-4"
                   :alt="$t('colorfulDrink')"
                   loading="lazy"
@@ -71,8 +71,8 @@
               </div>
               <NuxtImg
                 format="webp"
-                src="assets/our-drinks-item-6.png"
-                class="w-full aspect-video"
+                src="assets/gallery-item-6.png"
+                class="w-full aspect-square"
                 :alt="$t('redDrink')"
                 loading="lazy"
                 widht="540"
@@ -95,7 +95,7 @@
                 <div class="mx-auto">
                   <NuxtImg
                     format="webp"
-                    src="assets/our-drinks-item-1.png"
+                    src="assets/gallery-item-1.png"
                     class="w-full aspect-video object-cover object-center"
                     :alt="$t('orangeDrink')"
                     loading="lazy"
@@ -105,7 +105,7 @@
                   <div class="flex pt-6">
                     <NuxtImg
                       format="webp"
-                      src="assets/our-drinks-item-2.png"
+                      src="assets/gallery-item-2.png"
                       class="w-1/2 aspect-w-1 aspect-h-1 mr-auto object-cover object-center"
                       :alt="$t('orangeDrinkLeaf')"
                       loading="lazy"
@@ -114,7 +114,7 @@
                     />
                     <NuxtImg
                       format="webp"
-                      src="assets/our-drinks-item-3.png"
+                      src="assets/gallery-item-3.png"
                       class="w-1/2 aspect-w-1 aspect-h-1 ml-4 object-cover object-center"
                       :alt="$t('whiteDrink')"
                       loading="lazy"
@@ -129,7 +129,7 @@
                   <div class="flex pb-6">
                     <NuxtImg
                       format="webp"
-                      src="assets/our-drinks-item-4.png"
+                      src="assets/gallery-item-4.png"
                       class="w-1/2 aspect-w-1 aspect-h-1 mr-auto object-cover object-center"
                       :alt="$t('redDrink')"
                       loading="lazy"
@@ -138,7 +138,7 @@
                     />
                     <NuxtImg
                       format="webp"
-                      src="assets/our-drinks-item-5.png"
+                      src="assets/gallery-item-5.png"
                       class="w-1/2 aspect-w-1 aspect-h-1 ml-4 object-cover object-center"
                       :alt="$t('colorfulDrink')"
                       loading="lazy"
@@ -148,7 +148,7 @@
                   </div>
                   <NuxtImg
                     format="webp"
-                    src="assets/our-drinks-item-6.png"
+                    src="assets/gallery-item-6.png"
                     class="w-full aspect-video object-cover object-center"
                     :alt="$t('redDrink')"
                     loading="lazy"
