@@ -23,17 +23,17 @@
                 alt="imagem da galeria de fotos"
                 fit="inside"
                 loading="lazy"
-                widht="540"
+                width="540"
                 height="574"
               />
-              <div class="flex pt-6">
+              <div class="flex pt-6 overflow-hidden">
                 <NuxtImg
                   format="webp"
                   src="assets/gallery-item-2.png"
                   class="w-1/2 aspect-w-1 mr-auto"
                   alt="imagem da galeria de fotos"                  
                   loading="lazy"
-                  widht="255"
+                  width="255"
                   height="274"
                 />
                 <NuxtImg
@@ -42,21 +42,21 @@
                   class="w-1/2 aspect-w-1  ml-4"
                   alt="imagem da galeria de fotos"
                   loading="lazy"
-                  widht="255"
+                  width="255"
                   height="274"
                 />
               </div>
             </div>
 
             <div class="w-1/2 ml-4">
-              <div class="flex pb-6">
+              <div class="flex pb-6 overflow-hidden">
                 <NuxtImg
                   format="webp"
                   src="assets/gallery-item-4.png"
                   class="w-1/2 aspect-w-1 mr-auto"
                   alt="imagem da galeria de fotos"
                   loading="lazy"
-                  widht="255"
+                  width="255"
                   height="274"
                 />
                 <NuxtImg
@@ -65,17 +65,17 @@
                   class="w-1/2 aspect-w-1 ml-4"
                   alt="imagem da galeria de fotos"
                   loading="lazy"
-                  widht="255"
+                  width="255"
                   height="274"
                 />
               </div>
               <NuxtImg
                 format="webp"
-                src="assets/gallery-item-7.png"
-                class="w-full aspect-square"
+                src="assets/gallery-item-6.png"
+                class="w-full aspect-square object-bottom"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
-                widht="540"
+                width="540"
                 height="574"
               />
             </div>
@@ -92,24 +92,24 @@
               }"
             >
               <SwiperSlide>
-                <div class="mx-auto">
+                <div class="mx-auto px-4">
                   <NuxtImg
                     format="webp"
                     src="assets/gallery-item-1.png"
                     class="w-full aspect-video object-cover object-center"
                     alt="imagem da galeria de fotos"
                     loading="lazy"
-                    widht="540"
+                    width="540"
                     height="574"
                   />
-                  <div class="flex pt-6">
+                  <div class="flex pt-6 overflow-hidden">
                     <NuxtImg
                       format="webp"
                       src="assets/gallery-item-2.png"
                       class="w-1/2 aspect-w-1 aspect-h-1 mr-auto object-cover object-center"
                       alt="imagem da galeria de fotos"
                       loading="lazy"
-                      widht="255"
+                      width="255"
                       height="274"
                     />
                     <NuxtImg
@@ -118,22 +118,22 @@
                       class="w-1/2 aspect-w-1 aspect-h-1 ml-4 object-cover object-center"
                       alt="imagem da galeria de fotos"
                       loading="lazy"
-                      widht="255"
+                      width="255"
                       height="274"
                     />
                   </div>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div class="w-full mx-auto">
-                  <div class="flex pb-6">
+                <div class="w-full items-center mx-auto px-4">
+                  <div class="flex pb-6 overflow-hidden">
                     <NuxtImg
                       format="webp"
                       src="assets/gallery-item-4.png"
                       class="w-1/2 aspect-w-1 aspect-h-1 mr-auto object-cover object-center"
                       alt="imagem da galeria de fotos"
                       loading="lazy"
-                      widht="255"
+                      width="255"
                       height="274"
                     />
                     <NuxtImg
@@ -142,17 +142,17 @@
                       class="w-1/2 aspect-w-1 aspect-h-1 ml-4 object-cover object-center"
                       alt="imagem da galeria de fotos"
                       loading="lazy"
-                      widht="255"
+                      width="255"
                       height="274"
                     />
                   </div>
                   <NuxtImg
                     format="webp"
-                    src="assets/gallery-item-7.png"
+                    src="assets/gallery-item-6.png"
                     class="w-full aspect-video object-cover object-center"
                     alt="imagem da galeria de fotos"
                     loading="lazy"
-                    widht="540"
+                    width="540"
                     height="574"
                   />
                 </div>
