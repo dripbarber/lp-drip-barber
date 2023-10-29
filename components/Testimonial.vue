@@ -5,18 +5,20 @@
   >
     <NuxtImg
       format="webp"
-      src="/assets/testimonial-background.png"
-      alt="Drink amarelo com especiarias"
+      src="/assets/testimonial-background3.png"
+      alt="DRIP BR logo"
       sizes="sm:300px md:1440px lg:2048px"
-      class="absolute h-full w-full object-cover object-center z-0"
+      class="absolute h-full w-full object-cover object-bottom z-0 grayscale"
     />
     <div
       id="testimonial-container"
-      class="flex items-center justify-between h-full p-6 max-w-7xl mx-auto z-5 relative"
+      class="flex items-center justify-center h-full p-6 max-w-7xl mx-auto z-5 relative"
     >
       <div class="columns-3 md:flex hidden mt-20">
         <div
-          class="text-white w-1/3 p-[35px] card text-center flex flex-col items-center mr-4 h-auto"
+          class="w-1/3 p-[35px] card text-center flex flex-col items-center mr-4 h-auto"
+          v-for="(card, index) in testimonialCards"
+          :key="index"
         >
           <div>
             <NuxtImg
@@ -24,11 +26,11 @@
               class="perfil"
               width="120px"
               height="120px"
-              src="assets/testimonial-01.png"
-              :alt="$t('roundedUserIcon')"
+              :src=card.src
+              :alt=card.alt
             />
           </div>
-          <p class="font-bold text-xl">Ni Marques</p>
+          <h4 class="font-bold text-xl"> {{card.userName}} </h4>
           <div class="flex mb-4">
             <NuxtImg
               v-for="n in 5"
@@ -37,73 +39,13 @@
               width="20px"
               height="20px"
               src="assets/star.svg"
-              :alt="$t('ratingStar')"
+              alt="estrela de classificação"
             />
           </div>
-          <p class="italic">
-            {{ $t("Testimonial1") }}
-          </p>
+          <p class="italic lg:text-xl"> {{card.testimonial}} </p>
         </div>
 
-        <div
-          class="text-white w-1/3 p-[35px] card text-center flex flex-col items-center h-auto mr-4"
-        >
-          <div>
-            <NuxtImg
-              format="webp"
-              class="perfil"
-              width="120px"
-              height="120px"
-              src="assets/testimonial-02.png"
-              :alt="$t('roundedUserIcon')"
-            />
-          </div>
-          <p class="font-bold text-xl">Valter F</p>
-          <div class="flex mb-4">
-            <NuxtImg
-              v-for="n in 5"
-              :key="n"
-              format="webp"
-              width="20px"
-              height="20px"
-              src="assets/star.svg"
-              :alt="$t('ratingStar')"
-            />
-          </div>
-          <p class="italic">
-            {{ $t("Testimonial2") }}
-          </p>
-        </div>
-
-        <div
-          class="text-white w-1/3 p-[35px] card text-center flex flex-col items-center h-auto"
-        >
-          <div>
-            <NuxtImg
-              format="webp"
-              class="perfil"
-              width="120px"
-              height="120px"
-              src="assets/testimonial-03.png"
-              :alt="$t('roundedUserIcon')"
-            />
-          </div>
-          <p class="font-bold text-xl">Rui P</p>
-          <div class="flex mb-4">
-            <NuxtImg
-              v-for="n in 5"
-              :key="n"
-              format="webp"
-              width="20px"
-              height="20px"
-              src="assets/star.svg"
-              :alt="$t('ratingStar')"
-            />
-          </div>
-          <p class="italic">
-            {{ $t("Testimonial3") }}
-          </p>
-        </div>
+       
       </div>
 
       <div class="md:hidden w-11/12 mx-auto mt-8">
@@ -116,9 +58,12 @@
             disableOnInteraction: true,
           }"
         >
-          <SwiperSlide>
+          <SwiperSlide
+            v-for="(card, index) in testimonialCards"
+            :key="index"
+          >
             <div
-              class="text-white card p-5 mt-20 text-center mr-4 w-full flex flex-col items-center"
+              class="card p-5 mt-20 text-center mr-4 w-full flex flex-col items-center"
             >
               <div>
                 <NuxtImg
@@ -126,11 +71,11 @@
                   class="perfil"
                   width="120px"
                   height="120px"
-                  src="assets/testimonial-01.png"
-                  :alt="$t('roundedUserIcon')"
+                  :src= card.src
+                  :alt= card.alt
                 />
               </div>
-              <p class="font-bold text-xl">Ni Marques</p>
+              <h4 class="font-bold text-xl"> {{ card.userName }} </h4>
               <div class="flex mb-4 mx-auto">
                 <NuxtImg
                   v-for="n in 5"
@@ -139,95 +84,37 @@
                   width="20px"
                   height="20px"
                   src="assets/star.svg"
-                  :alt="$t('ratingStar')"
+                  alt="estrela de classificação"
                 />
               </div>
-              <p class="italic">
-                Espetacular! Sabe aquele lugar que você queria encontrar, comer
-                com vontade, lugar agradável, bonito, com ótimos drinks?! Pois
-                lá eu achei. Fiquei surpreso! O lugar é novo e superou minhas
-                expectativas. Recomendo, vou voltar e levar mais gente com
-                certeza!
-              </p>
+              <p class="italic text-base"> {{ card.testimonial }} </p>
             </div>
           </SwiperSlide>
-          <SwiperSlide>
-            <div
-              class="text-white card p-5 mt-20 text-center flex flex-col items-center h-auto"
-            >
-              <div>
-                <NuxtImg
-                  format="webp"
-                  class="perfil"
-                  width="120px"
-                  height="120px"
-                  src="assets/testimonial-02.png"
-                  :alt="$t('roundedUserIcon')"
-                />
-              </div>
-              <p class="font-bold text-xl">Valter F</p>
-              <div class="flex mb-4">
-                <NuxtImg
-                  v-for="n in 5"
-                  :key="n"
-                  format="webp"
-                  width="20px"
-                  height="20px"
-                  src="assets/star.svg"
-                  :alt="$t('ratingStar')"
-                />
-              </div>
-              <p class="italic">
-                Excelente atendimento, decoração de bom gosto, boa música e
-                ambiente aconchegante. Quanto aos pratos: melhor acarajé e abará
-                que já experimentei no Porto, além dos acompanhamentos que
-                estavam todos deliciosos, especialmente o camarão. Saí de lá já
-                pensando em voltar.
-              </p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              class="text-white card p-5 mt-20 text-center flex flex-col items-center h-auto"
-            >
-              <div>
-                <NuxtImg
-                  format="webp"
-                  class="perfil"
-                  width="120px"
-                  height="120px"
-                  src="assets/testimonial-03.png"
-                  :alt="$t('roundedUserIcon')"
-                />
-              </div>
-              <p class="font-bold text-xl">Rui P</p>
-              <div class="flex mb-4">
-                <NuxtImg
-                  v-for="n in 5"
-                  :key="n"
-                  format="webp"
-                  width="20px"
-                  height="20px"
-                  src="assets/star.svg"
-                  :alt="$t('ratingStar')"
-                />
-              </div>
-              <p class="italic">
-                Lugar excelente, cheio de boa gente e um ambiente espetacular… a
-                comida foi simplesmente espetacular e diferente … Recomendo 100%
-                a experiencia do Jambu !
-              </p>
-            </div>
-          </SwiperSlide>
+          
         </Swiper>
       </div>
     </div>
   </section>
 </template> 
 
+<script setup lang="ts">
+  interface testimonialCards {
+    src: string,
+    alt: string,
+    userName: string,
+    testimonial: string,
+  }
+
+  const testimonialCards: testimonialCards[] = [
+    {src: "assets/testimonial-1.png", alt:"icone em forma de circulo com imagem de usuario", userName: "Fernando Souza", testimonial: "Olá, gostaria de expressar a minha imensa satisfação com a barbearia em Vila Nova de Gaia, Portugal! Além disso, os cortes na régua são de altíssima qualidade. É um prazer vir aqui, e eu definitivamente recomendaria esta barbearia a todos que procuram um ótimo atendimento e um corte impecável!" },
+    {src: "assets/testimonial-2.png", alt:"icone em forma de circulo com imagem de usuario", userName: "João Silva", testimonial: "Estou simplesmente encantado com essa barbearia! O ambiente é tão aconchegante e descontraído, e a equipe é sempre tão simpática e alegre. E não posso deixar de mencionar os cortes de cabelo - são sempre feitos com perfeição! Mal posso esperar para minha próxima visita." },
+    {src: "assets/testimonial-3.png", alt:"icone em forma de circulo com imagem de usuario", userName: "Carlos Ferreira", testimonial: "Esta barbearia é simplesmente fenomenal! A equipe é incrivelmente acolhedora e amigável, e o cafézinho que eles oferecem tem um toque maravilhoso. Não posso elogiar o suficiente a qualidade do atendimento e dos serviços prestados. Esta barbearia é um verdadeiro tesouro em Vila Nova de Gaia!" },
+  ]
+</script>
+
 <style scoped>
 .card {
-  background: rgba(217, 217, 217, 0.49);
+  background: rgba(217, 217, 217, 0.70);
   border-radius: 20px;
 }
 

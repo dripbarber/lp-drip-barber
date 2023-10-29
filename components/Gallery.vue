@@ -1,7 +1,7 @@
 <template>
   <section
     id="gallery_section"
-    class="w-full pb-5 md:pb-10 pt-4 md:pt-6 lg:pt-10 md:px-4 h-full relative overflow-hidden md:flex md:items-center md:justify-center"
+    class="w-full pb-8 md:pb-12 lg:pb-16 pt-4 md:pt-6 lg:pt-10 md:px-4 h-full relative overflow-hidden md:flex md:items-center md:justify-center"
   >
     <div>
       <h1
