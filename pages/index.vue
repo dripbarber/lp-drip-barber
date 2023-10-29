@@ -59,9 +59,8 @@
     <Services />    
     <About />
     <Gallery />    
-    <Testimonial />    
-    <OurPlace />
-    <HowToFind />
+    <Testimonial /> 
+    <Videos />
     <Place />
     <Footer />
 

@@ -107,8 +107,8 @@
 
   const testimonialCards: testimonialCards[] = [
     {src: "assets/testimonial-1.png", alt:"icone em forma de circulo com imagem de usuario", userName: "Fernando Souza", testimonial: "Olá, gostaria de expressar a minha imensa satisfação com a barbearia em Vila Nova de Gaia, Portugal! Além disso, os cortes na régua são de altíssima qualidade. É um prazer vir aqui, e eu definitivamente recomendaria esta barbearia a todos que procuram um ótimo atendimento e um corte impecável!" },
-    {src: "assets/testimonial-2.png", alt:"icone em forma de circulo com imagem de usuario", userName: "João Silva", testimonial: "Estou simplesmente encantado com essa barbearia! O ambiente é tão aconchegante e descontraído, e a equipe é sempre tão simpática e alegre. E não posso deixar de mencionar os cortes de cabelo - são sempre feitos com perfeição! Mal posso esperar para minha próxima visita." },
-    {src: "assets/testimonial-3.png", alt:"icone em forma de circulo com imagem de usuario", userName: "Carlos Ferreira", testimonial: "Esta barbearia é simplesmente fenomenal! A equipe é incrivelmente acolhedora e amigável, e o cafézinho que eles oferecem tem um toque maravilhoso. Não posso elogiar o suficiente a qualidade do atendimento e dos serviços prestados. Esta barbearia é um verdadeiro tesouro em Vila Nova de Gaia!" },
+    {src: "assets/testimonial-2.png", alt:"icone em forma de circulo com imagem de usuario", userName: "João Silva", testimonial: "Estou simplesmente encantado com essa barbearia! O ambiente é tão aconchegante e descontraído, e a equipe é sempre tão simpática e alegre. E não posso deixar de mencionar os cortes de cabelo são sempre feitos com perfeição! Mal posso esperar para minha próxima visita." },
+    {src: "assets/testimonial-3.png", alt:"icone em forma de circulo com imagem de usuario", userName: "Carlos Ferreira", testimonial: "Esta barbearia é simplesmente fenomenal! A equipe é incrivelmente acolhedora e amigável, e o cafézinho que eles oferecem tem um toque maravilhoso. Não posso elogiar o suficiente a qualidade do atendimento e dos serviços prestados. Recomendo demais!" },
   ]
 </script>
 
