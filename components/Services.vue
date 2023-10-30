@@ -9,23 +9,22 @@
     >
       <div class="columns-3 md:flex hidden mt-24">
         <div
-          class=" card relative group text-center text-white flex flex-col items-center justify-center h-auto grayscale hover:grayscale-0 overflow-hidden hover:scale-110 transition duration-500 cursor-pointer max-w-[1800px]"
+          class=" card text-center text-white flex flex-col items-center h-auto grayscale hover:grayscale-0 overflow-hidden z-0 hover:z-50 hover:scale-110 transition duration-500 cursor-pointer max-w-[1800px]"
           v-for="(img, index) in imgCard"
           :key="index"
         >
           <NuxtImg
             format="webp"
             :src=img.src
-            alt="corte de cabelo"
+            :alt=img.alt
             class=""
-            fit="fill"
+            fit="cover"
             height="700"
             width="1100"            
             loading="lazy"
           />       
           <div class="absolute group inset-0 flex flex-col items-center justify-center">
-            <h2 class="font-bold md:text-2xl lg:text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>
-            <h2 class="opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold lg:text-2xl z-10 md:text-base lg:mt-2 hover:text-yellow-300" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">VEJA MAIS</h2>
+            <h2 class="font-bold md:text-2xl lg:text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>            
           </div>         
         </div>        
       </div>
@@ -58,8 +57,7 @@
               loading="lazy"
               />       
               <div class="absolute group inset-0  flex flex-col items-center justify-center">
-                <h2 class="font-bold text-2xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>
-                <h2 class="opacity-0 group-hover:opacity-100 duration-300 transition-opacity font-bold text-sm z-10 hover:text-yellow-300" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">VEJA MAIS</h2>
+                <h2 class="font-bold text-2xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>                
               </div>                            
             </div>
           </SwiperSlide>
@@ -75,12 +73,13 @@ interface imgCard {
   name: string;
   link: string;
   src: string;
+  alt: string;
 }
 
 const imgCard: imgCard[] = [
-  { name: "CORTE", link: "#", src: "assets/services-haircut.png" },
-  { name: "BARBA", link: "#", src: "assets/services-shave.jpg" },
-  { name: "CORTE & BARBA", link: "#", src: "assets/services-shave-haircut.jpg" },
+  { name: "CORTE", link: "#", src: "assets/services-haircut.png", alt: "serviços de corte de cabelo" },
+  { name: "BARBA", link: "#", src: "assets/services-shave.jpg", alt: "serviços de barba" },
+  { name: "CORTE & BARBA", link: "#", src: "assets/services-shave-haircut.jpg", alt: "serviços de corte e barba" },
   
 ];
 

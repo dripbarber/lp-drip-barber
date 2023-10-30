@@ -6,7 +6,7 @@
     
     <div
       id="reservation-container"
-      class="flex flex-col items-center justify-center md:justify-evenly overflow-hidden p-8 lg:p-16 z-10 mx-auto relative lg:w-full"
+      class="flex flex-col items-center justify-center -mb-8 md:justify-evenly overflow-hidden p-8 lg:p-16 z-10 mx-auto relative lg:w-full"
     >
       <div
         class="text-white text-center z-10"

@@ -15,7 +15,7 @@
           BEM VINDO
         </h3>
         <h1 class="md:text-6xl text-4xl mb-6 font-semibold md:mb-10">
-          Barbearia DRIP BR
+          Barbearia<br /> DRIP BR
         </h1>
         <p class="lg:text-xl text-base mb-2 lg:mb-6">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, minima amet fugit eius facilis temporibus. Quae eos aliquam incidunt corrupti, sit maiores vero ea adipisci hic, minus deleniti est eligendi.
