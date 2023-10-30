@@ -1,7 +1,7 @@
 <template>
   <section
-    id="reservation_section"
-    class="flex items-center w-full bg-gray-950 pt-4 md:pt-6  relative overflow-hidden z-10"
+    id="message_break_section"
+    class="flex items-center w-full bg-gray-950  relative overflow-hidden z-10"
   >
     
     <div
@@ -12,9 +12,9 @@
         class="text-white text-center z-10"
       >
         <h1
-          class="text-2xl sm:text-3xl lg:text-5xl lg:mb-6 mb-3 font-semibold"
+          class="text-2xl sm:text-3xl lg:text-5xl lg:mb-6 mb-3"
         >
-          ENTRE EM CONTATO CONOSCO
+          Na barba, no cabelo, e na atitude. Descubra o <span class="font-bold text-yellow-500" >estilo brasileiro</span> em Portugal!
         </h1>
         
       </div>

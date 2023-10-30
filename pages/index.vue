@@ -58,6 +58,7 @@
     <Reservation />
     <Services />    
     <About />
+    <MessageBreak />
     <Gallery />    
     <Testimonial /> 
     <Videos />
@@ -97,6 +98,9 @@ html {
   font-family: "Kalam", sans-serif;
 }
 
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+}
 p {
   font-family: "Roboto", sans-serif;
 }

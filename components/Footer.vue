@@ -23,10 +23,10 @@
           </div>
           <div class="flex mb-8"> 
             <NuxtLink to="https://wa.me/351930692647" target="_blank" class="mr-6 md:ml-0 ml-auto" arial-label="whatsapp link">
-              <NuxtImg format="webp" loading="lazy" src="assets/whatsapp.png" alt="Whatsapp" />
+              <NuxtImg format="webp" loading="lazy" src="assets/footer-whatsapp.png" alt="Whatsapp" width="47px" height="47px" fit="fill"/>
             </NuxtLink>
-            <NuxtLink to="https://www.instagram.com/jamburestobar.pt/" target="_blank" class="md:mr-0 mr-auto" aria-label="Jamburestobar Instagram" >
-              <NuxtImg format="webp" loading="lazy" src="assets/instagram.png" alt="Instagram" />
+            <NuxtLink to="https://www.instagram.com/dripbrbarbearia/" target="_blank" class="md:mr-0 mr-auto" aria-label="Drip BR Instagram" >
+              <NuxtImg format="webp" loading="lazy" src="assets/footer-instagram.png" alt="Instagram" width="47px" height="47px"/>
             </NuxtLink>
           </div>
           <div class="mb-8">
