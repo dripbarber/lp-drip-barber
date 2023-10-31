@@ -4,13 +4,14 @@ export default defineNuxtConfig({
   modules: [
     //'@nuxtjs/stylelint-module',
     //'@nuxtjs/eslint-module',
+    '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
     'nuxt-swiper',
     '@nuxt/image',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@vee-validate/nuxt',
-    '@nuxt/ui',
+    // '@nuxt/ui',
     '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'
   ],
   i18n: {
@@ -24,11 +25,11 @@ export default defineNuxtConfig({
       api_url: process.env.API_URL,
     }
   },
-  ui: {
-    notifications: {
-      position: 'top-0 right-0'
-    }
-  },
+  // ui: {
+  //   notifications: {
+  //     position: 'top-0 right-0'
+  //   }
+  // },
   build: {
     transpile: ['pinia-plugin-persistedstate'],
   }
