@@ -1,5 +1,5 @@
 <template>
-  <section id="footer_section" class="w-full relative">
+  <section id="footer_section" class="w-full relative bg-gray-950 text-white">
     <div
       id="footer-container"
       class="h-full py-20 md:py-28 max-w-7xl md:flex md:flex-row-reverse mx-auto justify-between"

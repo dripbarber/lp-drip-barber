@@ -18,11 +18,22 @@
           Barbearia<br /> DRIP BR
         </h1>
         <p class="lg:text-xl text-base mb-2 lg:mb-6">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, minima amet fugit eius facilis temporibus. Quae eos aliquam incidunt corrupti, sit maiores vero ea adipisci hic, minus deleniti est eligendi.
+          Sabemos que imigrar para um país desconhecido e recomeçar a vida do zero não é fácil! Acontece diversas coisas que nos deixam tristes, desmotivados e com muita saudade. 
         </p>
-        <p class="lg:text-xl text-base">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis vero, harum blanditiis dicta, voluptates soluta eligendi excepturi voluptas eum accusantium quam laborum et dolor ipsam rerum quibusdam error similique delectus.
+        <p class="lg:text-xl text-base mb-2 lg:mb-6">
+          É por isso que nós surgimos, estamos aqui para ajudar, fazer todos os imigrantes se sentirem no Brasil, em casa. Vamos preencher o vazio no peito de cada um com o sentimento de pertencimento, trazendo a nostalgia e a cultura do nosso país para todo o mundo.
         </p>
+        <p class="lg:text-xl text-base mb-2 lg:mb-6">
+          Aqui você vai escutar aquela música boa, tomar uma cervejinha gelada, jogar aquele Bomba Patch, aquele flyper com The King Of Fighters 98, aquela sinuquinha e é claro, aquela resenha que só quem é brasileiro sabe e ainda vai sair na régua! 
+        </p>
+        <p class="lg:text-xl text-base mb-2 lg:mb-6">
+          O Brasil nunca esteve tão perto, isso aqui é Drip BR, sinta-se em casa! 
+        </p>
+
+
+
+        
+        
       </div>
       <div
         class="md:w-1/2 xl:columns-3 columns-2 w-5/6 mx-auto gap-2 my-4 z-[5]"

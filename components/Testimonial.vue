@@ -5,7 +5,7 @@
   >
     <NuxtImg
       format="webp"
-      src="/assets/testimonial-background3.png"
+      src="/assets/testimonial-background-new.jpeg"
       alt="DRIP BR logo"
       sizes="sm:300px md:1440px lg:2048px"
       class="absolute h-full w-full object-cover object-bottom z-0 grayscale"
@@ -114,7 +114,7 @@
 
 <style scoped>
 .card {
-  background: rgba(217, 217, 217, 0.70);
+  background: rgba(217, 217, 217, 0.95);
   border-radius: 20px;
 }
 
