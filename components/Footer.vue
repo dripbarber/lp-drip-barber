@@ -23,10 +23,10 @@
           </div>
           <div class="flex mb-8"> 
             <NuxtLink to="https://wa.me/351930692647" target="_blank" class="mr-6 md:ml-0 ml-auto" arial-label="whatsapp link">
-              <NuxtImg format="webp" loading="lazy" src="assets/footer-whatsapp.png" alt="Whatsapp" width="47px" height="47px" fit="fill"/>
+              <NuxtImg format="webp" loading="lazy" src="assets/footer-whats.png" alt="Whatsapp" width="47px" height="47px" fit="fill"/>
             </NuxtLink>
             <NuxtLink to="https://www.instagram.com/dripbrbarbearia/" target="_blank" class="md:mr-0 mr-auto" aria-label="Drip BR Instagram" >
-              <NuxtImg format="webp" loading="lazy" src="assets/footer-instagram.png" alt="Instagram" width="47px" height="47px"/>
+              <NuxtImg format="webp" loading="lazy" src="assets/footer-insta.png" alt="Instagram" width="47px" height="47px"/>
             </NuxtLink>
           </div>
           <div class="mb-8">
@@ -38,7 +38,7 @@
                 09:00 às 20:00
             </p>                      
           </div>
-          <div class="bg-black rounded p-2 w-1/2 mx-auto md:mx-0">
+          <div class="p-2 w-1/2 mx-auto md:mx-0">
             <NuxtLink to="https://www.livroreclamacoes.pt/Inicio/" target="_blank" aria-label="Livro de reclamações"
               ><NuxtImg format="webp" src="assets/complaint-book.png" alt="Livro de Reclamações" loading="lazy"
                class="md:mx-0 mx-auto w-48 h-full"
