@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    class="flex items-center justify-center flex-col font-poppins my-sm"
+    class="flex items-center justify-center flex-col my-sm"
     to="#home_section"
   >
   <NuxtImg
