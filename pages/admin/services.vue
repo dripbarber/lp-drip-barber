@@ -1,0 +1,72 @@
+<template>
+  <AdminLayout>
+    <Table :columns="columns" :data="datasource" :loading="loading">
+      <template v-slot:paginate>
+        <Pagination
+          :data="datasource"
+          :current_page="currentPage"
+          @page-changed="requestPagination"
+        />
+      </template>
+    </Table>
+  </AdminLayout>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { useUserStore } from "@/stores/userStores";
+const userStore = useUserStore();
+const { token } = userStore;
+
+definePageMeta({
+  //middleware: 'auth'
+});
+
+const config = useRuntimeConfig();
+const api_url = config.public.api_url;
+const datasource: any = ref([]);
+const currentPage = ref(1);
+const loading = ref(false);
+
+onMounted(async () => {
+  loading.value = true;
+  await requestPagination();
+  loading.value = false;
+});
+
+const columns = [
+  {
+    key: "description",
+    label: "Nome",
+  },
+  {
+    key: "price",
+    label: "Preço",
+    type: "double",
+  },
+  {
+    key: "createdBy",
+    label: "Criado por",
+    type: "user",
+  },
+  {
+    key: "createdAt",
+    label: "Atualizado em",
+    type: "date",
+  }
+];
+
+const requestPagination = async (values: any = {}) => {
+  const response: any = await $fetch(`${api_url}/service`, {
+    method: "GET",
+    query: { ...values },
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (response?.services) {
+    datasource.value = response.services;
+  }
+};
+</script>

@@ -18,6 +18,7 @@
     "@types/node": "^18.17.3",
     "eslint": "^8.47.0",
     "nuxt": "^3.6.5",
+    "nuxt-icon": "^0.6.1",
     "stylelint": "^15.10.2"
   },
   "dependencies": {

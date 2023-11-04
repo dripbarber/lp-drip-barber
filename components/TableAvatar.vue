@@ -33,7 +33,7 @@
 <script setup  lang='ts'>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import TableRow from '@/components/tables/TableRow.vue'
+import TableRow from '@/components/TableRow.vue'
 import Pagination from '@/components/Pagination.vue'
 
 const people = ref([])

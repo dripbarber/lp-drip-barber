@@ -1,10 +1,16 @@
 <template>
-  <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+  <div class="flex items-center col-span-3">
+    {{ paginationStart }} - {{ paginationEnd }} de {{ data.length }} items
+  </div>
+  <div class="col-span-2"></div>
+  <div class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
     <nav aria-label="Table navigation">
       <ul class="inline-flex items-center">
         <li>
           <button
-            class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+            @click="previousPage"
+            class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-stone"
+            :disabled="currentPage === 1"
             aria-label="Previous"
           >
             <svg
@@ -20,42 +26,26 @@
             </svg>
           </button>
         </li>
-        <li>
-          <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-            1
-          </button>
-        </li>
-        <li>
-          <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-            2
-          </button>
-        </li>
-        <li>
-          <button class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">
-            3
-          </button>
-        </li>
-        <li>
-          <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-            4
+        <li v-for="pageNumber in visiblePageNumbers" :key="pageNumber">
+          <button
+            @click="goToPage(pageNumber)"
+            class="px-3 py-1 rounded-md"
+            :class="{
+              'focus:outline-none focus:shadow-outline-stone': currentPage !== pageNumber,
+              'text-white transition-colors duration-150 bg-stone-600 border border-r-0 border-stone-600 rounded-md focus:outline-none focus:shadow-outline-stone': currentPage === pageNumber,
+            }"
+          >
+            {{ pageNumber }}
           </button>
         </li>
         <li>
           <span class="px-3 py-1">...</span>
         </li>
         <li>
-          <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-            8
-          </button>
-        </li>
-        <li>
-          <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-            9
-          </button>
-        </li>
-        <li>
           <button
-            class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+            @click="nextPage"
+            class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-stone"
+            :disabled="currentPage === totalPages"
             aria-label="Next"
           >
             <svg
@@ -73,5 +63,61 @@
         </li>
       </ul>
     </nav>
-  </span>
+  </div>
 </template>
+
+<script setup lang="ts">
+import { ref, toRefs, defineProps, defineEmits } from "vue";
+
+const { data, current_page, items_per_page } = defineProps({
+  data: {
+    type: Array,
+    default: () => [],
+  },
+  current_page: {
+    type: Number,
+    default: 1,
+  },
+  items_per_page: {
+    type: Number,
+    default: 10,
+  },
+});
+
+const emit = defineEmits();
+
+const currentPage = ref(current_page);
+const itemsPerPage = ref(items_per_page);
+
+const paginationEnd = computed(() => Math.min(currentPage.value * items_per_page, data.length));
+const paginationStart = computed(() => paginationEnd.value ? (currentPage.value - 1 ) * items_per_page + 1 : 0);
+
+const totalPages = computed(() => Math.ceil(data.length / items_per_page));
+
+const visiblePageNumbers = computed(() => {
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages.value; i++) {
+    pageNumbers.push(i);
+  }
+  return pageNumbers;
+});
+
+const previousPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--;
+    emit("page-changed", { currentPage: currentPage.value, itemsPerPage: itemsPerPage.value });
+  }
+};
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++;
+    emit("page-changed", { currentPage: currentPage.value,  itemsPerPage: itemsPerPage.value });
+  }
+};
+
+const goToPage = (pageNumber: any) => {
+  currentPage.value = pageNumber;
+  emit("page-changed", { currentPage: pageNumber,  itemsPerPage: itemsPerPage.value });
+};
+</script>

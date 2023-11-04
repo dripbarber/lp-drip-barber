@@ -123,11 +123,11 @@ const doLogin = async (values) => {
 
     if (data.value.token) {
       if (data.value.user.type !== "user") {
-        router.push({ path: "/dashboard" });
+        router.push({ path: "admin/dashboard" });
         return;
       }
 
-      router.push({ path: "/appointment" });
+      router.push({ path: "user/appointment" });
     }
   } catch (error) {
     console.log("error", error);
