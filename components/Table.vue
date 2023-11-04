@@ -19,7 +19,36 @@
               class="text-gray-700 dark:text-gray-400"
             >
               <td v-for="column in columns" :key="column" class="px-4 py-3">
-                {{ item[column.key] }}
+                <span v-if="column?.type === 'user'" class="flex">
+                  <div
+                    class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                  >
+                    <img
+                      v-if="item[column.key]?.picture"
+                      class="object-cover w-full h-full rounded-full"
+                      :src="item[column.key]?.picture"
+                      :alt="item[column.key]?.name"
+                      loading="lazy"
+                    />
+                    <Icon
+                      name="ph:user-bold"
+                      class="object-cover w-full h-full rounded-full"
+                    />
+                    <div
+                      class="absolute inset-0 rounded-full shadow-inner"
+                      aria-hidden="true"
+                    ></div>
+                  </div>
+                  <div>
+                    <p class="font-semibold">{{ item[column.key].name }}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                      {{ item[column.key].phone ?? '-' }}
+                    </p>
+                  </div>
+                </span>
+                <span class="capitalize" v-else>
+                  {{ getNormalized(item[column.key], column?.type) }}
+                </span>
               </td>
             </tr>
           </template>
@@ -58,4 +87,26 @@ defineProps({
     default: () => [],
   },
 });
+
+const getNormalized = (value: any, type: string) => {
+  let data = "";
+  switch (type) {
+    case "date":
+      const date = new Date(value);
+      const day = date.getDate().toString().padStart(2, "0");
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const year = date.getFullYear().toString();
+
+      data = `${day}/${month}/${year}`;
+      break;
+    case "double":
+      data = value.toFixed(2);
+      break;
+    default:
+      data = value;
+      break;
+  }
+  console.log(data);
+  return data;
+};
 </script>

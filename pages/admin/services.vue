@@ -19,7 +19,7 @@ const userStore = useUserStore();
 const { token } = userStore;
 
 definePageMeta({
-  middleware: 'auth'
+  //middleware: 'auth'
 });
 
 const config = useRuntimeConfig();
@@ -28,14 +28,10 @@ const datasource: any = ref([]);
 const currentPage = ref(1);
 
 onMounted(async () => {
-  requestPagination()
+  requestPagination();
 });
 
 const columns = [
-  {
-    key: "createdBy",
-    label: "Criado por",
-  },
   {
     key: "description",
     label: "Nome",
@@ -43,10 +39,17 @@ const columns = [
   {
     key: "price",
     label: "Preço",
+    type: "double",
   },
-    {
+  {
+    key: "createdBy",
+    label: "Criado por",
+    type: "user",
+  },
+  {
     key: "createdAt",
     label: "Atualizado em",
+    type: "date",
   },
 ];
 
@@ -63,5 +66,4 @@ const requestPagination = async (values: any = {}) => {
     datasource.value = response.services;
   }
 };
-
 </script>
