@@ -21,6 +21,7 @@
     "stylelint": "^15.10.2"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.0.18",
     "@nuxt/image": "^1.0.0-rc.1",
     "@nuxt/ui": "^2.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",

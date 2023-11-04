@@ -4,7 +4,7 @@
       class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block h-screen border-r border-gray-200 dark:border-gray-700">
       <div class="py-4 text-gray-500 dark:text-gray-400">
         <router-link class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" to="/">
-          Windmill
+          Drip BR Barbearia
         </router-link>
         <ul class="mt-12">
           <li class="relative px-6 py-1" v-for="page in pages" :key="page.name">
@@ -162,7 +162,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { HomeIcon, CursorClickIcon, ClipboardListIcon, DuplicateIcon, MenuIcon, ChartPieIcon, CollectionIcon } from "@heroicons/vue/outline";
+// import { HomeIcon, CursorClickIcon, ClipboardListIcon, DuplicateIcon, MenuIcon, ChartPieIcon, CollectionIcon } from "@heroicons/vue/outline";
 
 const { isSideMenuOpen } = defineProps(['isSideMenuOpen'])
 const emits = defineEmits(['closeSideMenu'])
@@ -172,38 +172,38 @@ const isPagesMenuOpen = ref(false);
 const pages = [
   {
     name: 'Dashboard',
-    icon: HomeIcon,
+    icon: "",
     to: ''
   },
 
   {
     name: 'Buttons',
-    icon: CursorClickIcon,
+    icon: "",
     to: 'buttons'
   },
   {
     name: 'Cards',
-    icon: CollectionIcon,
+    icon: "",
     to: 'cards'
   },
   {
     name: 'Charts',
-    icon: ChartPieIcon,
+    icon: "",
     to: 'charts'
   },
   {
     name: 'Forms',
-    icon: ClipboardListIcon,
+    icon: "",
     to: 'forms'
   },
   {
     name: 'Modals',
-    icon: DuplicateIcon,
+    icon: "",
     to: 'modals'
   },
   {
     name: 'Tables',
-    icon: MenuIcon,
+    icon: "",
     to: 'tables'
   }
 ]
