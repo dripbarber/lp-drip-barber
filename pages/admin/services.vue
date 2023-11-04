@@ -1,6 +1,6 @@
 <template>
   <AdminLayout>
-    <Table :columns="columns" :data="datasource">
+    <Table :columns="columns" :data="datasource" :loading="loading">
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
@@ -26,9 +26,12 @@ const config = useRuntimeConfig();
 const api_url = config.public.api_url;
 const datasource: any = ref([]);
 const currentPage = ref(1);
+const loading = ref(false);
 
 onMounted(async () => {
-  requestPagination();
+  loading.value = true;
+  await requestPagination();
+  loading.value = false;
 });
 
 const columns = [
@@ -50,7 +53,7 @@ const columns = [
     key: "createdAt",
     label: "Atualizado em",
     type: "date",
-  },
+  }
 ];
 
 const requestPagination = async (values: any = {}) => {

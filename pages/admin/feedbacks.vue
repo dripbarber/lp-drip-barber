@@ -1,6 +1,6 @@
 <template>
   <AdminLayout>
-    <Table :columns="columns" :data="datasource">
+    <Table :columns="columns" :data="datasource" hide-update hide-delete>
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
@@ -40,6 +40,15 @@ const columns = [
   {
     key: "note",
     label: "Nota de Atendimento",
+    type: "status",
+    validate: (item: any, label: string) => {
+      return {
+        approved: item.note >= 7,
+        warning: (item.note <= 6 && item.note >= 5),
+        danger: item.note <= 4 
+      }
+    },
+    align: 'center'
   },
   {
     key: "message",
