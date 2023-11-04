@@ -11,7 +11,7 @@
         <div class="w-full flex flex-col md:flex-row max-w-7xl mx-auto justify-center pt-10 md:pt-20">
           <video 
           class="w-4/5 md:w-1/4 aspect-w-1 aspect-h-1 mx-8 pt-4" 
-          controls autoplay muted
+          controls muted
           v-for="(videos, index) in displayVideos"
           :key="index"
           >

@@ -1,7 +1,7 @@
 <template>
   <Head>
     <!-- GENERAL TAGS -->
-    <Title>DRIP BR Barbearia</Title>
+    <Title>Barbearia Drip BR</Title>
     <Meta name="author" content="Raydan by Daniel Soares" />
     <Meta name="author" content="Raydan by Isaac Francelino" />
     <Meta
@@ -21,7 +21,7 @@
     <Meta name="robots" content="index, follow" />
 
     <!-- TWITTER TAGS -->
-    <Meta name="twitter:title" content="Jambu - Resto Bar" />
+    <Meta name="twitter:title" content="Barbearia - Drip BR" />
     <Meta
       name="twitter:description"
       content="No nosso restaurante, cada prato é uma viagem sensorial única,
@@ -42,7 +42,7 @@
     <Meta name="og:image" content="/preview.png" />
     <Meta name="og:url" content="https://lp-jambu-bar.vercel.app/" />
     <Meta name="og:type”" content="website" />
-    <Meta name="og:site_name" content="Jambu - Resto Bar" />
+    <Meta name="og:site_name" content="Barbearia - Drip BR" />
   </Head>
   <div class="relative bg-slate-200">
     <!-- <NuxtImg

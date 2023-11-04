@@ -14,7 +14,7 @@
         <h1
           class="text-2xl sm:text-3xl lg:text-5xl lg:mb-6 mb-3"
         >
-          Na barba, no cabelo, e na atitude. Descubra o <span class="font-bold text-yellow-500" >estilo brasileiro</span> em Portugal!
+          Na barba, no cabelo, e na atitude.<br> Descubra o <span class="font-bold text-yellow-500" >estilo brasileiro</span> em Portugal!
         </h1>
         
       </div>

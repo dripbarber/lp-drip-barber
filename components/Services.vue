@@ -5,19 +5,30 @@
   >    
     <div
       id="testimonial-container"
-      class="flex items-center justify-between h-full z-5 relative"
+      class="flex items-center justify-between z-5 relative w-full"
     >
-      <div class="columns-3 md:flex hidden mt-24">
+      <Swiper
+        :modules="[SwiperAutoplay, SwiperNavigation]"
+        :slides-per-view="3"
+        :loop="false"
+        :autoplay="{
+        delay: 3000,
+        disableOnInteraction: false,
+        }"
+      >
+      <SwiperSlide
+        v-for="(img, index) in imgCard"
+        :key="index"
+        class="z-0 hover:z-50 overflow-hidden hover:overflow-y-hidden"
+      >
         <div
-          class=" card text-center text-white flex flex-col items-center h-auto grayscale hover:grayscale-0 overflow-hidden z-0 hover:z-50 hover:scale-110 transition duration-500 cursor-pointer max-w-[1800px]"
-          v-for="(img, index) in imgCard"
-          :key="index"
+        class="image-zoom-container card text-center text-white grayscale hover:grayscale-0  cursor-pointer  mt-24"      
         >
           <NuxtImg
             format="webp"
             :src=img.src
             :alt=img.alt
-            class=""
+            class="image-zoom"
             fit="cover"
             height="700"
             width="1100"            
@@ -26,8 +37,11 @@
           <div class="absolute group inset-0 flex flex-col items-center justify-center">
             <h2 class="font-bold md:text-2xl lg:text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>            
           </div>         
-        </div>        
-      </div>
+        </div>   
+      </SwiperSlide>
+      </Swiper>
+             
+      
 
       <div class="md:hidden w-full mt-10 pt-6">
         <Swiper
@@ -87,9 +101,19 @@ const imgCard: imgCard[] = [
 </script>
 
 <style scoped>
-
-
-.perfil {
-  margin-top: -94px;
+.image-zoom-container {
+  position: relative;
+  overflow: hidden;
 }
+
+.image-zoom-container:hover .image-zoom {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+
+.image-zoom {
+  transition: transform 0.5s;
+}
+
+
 </style>
