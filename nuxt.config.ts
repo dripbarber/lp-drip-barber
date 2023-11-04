@@ -31,6 +31,7 @@ export default defineNuxtConfig({
   //   }
   // },
   build: {
-    transpile: ['pinia-plugin-persistedstate'],
-  }
+    transpile: ['pinia-plugin-persistedstate']
+  },
+  
 })
