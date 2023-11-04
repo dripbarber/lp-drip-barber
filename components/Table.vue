@@ -111,7 +111,7 @@
                   </span>
                 </slot>
               </td>
-              <td v-if="!hideUpdate || !hideDelete" class="px-4 py-3 w-28">
+              <td v-if="!hideUpdate || !hideDelete" class="px-4 py-3 w-32">
                 <button
                   v-if="!hideUpdate"
                   class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in hover:bg-stone-500 mx-auto hover:text-white py-2 px-2 rounded-full"
@@ -126,7 +126,7 @@
 
                 <button
                   v-if="!hideDelete"
-                  class="inline-flex items-center text-sm font-semibold transition duration-200 mx-auto ease-in hover:bg-stone-500 hover:text-white py-2 px-2 rounded-full"
+                  class="inline-flex items-center text-sm font-semibold transition duration-200 mx-auto ease-in hover:bg-stone-500 hover:text-white py-2 px-2 rounded-full ml-1"
                   @click="$emit('delete', item)"
                 >
                   <Icon

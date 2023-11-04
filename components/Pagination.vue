@@ -89,8 +89,8 @@ const emit = defineEmits();
 const currentPage = ref(current_page);
 const itemsPerPage = ref(items_per_page);
 
-const paginationStart = computed(() => paginationEnd.value ? (currentPage.value - 1 ) * items_per_page + 1 : 0);
 const paginationEnd = computed(() => Math.min(currentPage.value * items_per_page, data.length));
+const paginationStart = computed(() => paginationEnd.value ? (currentPage.value - 1 ) * items_per_page + 1 : 0);
 
 const totalPages = computed(() => Math.ceil(data.length / items_per_page));
 
