@@ -7,7 +7,7 @@
             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
           >
             <template v-for="column in columns" :key="column">
-              <th class="px-4 py-3">{{ column.label }}</th>
+              <th class="px-4 py-3" :class="`text-${column?.align}`">{{ column.label }}</th>
             </template>
           </tr>
         </thead>
@@ -46,7 +46,7 @@
                     </p>
                   </div>
                 </span>
-                <span class="capitalize" v-else>
+                <span class="capitalize" :class="`text-${column?.align}`" v-else>
                   {{ getNormalized(item[column.key], column?.type) }}
                 </span>
               </td>
