@@ -12,9 +12,9 @@ export const email = (value: string) => {
 
 export const password = (value: string) => {
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-  if (!regex.test(value)) {
+  /*if (!regex.test(value)) {
     return 'A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas e números.';
-  }
+  }*/
   
   return true;
 }

@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true
+    }
+  },
   modules: [
     //'@nuxtjs/stylelint-module',
     //'@nuxtjs/eslint-module',
@@ -12,7 +18,9 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     '@vee-validate/nuxt',
     // '@nuxt/ui',
-    '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+    'nuxt-icon'
   ],
   i18n: {
     vueI18n: './i18n.config.ts',
