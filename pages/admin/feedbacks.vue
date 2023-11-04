@@ -35,6 +35,7 @@ const columns = [
   {
     key: "createdBy",
     label: "Criado por",
+    type: "user",
   },
   {
     key: "note",
@@ -47,6 +48,7 @@ const columns = [
   {
     key: "createdAt",
     label: "Criado em",
+    type: "date",
   },
 ];
 
