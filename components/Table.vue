@@ -163,7 +163,7 @@
 <script setup  lang='ts'>
 import { onMounted } from "vue";
 
-defineProps({
+const props = defineProps({
   columns: {
     type: Array,
     required: true,

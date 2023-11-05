@@ -26,3 +26,13 @@ export const passwordMatch = (value: string, otherPassword: string) => {
 
   return true;
 }
+
+export const number = (value: string) => {
+  let input = value;
+  const number = parseFloat(input);
+  if (isNaN(number) && number.toString() !== input) {
+    return 'O campo deve ser um número válido';
+  }
+
+  return true;
+}

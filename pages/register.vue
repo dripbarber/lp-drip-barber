@@ -18,6 +18,7 @@
               <h1 class="mb-4 text-xl font-semibold text-gray-700">
                 Cadastre-se
               </h1>
+
               <label class="block text-sm">
                 <span class="text-gray-700">E-mail</span>
                 <input
@@ -29,6 +30,7 @@
                   errors.email
                 }}</span>
               </label>
+
               <label class="block mt-4 text-sm">
                 <span class="text-gray-700">Senha</span>
                 <input
@@ -41,6 +43,7 @@
                   errors.password
                 }}</span>
               </label>
+
               <label class="block mt-4 text-sm">
                 <span class="text-gray-700"> Confirmar Senha </span>
                 <input
@@ -54,29 +57,6 @@
                 }}</span>
               </label>
 
-              <span v-if="message_error" class="text-red-600 text-sm mt-2 font-semibold">{{
-                message_error
-              }}</span>
-              <span v-else-if="message_success" class="text-green-600 text-sm mt-2 font-semibold">{{
-                message_success
-              }}</span>
-
-              <!--
-            <div class="flex mt-6 text-sm">
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  class="text-stone-600 form-checkbox focus:border-stone-400 focus:outline-none focus:shadow-outline-stone"
-                />
-                <span class="ml-2">
-                  Eu concordo com tudo sem ler a
-                  <span class="underline">política de privacidade</span>
-                </span>
-              </label>
-            </div>
-            -->
-
-              <!-- You should use a button here, as the anchor is only used for the example  -->
               <button
                 class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-stone-600 border border-transparent rounded-lg active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-stone"
                 type="submit"
@@ -110,17 +90,13 @@ import { useForm } from "vee-validate";
 const router = useRouter();
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
-const message_error = ref("");
-const message_success = ref("");
+const snackbar = useSnackbar();
 
 const { defineInputBinds, handleSubmit, errors } = useForm({
   validationSchema: {
     email: [required, email],
     password: [required, password],
-    confirmPassword: [
-      required,
-      password
-    ],
+    confirmPassword: [required, password],
   },
 });
 
@@ -138,17 +114,26 @@ const doSignup = async (values) => {
     });
 
     if (error.value?.data?.message) {
-      message_error.value = error.value.data.message;
+      snackbar.add({
+        type: "error",
+        text: error.value?.data?.message,
+      });
       return;
     }
 
-    message_success.value = "Usuário criado com sucesso."
-    
+    snackbar.add({
+      type: "success",
+      text: "Usuário criado com sucesso.",
+    });
+
     setTimeout(() => {
-        router.push({path: "/login"})
-    }, "1000")
+      router.push({ path: "/login" });
+    }, 1500);
   } catch (error) {
-    console.log("error", error);
+    snackbar.add({
+      type: "error",
+      text: "Ops! Ocorreu um erro...",
+    });
   }
 };
 

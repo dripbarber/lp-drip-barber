@@ -20,7 +20,8 @@ export default defineNuxtConfig({
     // '@nuxt/ui',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    'nuxt-icon'
+    'nuxt-icon',
+    'nuxt-snackbar'
   ],
   i18n: {
     vueI18n: './i18n.config.ts',
@@ -40,5 +41,10 @@ export default defineNuxtConfig({
   // },
   build: {
     transpile: ['pinia-plugin-persistedstate'],
+  },
+  snackbar: {
+    top: true,
+    right: true,
+    duration: 5000
   }
 })

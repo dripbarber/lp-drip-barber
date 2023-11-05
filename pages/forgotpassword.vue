@@ -30,17 +30,6 @@
                 }}</span>
               </label>
 
-              <span
-                v-if="message_error"
-                class="text-red-600 text-sm mt-2 font-semibold"
-                >{{ message_error }}</span
-              >
-              <span
-                v-else-if="message_success"
-                class="text-green-600 text-sm mt-2 font-semibold"
-                >{{ message_success }}</span
-              >
-
               <!-- You should use a button here, as the anchor is only used for the example  -->
               <button
                 class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-stone-600 border border-transparent rounded-lg active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-stone"
@@ -65,8 +54,7 @@ import { useForm } from "vee-validate";
 const router = useRouter();
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
-const message_error = ref("");
-const message_success = ref("");
+const snackbar = useSnackbar();
 
 const { defineInputBinds, handleSubmit, errors } = useForm({
   validationSchema: {
@@ -80,17 +68,25 @@ const form = ref({
 
 const doSubmit = async (values) => {
   try {
-    const { error } = await useFetch(`${api_url}/recovery-password/${values.email}`, {
-      method: "POST",
-      body: { },
-    });
+    const { error } = await useFetch(
+      `${api_url}/recovery-password/${values.email}`,
+      {
+        method: "POST",
+      }
+    );
 
     if (error.value?.data?.message) {
-      message_error.value = error.value.data.message;
+      snackbar.add({
+        type: "error",
+        text: error.value?.data?.message,
+      });
       return;
     }
 
-    message_success.value = "Email de recuperação de senha enviado com sucesso.";
+    snackbar.add({
+      type: "success",
+      text: "Email de recuperação de senha enviado com sucesso.",
+    });
   } catch (error) {
     console.log("error", error);
   }
