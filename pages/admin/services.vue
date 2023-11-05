@@ -129,7 +129,7 @@ const handleUpdate = async (item: any) => {
 };
 
 const handleDelete = (item: any) => {
-  currentItem.value = item;
+  remove(item?._id)
 };
 
 const closeForm = () => {
@@ -257,6 +257,30 @@ const load = async (_id: string) => {
       description: response.service?.description ?? "",
       price: response.service?.price ?? 0,
     });
+  } catch (error) {
+    closeForm();
+    snackbar.add({
+      type: "error",
+      text: "Ops! Ocorreu um erro...",
+    });
+  }
+};
+
+const remove = async (_id: string) => {
+  try {
+    const response: any = await $fetch(`${api_url}/service/${_id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+
+    snackbar.add({
+      type: "success",
+      text: response?.message,
+    });
+    
+    await requestPagination();
   } catch (error) {
     closeForm();
     snackbar.add({
