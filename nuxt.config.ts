@@ -20,7 +20,8 @@ export default defineNuxtConfig({
     // '@nuxt/ui',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    'nuxt-icon'
+    'nuxt-icon',
+    '@samk-dev/nuxt-vcalendar'
   ],
   i18n: {
     vueI18n: './i18n.config.ts',

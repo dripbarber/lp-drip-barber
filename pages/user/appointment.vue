@@ -26,6 +26,9 @@
               name="barber"
               class="block mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-stone-400 focus:outline-none focus:shadow-outline-stone dark:focus:shadow-outline-gray"
             >
+              <option value="Escolha um barbeiro">
+                Escolha um barbeiro
+              </option>
               <option
               v-for="(barber,index) in appointmentBarber"
               :key="index" 
@@ -61,28 +64,41 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-col md:flex-row md:space-x-6">
-            <!-- <vue-date-picker v-model=""></vue-date-picker> -->
-            <div class="mt-4 text-sm">
-              <label for="data" class="text-gray-700 dark:text-gray-400 block">Data:</label>
-              <input              
-                type="date"
-                id="data"
-                name="data"
-                class="w-fit px-3 py-2 border rounded"
+          <div class="mt-4 text-sm flex flex-col md:flex-row md:space-x-5">
+            <client-only>              
+              
+              <VDatePicker 
+                v-model="date" 
+                mode="date" 
+                is-required 
+                :masks="masks" 
+                :attributes="attrs" 
+                class="mb-4"
+                @click="handleCalendarClick" 
               />
-            </div>
-      
-            <div class="mt-4 text-sm">
-              <label for="hora" class="text-gray-700 dark:text-gray-400 block">Hora:</label>
-              <input
-                
-                type="time"
-                id="hora"
-                name="hora"
-                class="w-fit px-3 py-2 border rounded"
-              />
-            </div>
+              
+              <div class="max-h-72 overflow-scroll overflow-x-hidden px-2 flex flex-col items-center">
+                <label
+                  v-for="(time, index) in appointmentTimes"
+                  :key="index"
+                  class="flex items-center py-1"
+                >
+                  <input
+                    type="radio"
+                    v-model="selectedTime"
+                    :value="time"
+                    class="sr-only"
+                  />
+                  <span 
+                    class="px-6 py-2 text-sm font-medium hover:text-white transition-colors duration-150 border border-stone-600 hover:border-transparent rounded active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray hover:cursor-pointer"
+                    v-if="calendarClicked"
+                  >
+                    {{ time }}
+                  </span>
+                </label>
+              </div>
+            </client-only>
+           
             
           </div>    
                  
@@ -109,16 +125,66 @@
 </template>
 
 <script setup lang="ts">
-// import { ref } from 'vue';
-// import VueDatePicker from '@vuepic/vue-datepicker';
-// import '@vuepic/vue-datepicker/dist/main.css'
+import { ref } from '#imports'
 
 const appointmentBarber = ["Barbeiro1", "Barbeiro2", "Barbeiro3"]
 const appointmentService = ["Corte", "Barba"]
 
-// const selectedDate = ref(new Date());
-// const pickerOptions = {
-  // Opções do Vue Date Picker, se necessário
-// };
+const date = ref(new Date())
+const attrs = ref([
+  {
+    key: 'today',
+    highlight: {
+      color: 'green',
+      fillMode: 'solid'
+    },
+    dates: new Date()
+  }
+])
+const masks = ref({
+  modelValue: 'DD-MM-YYYY'
+})
+const rules = ref({
+  hours: 10,
+  minutes: 30,
+})
+const appointmentTimes = [
+  '10:00',
+  '10:30',
+  '11:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  '19:00',
+  
+];
+const selectedTime = ref(appointmentTimes[0]);
 
+const calendarClicked = ref(false);
+const handleCalendarClick = () => {
+    calendarClicked.value = true;
+  };
 </script>
+
+<style>
+::-webkit-scrollbar-track {
+  background-color: #fffefe;
+}
+::-webkit-scrollbar {
+  width: 2px;
+  background: #f4f4f4;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b2a2e;
+}
+</style>
