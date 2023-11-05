@@ -22,11 +22,14 @@
     "stylelint": "^15.10.2"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.0.18",
     "@nuxt/image": "^1.0.0-rc.1",
     "@nuxt/ui": "^2.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/nuxt": "^4.11.8",
+    "@vuepic/vue-datepicker": "^7.2.1",
+    "date-fns": "^2.30.0",
     "nuxt-storage": "^1.2.2",
     "nuxt-swiper": "^1.2.2",
     "pinia": "^2.1.7",
