@@ -1,6 +1,6 @@
 <template>
   <AdminLayout>
-    <Table :columns="columns" :data="datasource" hide-update hide-delete>
+    <Table :columns="columns" :data="datasource" hide-update hide-delete hide-create>
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
