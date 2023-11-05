@@ -17,7 +17,7 @@
       </template>
     </Table>
 
-    <SidebarForm :isOpen="isOpen" @closeModal="closeForm" title="serviço">
+    <SidebarForm :isOpen="isOpen" @closeModal="closeForm" :isUpdate="!!currentItem?._id" title="serviço">
       <form
         class="h-full w-full flex flex-col justify-between"
         @submit="onSubmit"
@@ -74,20 +74,23 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useUserStore } from "@/stores/userStores";
-
-import { required, number } from "@/composable/rules";
 import { useForm } from "vee-validate";
+import { useUserStore } from "@/stores/userStores";
+import { required, number } from "@/composable/rules";
 
 const userStore = useUserStore();
+const plugin = useNuxtApp();
+const config = useRuntimeConfig();
+const snackbar = useSnackbar();
+
+const $swal: any = plugin.$swal;
+
 const { token } = userStore;
 
 definePageMeta({
   //middleware: 'auth'
 });
 
-const config = useRuntimeConfig();
-const snackbar = useSnackbar();
 const api_url = config.public.api_url;
 const datasource: any = ref([]);
 const currentPage = ref(1);
@@ -95,7 +98,7 @@ const loading = ref(false);
 const isOpen = ref(false);
 const currentItem = ref(null as unknown as any);
 
-const { defineInputBinds, handleSubmit, errors, setValues } = useForm({
+const { defineInputBinds, handleSubmit, errors, setValues, resetForm } = useForm({
   validationSchema: {
     description: [required],
     price: [required, number],
@@ -116,20 +119,18 @@ onMounted(async () => {
 const handleCreate = (item: any) => {
   currentItem.value = null;
   isOpen.value = true;
-  setValues({
-    description: "",
-    price: 0,
-  });
+  resetForm();
 };
 
 const handleUpdate = async (item: any) => {
+  resetForm();
   currentItem.value = item;
   isOpen.value = true;
   await load(currentItem?.value?._id);
 };
 
 const handleDelete = (item: any) => {
-  remove(item?._id)
+  remove(item?._id);
 };
 
 const closeForm = () => {
@@ -268,18 +269,38 @@ const load = async (_id: string) => {
 
 const remove = async (_id: string) => {
   try {
-    const response: any = await $fetch(`${api_url}/service/${_id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
+    $swal
+      .fire({
+        title: "Tem certeza?",
+        text: "Você não poderá reverter isso!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, remover!",
+        cancelButtonText: "Não, cancelar!",
+        reverseButtons: true,
+        customClass: {
+          confirmButton:
+            "ml-4 rounded-lg text-white text-bold px-4 py-2 bg-green-500 ",
+          cancelButton: "rounded-lg text-white text-bold px-4 py-2 bg-red-500",
+        },
+        buttonsStyling: false,
+      })
+      .then(async (result: any) => {
+        if (result.isConfirmed) {
+          const response: any = await $fetch(`${api_url}/service/${_id}`, {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          });
 
-    snackbar.add({
-      type: "success",
-      text: response?.message,
-    });
-    
+          snackbar.add({
+            type: "success",
+            text: response?.message,
+          });
+        }
+      });
+
     await requestPagination();
   } catch (error) {
     closeForm();
