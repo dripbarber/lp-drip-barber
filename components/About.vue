@@ -8,7 +8,7 @@
       class="md:flex items-center text-top justify-center h-full overflow-hidden pt-12 md:pt-16 md:pb-6 px-6 z-[5]"
     >
       <div
-        class="text-left md:w-1/2 p-4 md:pt-0 md:-mt-32 md:px-6 xl:px-20"
+        class="text-left md:w-1/2 p-4 md:pt-0 md:px-6 xl:px-20"
       >
         <h3 
           class="text-yellow-600 md:text-2xl text-2xl mb-1 md:mb-6 font-semibold">
@@ -28,11 +28,7 @@
         </p>
         <p class="lg:text-xl text-base mb-2 lg:mb-6">
           O Brasil nunca esteve tão perto, isso aqui é Drip BR, sinta-se em casa! 
-        </p>
-
-
-
-        
+        </p>        
         
       </div>
       <div
