@@ -64,17 +64,20 @@
               </div>
             </div>
           </div>
-          <div class="mt-4 text-sm flex flex-col md:flex-row md:space-x-5">
+          <div 
+            class="mt-4 text-sm flex flex-col md:flex-row md:space-x-5"            
+          >
             <client-only>              
-              
-              <VDatePicker 
+              <VDatePicker
                 v-model="date" 
                 mode="date" 
                 is-required 
                 :masks="masks" 
                 :attributes="attrs" 
-                class="mb-4"
-                @click="handleCalendarClick" 
+                class="v-calendar mb-4"
+                :is-dark="isDark"
+                @click="handleCalendarClick"
+                
               />
               
               <div class="max-h-72 overflow-scroll overflow-x-hidden px-2 flex flex-col items-center">
@@ -126,6 +129,7 @@
 
 <script setup lang="ts">
 import { ref } from '#imports'
+import { useThemeStore } from "@/stores/themeStores";
 
 const appointmentBarber = ["Barbeiro1", "Barbeiro2", "Barbeiro3"]
 const appointmentService = ["Corte", "Barba"]
@@ -173,7 +177,15 @@ const selectedTime = ref(appointmentTimes[0]);
 const calendarClicked = ref(false);
 const handleCalendarClick = () => {
     calendarClicked.value = true;
-  };
+  }; 
+
+
+const themeStores = useThemeStore()
+const isDark = computed( () => {
+  return themeStores.getTheme === 'dark'
+})  
+
+
 </script>
 
 <style>
