@@ -1,7 +1,7 @@
 <template>
   <section
     id="services_section"
-    class="w-full bg-gray-950 pt-4 lg:pt-8 relative overflow-hidden z-[5]"
+    class="w-full bg-blueBrazil pt-4 lg:pt-8 relative overflow-hidden z-[5]"
   >    
     <div
       id="testimonial-container"

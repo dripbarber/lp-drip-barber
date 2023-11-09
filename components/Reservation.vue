@@ -1,7 +1,7 @@
 <template>
   <section
     id="reservation_section"
-    class="flex items-center w-full bg-gray-950 pt-4 md:pt-6  relative overflow-hidden z-10"
+    class="flex items-center w-full bg-blueBrazil pt-4 md:pt-6  relative overflow-hidden z-10"
   >
     
     <div

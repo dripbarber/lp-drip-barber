@@ -8,6 +8,13 @@ module.exports = {
                 '0': '0',
                 xl: '36rem',
             },
+            colors: {
+                yellowBrazil: '#EAB308',
+                darkYellowBrazil: '#ca8a04',
+                greenBrazil: '#009c3b',
+                darkGreenBrazil: '#008249',
+                blueBrazil: '#002776'
+            }
         },
     },
     plugins: [
