@@ -7,6 +7,9 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
+  css: [
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
   modules: [
     //'@nuxtjs/stylelint-module',
     //'@nuxtjs/eslint-module',
