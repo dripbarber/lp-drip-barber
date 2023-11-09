@@ -6,15 +6,11 @@
     <Meta name="author" content="Raydan by Isaac Francelino" />
     <Meta
       name="keywords"
-      content="porto, restaurantes no Porto, Trendy restaurante, restaurante top, Restaurantes restauração, jambu, jambu restaurante, Comer bem, Guia de restaurantes, jantar no porto, almoçar no porto, turismo do porto, viajar no porto, esplanada, restaurante de esplanada, area interior, acarajé, comida baiana em porto, melhor acarajé"
+      content="barbearia brasileira, barbearia em Portugal, corte de cabelo masculino, barba, grooming, Soares dos Reis 44, Vila Nova de Gaia, 4430-315, serviços de barbearia, estilo, moda masculina, cabeleireiro, barbeiro, beleza masculina, tratamento capilar, design de barba, experiência única, atendimento personalizado"
     />
     <Meta
       name="description"
-      content="Saboroso encontro de culturas culinárias no coração do
-          Porto! No nosso restaurante, cada prato é uma viagem sensorial única,
-          onde ingredientes tradicionais e inspirações contemporâneas se fundem
-          em harmonia. Se você busca uma experiência gastronômica autêntica e
-          apaixonante, aqui é o seu destino."
+      content="Bem-vindo à Barbearia DRIP BR! Nós entendemos as dificuldades de começar uma nova vida em um país desconhecido. Estamos aqui para proporcionar aos imigrantes uma experiência brasileira autêntica, preenchendo seus corações com o calor da nossa cultura. Na DRIP BR, você encontrará música brasileira, cerveja gelada, jogos clássicos como Bomba Patch e The King Of Fighters 98, sinuca e, é claro, aquela resenha brasileira inigualável. Sinta-se em casa, pois o Brasil nunca esteve tão próximo."
     />
     <Meta name="viewport" content="width=device-width, initial-scale=1" />
     <Meta name="copyright" content="Raydan 2023" />
@@ -24,20 +20,16 @@
     <Meta name="twitter:title" content="Barbearia - Drip BR" />
     <Meta
       name="twitter:description"
-      content="No nosso restaurante, cada prato é uma viagem sensorial única,
-          onde ingredientes tradicionais e inspirações contemporâneas se fundem
-          em harmonia."
+      content="Bem-vindo à Barbearia DRIP BR! Proporcionamos uma autêntica experiência brasileira para imigrantes, preenchendo corações com calor e cultura. Música brasileira, cerveja gelada, jogos clássicos como Bomba Patch e The King Of Fighters 98, sinuca e a inigualável resenha brasileira. Sinta-se em casa na DRIP BR - a proximidade do Brasil como nunca antes. 🇧🇷✂️ #DRIPBR #Barbearia #CulturaBrasileira"
     />
     <Meta name="twitter:image" content="/preview.png" />
     <Meta name="twitter:card" content="summary" />
 
     <!-- FACEBOOK TAGS -->
-    <Meta name="og:title" content="Jambu - Resto Bar" />
+    <Meta name="og:title" content="Barbearia - Drip BR" />
     <Meta
       name="og:description"
-      content="No nosso restaurante, cada prato é uma viagem sensorial única,
-          onde ingredientes tradicionais e inspirações contemporâneas se fundem
-          em harmonia."
+      content="Bem-vindo à Barbearia DRIP BR! Proporcionamos uma autêntica experiência brasileira para imigrantes, preenchendo corações com calor e cultura. Música brasileira, cerveja gelada, jogos clássicos como Bomba Patch e The King Of Fighters 98, sinuca e a inigualável resenha brasileira. Sinta-se em casa na DRIP BR - a proximidade do Brasil como nunca antes. 🇧🇷✂️ #DRIPBR #Barbearia #CulturaBrasileira"
     />
     <Meta name="og:image" content="/preview.png" />
     <Meta name="og:url" content="https://lp-jambu-bar.vercel.app/" />
