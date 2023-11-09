@@ -9,11 +9,11 @@ module.exports = {
                 xl: '36rem',
             },
             colors: {
-                yellowBrazil: '#EAB308',
-                darkYellowBrazil: '#ca8a04',
-                greenBrazil: '#009c3b',
-                darkGreenBrazil: '#008249',
-                blueBrazil: '#002776'
+                'primary-color': '#002776', //blue option: #172554
+                'second-color': '#EAB308', //yellow
+                'third-color': '#ca8a04', //darkYellow
+                'fourth-color': '#009c3b', //green
+                'fifth-color': '#008249', //darkGreen
             }
         },
     },

@@ -1,7 +1,7 @@
 <template>
   <section
     id="message_break_section"
-    class="flex items-center w-full bg-blueBrazil  relative overflow-hidden z-10"
+    class="flex items-center w-full bg-primary-color  relative overflow-hidden z-10"
   >
     
     <div
@@ -14,7 +14,7 @@
         <h1
           class="text-2xl sm:text-3xl lg:text-5xl lg:mb-6 mb-3"
         >
-          Na barba, no cabelo, e na atitude.<br> Descubra o <span class="font-bold text-yellowBrazil" >estilo brasileiro</span> em Portugal!
+          Na barba, no cabelo, e na atitude.<br> Descubra o <span class="font-bold text-second-color" >estilo brasileiro</span> em Portugal!
         </h1>
         
       </div>

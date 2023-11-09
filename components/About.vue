@@ -11,7 +11,7 @@
         class="text-left md:w-1/2 p-4 md:pt-0 md:px-6 xl:px-20"
       >
         <h3 
-          class="text-darkYellowBrazil md:text-2xl text-2xl mb-1 md:mb-6 font-semibold">
+          class="text-third-color md:text-2xl text-2xl mb-1 md:mb-6 font-semibold">
           BEM VINDO
         </h3>
         <h1 class="md:text-6xl text-4xl mb-6 font-semibold md:mb-10">
