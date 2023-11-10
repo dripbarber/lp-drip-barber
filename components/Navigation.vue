@@ -144,6 +144,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
+import { useThemeStore } from "@/stores/themeStores";
 
 const emits = defineEmits(['openSideMenu'])
 
@@ -152,17 +153,17 @@ const isNotificationsMenuOpen = ref(false);
 const isSideMenuOpen = ref(false);
 const dark = ref(false);
 
+
 function toggleTheme() {
   dark.value = !dark.value;
-
-  const lsDark = localStorage.getItem('theme')
-
+  const themeStores = useThemeStore()
+  const lsDark = themeStores.getTheme
   if (lsDark !== 'dark') {
-    document.documentElement.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
+    document.documentElement.classList.add('dark')   
+    themeStores.setTheme('dark')
   } else {
     document.documentElement.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
+    themeStores.setTheme('light')
   }
 }
 

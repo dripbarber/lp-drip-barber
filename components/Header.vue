@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full  bg-gray-950/90 fixed z-50 text-white font-roboto">
+  <header class="w-full  bg-fourth-color/90 fixed z-50 text-white font-roboto">
     <nav
       class="max-w-7xl mx-auto px-4 md:py-2 md:flex md:justify-between md:items-center font-semibold"
     >
@@ -15,7 +15,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6 text-yellow-500"
+              class="w-6 h-6 text-second-color"
             >
               <path
                 stroke-linecap="round"
@@ -30,7 +30,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6 text-yellow-500"
+              class="w-6 h-6 text-second-color"
             >
               <path
                 stroke-linecap="round"
@@ -45,7 +45,7 @@
         class="absolute md:relative w-full md:w-auto left-0"
       >
         <ul
-          class="md:flex md:items-center z-[-1] md:z-auto md:static md:w-auto pb-6 md:p-auto md:bg-none bg-gradient-to-r from-gray-950 "
+          class="md:flex md:items-center z-[-1] md:z-auto md:static md:w-auto pb-6 md:p-auto bg-fourth-color/90 md:bg-transparent  "
           :class="{ hidden: !isMenuVisible, block: isMenuVisible }"
         >
           <li
@@ -54,7 +54,7 @@
             class="mx-7 md:mx-3 lg:mx-6 pt-6 md:my-0"
           >
             <NuxtLink
-              class="uppercase relative text-sm lg:text-2xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+              class="uppercase relative text-sm lg:text-2xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-second-color after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
               :to="item.link"
               @click="delaydMobileMenuClick"
               >{{ item.name}}</NuxtLink

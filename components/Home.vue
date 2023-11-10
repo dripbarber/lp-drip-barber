@@ -5,7 +5,7 @@
   >
     <NuxtImg
       format="webp"
-      src="/assets/home-background.jpg"
+      src="/assets/home-background-01.jpg"
       alt="homeBackground"            
       class="absolute h-full w-full object-cover object-center z-[5]"
     />

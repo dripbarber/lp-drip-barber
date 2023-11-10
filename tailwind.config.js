@@ -8,6 +8,13 @@ module.exports = {
                 '0': '0',
                 xl: '36rem',
             },
+            colors: {
+                'primary-color': '#002776', //blue option: #172554
+                'second-color': '#EAB308', //yellow
+                'third-color': '#ca8a04', //darkYellow
+                'fourth-color': '#009c3b', //green
+                'fifth-color': '#008249', //darkGreen
+            }
         },
     },
     plugins: [

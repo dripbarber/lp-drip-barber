@@ -7,6 +7,9 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
+  css: [
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
   modules: [
     //'@nuxtjs/stylelint-module',
     //'@nuxtjs/eslint-module',
@@ -21,6 +24,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-icon',
+    '@samk-dev/nuxt-vcalendar',
     'nuxt-snackbar'
   ],
   i18n: {
