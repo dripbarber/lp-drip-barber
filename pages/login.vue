@@ -40,10 +40,6 @@
                 }}</span>
               </label>
 
-              <span v-if="request_error" class="text-red-600 text-sm mt-2">{{
-                request_error
-              }}</span>
-
               <button
                 class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-stone-600 border border-transparent rounded-lg active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-stone"
                 type="submit"
@@ -85,7 +81,7 @@ import { useForm } from "vee-validate";
 const router = useRouter();
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
-const request_error = ref("");
+const snackbar = useSnackbar();
 
 const { defineInputBinds, handleSubmit, errors } = useForm({
   validationSchema: {
@@ -107,7 +103,10 @@ const doLogin = async (values) => {
     });
 
     if (error.value?.data?.message) {
-      request_error.value = error.value.data.message;
+      snackbar.add({
+        type: "error",
+        text: error.value.data.message,
+      });
       return;
     }
 
