@@ -81,7 +81,7 @@ const menuItems: menuItems[] = [
   { name: "serviços", link: "#services_section" },
   { name: "sobre nós", link: "#about_section" },
   { name: "contato", link: "#footer_section" },
-  { name: "marcação", link: "appointment"}
+  { name: "marcação", link: "#contact-form-transition"}
 ];
 
 const isMenuVisible = ref(false);
