@@ -14,6 +14,7 @@ module.exports = {
                 'third-color': '#ca8a04', //darkYellow
                 'fourth-color': '#009c3b', //green
                 'fifth-color': '#008249', //darkGreen
+                'sixth-color': '#00b84e', // lightGreen
                 button: {
                     cta: '#fff'
                 }
@@ -21,6 +22,9 @@ module.exports = {
         },
     },
     plugins: [
-        require('@tailwindcss/forms')
+        require('@tailwindcss/forms'),
+        function ({ addVariant }) {
+            addVariant("initial", "html :where(&)");
+          }
     ]
 }
