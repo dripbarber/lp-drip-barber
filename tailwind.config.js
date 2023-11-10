@@ -14,6 +14,9 @@ module.exports = {
                 'third-color': '#ca8a04', //darkYellow
                 'fourth-color': '#009c3b', //green
                 'fifth-color': '#008249', //darkGreen
+                button: {
+                    cta: '#fff'
+                }
             }
         },
     },
