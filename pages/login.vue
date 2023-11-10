@@ -8,7 +8,7 @@
           <img
             aria-hidden="true"
             class="object-cover w-full h-full"
-            src="assets/login-office.jpg"
+            src="public/assets/login-office.jpg"
             alt="Office"
           />
         </div>

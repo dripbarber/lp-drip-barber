@@ -8,7 +8,7 @@
           <img
             aria-hidden="true"
             class="object-cover w-full h-full"
-            src="assets/confirm-office.jpg"
+            src="public/assets/confirm-office.jpg"
             alt="Office"
           />
         </div>
