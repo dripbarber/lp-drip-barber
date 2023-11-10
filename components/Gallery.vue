@@ -1,14 +1,10 @@
 <template>
   <section
     id="gallery_section"
-    class="w-full pb-8 md:pb-12 lg:pb-16 pt-4 md:pt-6 lg:pt-10 md:px-4 h-full relative overflow-hidden md:flex md:items-center md:justify-center"
+    class="w-full pb-8 md:pb-12 lg:pb-16 pt-10 md:pt-16 lg:pt-24 md:px-4 h-full relative overflow-hidden md:flex md:items-center md:justify-center"
   >
     <div>
-      <h1
-        class="text-4xl md:text-5xl text-center font-semibold pb-10 md:pb-10 pt-2 lg:pt-16"
-      >
-        GALERIA        
-      </h1>
+      
       <div
         id="our-drinks-container"
         class="flex items-center justify-center overflow-hidden md:px-6"
