@@ -22,7 +22,7 @@
       name="twitter:description"
       content="Bem-vindo à Barbearia DRIP BR! Proporcionamos uma autêntica experiência brasileira para imigrantes, preenchendo corações com calor e cultura. Música brasileira, cerveja gelada, jogos clássicos como Bomba Patch e The King Of Fighters 98, sinuca e a inigualável resenha brasileira. Sinta-se em casa na DRIP BR - a proximidade do Brasil como nunca antes. 🇧🇷✂️ #DRIPBR #Barbearia #CulturaBrasileira"
     />
-    <Meta name="twitter:image" content="/preview.png" />
+    <!--<Meta name="twitter:image" content="/preview.png" />-->
     <Meta name="twitter:card" content="summary" />
 
     <!-- FACEBOOK TAGS -->
@@ -31,8 +31,8 @@
       name="og:description"
       content="Bem-vindo à Barbearia DRIP BR! Proporcionamos uma autêntica experiência brasileira para imigrantes, preenchendo corações com calor e cultura. Música brasileira, cerveja gelada, jogos clássicos como Bomba Patch e The King Of Fighters 98, sinuca e a inigualável resenha brasileira. Sinta-se em casa na DRIP BR - a proximidade do Brasil como nunca antes. 🇧🇷✂️ #DRIPBR #Barbearia #CulturaBrasileira"
     />
-    <Meta name="og:image" content="/preview.png" />
-    <Meta name="og:url" content="https://lp-jambu-bar.vercel.app/" />
+    <!--<Meta name="og:image" content="/preview.png" />-->
+    <!--<Meta name="og:url" content="https://lp-jambu-bar.vercel.app/" />-->
     <Meta name="og:type”" content="website" />
     <Meta name="og:site_name" content="Barbearia - Drip BR" />
   </Head>
@@ -55,6 +55,7 @@
     <Testimonial /> 
     <Videos />
     <Place />
+    <!--<ContactForm />-->
     <Footer />
 
   </div>
