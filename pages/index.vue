@@ -54,10 +54,9 @@
     <Gallery />    
     <Testimonial /> 
     <Videos />
+    <ContactForm />
     <Place />
-    <!--<ContactForm />-->
     <Footer />
-
   </div>
 </template>
 
