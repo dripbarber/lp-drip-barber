@@ -55,6 +55,7 @@
     <Testimonial /> 
     <Videos />
     <Place />
+    <!--<ContactForm />-->
     <Footer />
 
   </div>
