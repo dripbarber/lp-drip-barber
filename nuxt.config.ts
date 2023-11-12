@@ -7,9 +7,6 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
-  css: [
-    '@fortawesome/fontawesome-svg-core/styles.css'
-  ],
   modules: [
     //'@nuxtjs/stylelint-module',
     //'@nuxtjs/eslint-module',
@@ -20,13 +17,26 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@vee-validate/nuxt',
-    // '@nuxt/ui',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-icon',
     '@samk-dev/nuxt-vcalendar',
-    'nuxt-snackbar'
+    'nuxt-snackbar',
+    'nuxt-mail'
   ],
+  mail: {
+    message: {
+      to: 'danielsoaresf@hotmail.com',
+    },
+    smtp: {
+      host: "sandbox.smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: '0a76285ac64525',
+        pass: '34d692164befe8',
+    },
+    },
+  },
   i18n: {
     vueI18n: './i18n.config.ts',
     compilation: {

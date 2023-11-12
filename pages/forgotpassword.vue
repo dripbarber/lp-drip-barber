@@ -8,7 +8,7 @@
           <img
             aria-hidden="true"
             class="object-cover w-full h-full"
-            src="@/assets/forgot-password-office.jpg"
+            src="public/assets/forgot-password-office.jpg"
             alt="Office"
           />
         </div>
