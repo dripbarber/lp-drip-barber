@@ -60,5 +60,8 @@ export default defineNuxtConfig({
     top: true,
     right: true,
     duration: 5000
+  },
+  image: {
+    provider: process.env.VERCEL_ENV ? 'vercel' : 'ipx',
   }
 })
