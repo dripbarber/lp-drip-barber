@@ -36,7 +36,9 @@
       >
         <div class="bg-no-repeat bg-top" 
         v-for="(img, index) in aboutImgs"
-        :key="index">
+        :key="index"
+        :class="img.class"
+        >
           <NuxtImg          
           format="webp"
           :src=img.src
@@ -59,14 +61,15 @@
   interface aboutImgs{
     description: string,
     src: string,
+    class: string
   }
 
   const aboutImgs: aboutImgs[] =[
-    {description: "image1", src: "assets/about-item001.jpg"},
-    {description: "image2", src: "assets/about-item-02.jpg"},
-    {description: "image3", src: "assets/about-item03.jpg"},
-    {description: "image4", src: "assets/about-item04.jpg"},
-    {description: "image5", src: "assets/about-item05.jpg"},
-    {description: "image6", src: "assets/about-item-06.jpg"},
+    {description: "image1", src: "assets/about-item001.jpg", class: ''},
+    {description: "image2", src: "assets/about-item002.jpg", class: 'transform scale-x-[-1]'},
+    {description: "image3", src: "assets/about-item03.jpg", class: ''},
+    {description: "image4", src: "assets/about-item04.jpg", class: ''},
+    {description: "image5", src: "assets/about-item05.jpg", class: 'transform scale-x-[-1]'},
+    {description: "image6", src: "assets/about-item006.jpg", class: ''},
   ]
 </script>
