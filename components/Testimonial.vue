@@ -5,10 +5,10 @@
   >
     <NuxtImg
       format="webp"
-      src="/assets/testimonial-background-new.jpeg"
+      src="/assets/testimonial-background.jpg"
       alt="DRIP BR logo"
       sizes="sm:300px md:1440px lg:2048px"
-      class="absolute h-full w-full object-cover object-bottom z-0 grayscale"
+      class="absolute h-full w-full object-cover object-top z-0 grayscale"
     />
     <div
       id="testimonial-container"
