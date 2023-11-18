@@ -94,7 +94,7 @@
 
         <div class="w-full flex justify-center">
           <button
-            class="w-1/2 py-3 bg-fourth-color rounded-md text-button-cta font-bold"
+            class="w-1/2 py-3 bg-fourth-color rounded-md text-button-cta font-bold hover:bg-sixth-color"
             type="submit"
           >
             Enviar

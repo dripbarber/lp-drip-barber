@@ -91,8 +91,8 @@ interface imgCard {
 }
 
 const imgCard: imgCard[] = [
-  { name: "CORTE", link: "#", src: "assets/services-haircut.png", alt: "serviços de corte de cabelo" },
-  { name: "BARBA", link: "#", src: "assets/services-shave.jpg", alt: "serviços de barba" },
+  { name: "CORTE", link: "#", src: "assets/services-haircut.jpg", alt: "serviços de corte de cabelo" },
+  { name: "BARBA", link: "#", src: "assets/services-shave1.jpg", alt: "serviços de barba" },
   { name: "CORTE & BARBA", link: "#", src: "assets/services-shave-haircut.jpg", alt: "serviços de corte e barba" },
   
 ];
