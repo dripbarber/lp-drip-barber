@@ -17,7 +17,7 @@
         <h1
           class="relative text-3xl mb-2 md:text-4xl lg:text-8xl"
         >
-          Brasil em cada corte
+          Sinta-se em casa
       </h1>
         <h2 class="flex items-center justify-center px-8 mt-2 md:mt-6">
           <span class="block bg-white w-8 md:w-16 mx-1 h-0.5 md:mx-2"></span>

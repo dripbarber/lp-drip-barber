@@ -16,7 +16,7 @@ module.exports = {
                 'fifth-color': '#008249', //darkGreen
                 'sixth-color': '#00b84e', // lightGreen
                 button: {
-                    cta: '#fff'
+                    cta: '#fff',
                 }
             }
         },
