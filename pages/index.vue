@@ -37,14 +37,6 @@
     <Meta name="og:site_name" content="Barbearia - Drip BR" />
   </Head>
   <div class="relative bg-slate-200">
-    <!-- <NuxtImg
-      format="webp"
-      src="/assets/menu-background.jpg"
-      :alt="$t('homeBackground')"
-      width="1439"
-      height="1444"
-      class="fixed w-full h-full object-cover object-center z-[3]"
-    /> -->
     <Header />
     <Home />
     <Reservation />
@@ -53,7 +45,6 @@
     <MessageBreak />
     <Gallery />    
     <Testimonial /> 
-    <Videos />
     <ContactForm />
     <Place />
     <Footer />
