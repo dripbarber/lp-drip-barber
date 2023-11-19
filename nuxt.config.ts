@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
-
     timeline: {
       enabled: true
     }
@@ -48,11 +47,6 @@ export default defineNuxtConfig({
       api_url: process.env.API_URL,
     }
   },
-  // ui: {
-  //   notifications: {
-  //     position: 'top-0 right-0'
-  //   }
-  // },
   build: {
     transpile: ['pinia-plugin-persistedstate'],
   },
