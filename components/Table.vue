@@ -4,7 +4,7 @@
       <div class="flex items-end">
         <button
           v-if="!hideCreate"
-          class="block items-center text-sm font-semibold transition duration-200 ease-in bg-stone-500 hover:bg-stone-600 text-white py-2 px-4 rounded-sm mb-2 ml-auto"
+          class="block items-center text-sm font-semibold transition duration-200 ease-in bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-sm mb-2 ml-auto"
           @click="$emit('create', item)"
         >
           Criar
@@ -114,7 +114,7 @@
               <td v-if="!hideUpdate || !hideDelete" class="px-4 py-3 w-32">
                 <button
                   v-if="!hideUpdate"
-                  class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in hover:bg-stone-500 mx-auto hover:text-white py-2 px-2 rounded-full"
+                  class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in hover:bg-sky-500 mx-auto hover:text-white py-2 px-2 rounded-full"
                   @click="$emit('update', item)"
                 >
                   <Icon
@@ -126,7 +126,7 @@
 
                 <button
                   v-if="!hideDelete"
-                  class="inline-flex items-center text-sm font-semibold transition duration-200 mx-auto ease-in hover:bg-stone-500 hover:text-white py-2 px-2 rounded-full ml-1"
+                  class="inline-flex items-center text-sm font-semibold transition duration-200 mx-auto ease-in hover:bg-sky-500 hover:text-white py-2 px-2 rounded-full ml-1"
                   @click="$emit('delete', item)"
                 >
                   <Icon
@@ -202,7 +202,10 @@ const getNormalized = (value: any, type: string) => {
       data = `${day}/${month}/${year}`;
       break;
     case "double":
-      data = value.toFixed(2);
+      data = value?.toFixed(2) ?? '';
+      break;
+    case "minutes":
+      data = value ? `${value} min` : '';
       break;
     default:
       data = value;

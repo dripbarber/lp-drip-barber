@@ -24,7 +24,7 @@
             <select
               id="barber"
               name="barber"
-              class="block mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-stone-400 focus:outline-none focus:shadow-outline-stone dark:focus:shadow-outline-gray"              
+              class="block mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-sky-400 focus:outline-none focus:shadow-outline-sky dark:focus:shadow-outline-gray"              
             >
               <option value="" disabled>
                 Escolha um barbeiro
@@ -52,7 +52,7 @@
                 <input
                   type="checkbox"
                   :id= service                
-                  class="text-stone-600 focus:border-stone-400 focus:outline-none focus:shadow-outline-stone dark:focus:shadow-outline-gray"
+                  class="text-sky-600 focus:border-sky-400 focus:outline-none focus:shadow-outline-sky dark:focus:shadow-outline-gray"
                   :name= service                
                 />
                 <label
@@ -95,7 +95,7 @@
                     class="sr-only"
                   />
                   <span 
-                    class="px-6 py-2 text-sm font-medium hover:text-white transition-colors duration-150 border border-stone-600 hover:border-transparent rounded active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray dark:text-white dark:border-white hover:cursor-pointer"                    
+                    class="px-6 py-2 text-sm font-medium hover:text-white transition-colors duration-150 border border-sky-600 hover:border-transparent rounded active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray dark:text-white dark:border-white hover:cursor-pointer"                    
                   >
                     {{ time }}
                   </span>
@@ -110,12 +110,12 @@
           <label class="block mt-4 text-sm">
             <span class="text-gray-700 dark:text-gray-400">Mensagem</span>
             <textarea
-              class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-stone-400 focus:outline-none focus:shadow-outline-stone dark:focus:shadow-outline-gray resize-none"
+              class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-sky-400 focus:outline-none focus:shadow-outline-sky dark:focus:shadow-outline-gray resize-none"
               rows="3"
               placeholder="Envie alguma observação"
             ></textarea>
           </label>
-          <button type="submit" class="px-4 mt-4 text-sm font-medium leading-7 text-white transition-colors duration-150 bg-stone-600 border border-transparent rounded active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+          <button type="submit" class="px-4 mt-4 text-sm font-medium leading-7 text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
             Agendar
           </button>
          

@@ -17,7 +17,12 @@
       </template>
     </Table>
 
-    <SidebarForm :isOpen="isOpen" @closeModal="closeForm" :isUpdate="!!currentItem?._id" title="serviço">
+    <SidebarForm
+      :isOpen="isOpen"
+      @closeModal="closeForm"
+      :isUpdate="!!currentItem?._id"
+      title="serviço"
+    >
       <form
         class="h-full w-full flex flex-col justify-between"
         @submit="onSubmit"
@@ -26,7 +31,7 @@
           <label class="block text-sm">
             <span class="text-gray-700">Descrição</span>
             <input
-              class="block w-full mt-1 text-sm focus:border-stone-400 focus:outline-none focus:shadow-outline-stone form-input"
+              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
               v-bind="form.description"
             />
             <span class="text-red-600 text-sm mt-2">{{
@@ -37,10 +42,19 @@
           <label class="block text-sm mt-2">
             <span class="text-gray-700">Valor</span>
             <input
-              class="block w-full mt-1 text-sm focus:border-stone-400 focus:outline-none focus:shadow-outline-stone form-input"
+              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
               v-bind="form.price"
             />
             <span class="text-red-600 text-sm mt-2">{{ errors.price }}</span>
+          </label>
+
+          <label class="block text-sm mt-2">
+            <span class="text-gray-700">Tempo (minutos)</span>
+            <input
+              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+              v-bind="form.time"
+            />
+            <span class="text-red-600 text-sm mt-2">{{ errors.time }}</span>
           </label>
         </div>
 
@@ -88,7 +102,7 @@ const $swal: any = plugin.$swal;
 const { token } = userStore;
 
 definePageMeta({
-  //middleware: 'auth'
+  middleware: "auth",
 });
 
 const api_url = config.public.api_url;
@@ -98,16 +112,19 @@ const loading = ref(false);
 const isOpen = ref(false);
 const currentItem = ref(null as unknown as any);
 
-const { defineInputBinds, handleSubmit, errors, setValues, resetForm } = useForm({
-  validationSchema: {
-    description: [required],
-    price: [required, number],
-  },
-});
+const { defineInputBinds, handleSubmit, errors, setValues, resetForm } =
+  useForm({
+    validationSchema: {
+      description: [required],
+      price: [required, number],
+      time: [required, number],
+    },
+  });
 
 const form = ref({
   description: defineInputBinds("description"),
   price: defineInputBinds("price"),
+  time: defineInputBinds("time"),
 });
 
 onMounted(async () => {
@@ -158,13 +175,18 @@ const columns = [
     type: "double",
   },
   {
+    key: "time",
+    label: "Tempo",
+    type: "minutes",
+  },
+  {
     key: "createdBy",
     label: "Criado por",
     type: "user",
   },
   {
     key: "createdAt",
-    label: "Atualizado em",
+    label: "Criado em",
     type: "date",
   },
 ];

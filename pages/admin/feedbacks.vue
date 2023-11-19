@@ -19,7 +19,7 @@ const userStore = useUserStore();
 const { token } = userStore;
 
 definePageMeta({
-  //middleware: 'auth'
+  middleware: 'auth'
 });
 
 const config = useRuntimeConfig();

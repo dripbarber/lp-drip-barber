@@ -9,7 +9,7 @@
         <li>
           <button
             @click="previousPage"
-            class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-stone"
+            class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-sky"
             :disabled="currentPage === 1"
             aria-label="Previous"
           >
@@ -31,8 +31,8 @@
             @click="goToPage(pageNumber)"
             class="px-3 py-1 rounded-md"
             :class="{
-              'focus:outline-none focus:shadow-outline-stone': currentPage !== pageNumber,
-              'text-white transition-colors duration-150 bg-stone-600 border border-r-0 border-stone-600 rounded-md focus:outline-none focus:shadow-outline-stone': currentPage === pageNumber,
+              'focus:outline-none focus:shadow-outline-sky': currentPage !== pageNumber,
+              'text-white transition-colors duration-150 bg-sky-600 border border-r-0 border-sky-600 rounded-md focus:outline-none focus:shadow-outline-sky': currentPage === pageNumber,
             }"
           >
             {{ pageNumber }}
@@ -44,7 +44,7 @@
         <li>
           <button
             @click="nextPage"
-            class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-stone"
+            class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-sky"
             :disabled="currentPage === totalPages"
             aria-label="Next"
           >

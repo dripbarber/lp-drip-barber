@@ -1,8 +1,8 @@
 <template>
   <header class="z-10 py-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-    <div class="container flex items-center justify-between h-full px-6 mx-auto text-stone-600 dark:text-stone-300">
+    <div class="container flex items-center justify-between h-full px-6 mx-auto text-sky-600 dark:text-sky-300">
       <!-- Mobile hamburger -->
-      <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-stone"
+      <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-sky"
         v-on:click="toggleSideMenu" aria-label="Menu">
         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd"
@@ -12,14 +12,14 @@
       </button>
       <!-- Search input -->
       <div class="flex justify-center flex-1 lg:mr-32">
-        <div class="relative w-full max-w-xl mr-6 focus-within:text-stone-500">
+        <div class="relative w-full max-w-xl mr-6 focus-within:text-sky-500">
 
         </div>
       </div>
       <ul class="flex items-center flex-shrink-0 space-x-6">
         <!-- Theme toggler -->
         <li class="flex">
-          <button class="rounded-md focus:outline-none focus:shadow-outline-stone" v-on:click="toggleTheme"
+          <button class="rounded-md focus:outline-none focus:shadow-outline-sky" v-on:click="toggleTheme"
             aria-label="Toggle color mode">
             <template v-if="!dark">
               <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -37,7 +37,7 @@
         </li>
         <!-- Notifications menu -->
         <li class="relative">
-          <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-stone"
+          <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-sky"
             v-on:click="toggleNotificationsMenu" @keydown.escape="toggleNotificationsMenu" aria-label="Notifications"
             aria-haspopup="true">
             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -86,7 +86,7 @@
         </li>
         <!-- Profile menu -->
         <li class="relative">
-          <button class="align-middle rounded-full focus:shadow-outline-stone focus:outline-none"
+          <button class="align-middle rounded-full focus:shadow-outline-sky focus:outline-none"
             v-on:click="toggleProfileMenu" @keydown.escape="toggleProfileMenu" aria-label="Account"
             aria-haspopup="true">
             <img class="object-cover w-8 h-8 rounded-full"
