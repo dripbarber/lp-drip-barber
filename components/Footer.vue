@@ -36,7 +36,7 @@
           <SwiperSlide>
             <iframe
               id="iframe-google-maps"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3005.564881839044!2d-8.6112359!3d41.122193!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24654e2e820497%3A0x139159b796f5489e!2zRHJpcCBCUiBCYXJiZWFyaWHwn4en8J-HtyDwn5KI!5e0!3m2!1spt-BR!2sbr!4v1698618915741!5m2!1spt-BR!2sbr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.5648818390446!2d-8.611235900000002!3d41.122192999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464d46529976f%3A0xf367a549873bae08!2sR.%20de%20Soares%20dos%20Reis%2044%2C%204430-315%20Vila%20Nova%20de%20Gaia!5e0!3m2!1spt-BR!2spt!4v1700411322396!5m2!1spt-BR!2spt"
               class="w-full h-auto md:h-1/3"
               style="border: 0"
               allow="fullscreen"
@@ -48,7 +48,7 @@
           <SwiperSlide>
             <iframe
               id="iframe-google-maps"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.5648818390446!2d-8.611235900000002!3d41.122192999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464d46529976f%3A0xf367a549873bae08!2sR.%20de%20Soares%20dos%20Reis%2044%2C%204430-315%20Vila%20Nova%20de%20Gaia!5e0!3m2!1spt-BR!2spt!4v1700411322396!5m2!1spt-BR!2spt"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3005.564881839044!2d-8.6112359!3d41.122193!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24654e2e820497%3A0x139159b796f5489e!2zRHJpcCBCUiBCYXJiZWFyaWHwn4en8J-HtyDwn5KI!5e0!3m2!1spt-BR!2sbr!4v1698618915741!5m2!1spt-BR!2sbr"              
               class="w-full h-auto md:pt-4"
               style="border: 0"
               allow="fullscreen"
@@ -94,9 +94,9 @@
           <div class="mb-8 md:pl-3">
             <p>
               <span class="font-semibold mb-2 block"> SEDES<br /> </span>
-              R. do Marquês de Sá da Bandeira 332, Vila Nova de Gaia              
+              R. de Soares dos Reis 44, Vila Nova de Gaia
               <br />
-              R. de Soares dos Reis 44, Vila Nova de Gaia              
+              R. do Marquês de Sá da Bandeira 332, Vila Nova de Gaia
             </p>
           </div>
           <div class="p-2 w-1/2 mx-auto md:mx-0">
