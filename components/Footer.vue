@@ -94,10 +94,9 @@
           <div class="mb-8 md:pl-3">
             <p>
               <span class="font-semibold mb-2 block"> SEDES<br /> </span>
-              R. de Soares dos Reis 44, Vila Nova de Gaia
+              R. do Marquês de Sá da Bandeira 332, Vila Nova de Gaia              
               <br />
-
-              R. do Marquês de Sá da Bandeira 332, Vila Nova de Gaia
+              R. de Soares dos Reis 44, Vila Nova de Gaia              
             </p>
           </div>
           <div class="p-2 w-1/2 mx-auto md:mx-0">
