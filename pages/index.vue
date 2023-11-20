@@ -73,7 +73,7 @@ useHead({
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Kalam:wght@400;700&family=Open+Sans&family=Roboto:wght@100;300;400;500;700;900&family=Smythe&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 
 html {
@@ -83,6 +83,10 @@ html {
 
 .font-roboto {
   font-family: "Roboto", sans-serif;
+}
+
+.font-permanent-marker {
+  font-family: "Permanent Marker", sans-serif;
 }
 p {
   font-family: "Roboto", sans-serif;

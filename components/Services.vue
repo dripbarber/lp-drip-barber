@@ -102,6 +102,7 @@ const imgCard: imgCard[] = [
 .image-zoom-container {
   position: relative;
   overflow: hidden;
+  
 }
 
 .image-zoom-container:hover .image-zoom {
@@ -111,6 +112,8 @@ const imgCard: imgCard[] = [
 
 .image-zoom {
   transition: transform 0.5s;
+  max-height: 400px;
+  object-fit: cover;  
 }
 
 

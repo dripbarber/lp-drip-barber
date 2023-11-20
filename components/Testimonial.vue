@@ -62,13 +62,13 @@ interface testimonialCards {
 
 const testimonialCards: testimonialCards[] = [
   {
-    src: "/assets/depoimento_2.mov",
+    src: "/assets/video-01.mp4",
   },
   {
-    src: "/assets/depoimento_3.mov",
+    src: "/assets/video-02.mp4",
   },
   {
-    src: "/assets/depoimento_4.mov",
+    src: "/assets/video-03.mp4",
   },
 ];
 </script>
