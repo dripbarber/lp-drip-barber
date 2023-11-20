@@ -28,7 +28,8 @@ const datasource: any = ref([]);
 const currentPage = ref(1);
 
 onMounted(async () => {
-  requestPagination()
+  await requestPagination()
+  await readAll()
 });
 
 const columns = [
@@ -42,6 +43,20 @@ const columns = [
     type: "date",
   },
 ];
+
+const readAll = async () => {
+  try {
+    await $fetch(`${api_url}/user`, {
+      method: "POST",
+      body: { },
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.log(error)
+  }
+};
 
 const requestPagination = async (values: any = {}) => {
   const response: any = await $fetch(`${api_url}/notification`, {
