@@ -12,8 +12,8 @@
         <ul class="mt-12">
           <li class="relative px-6 py-1" v-for="page in pages" :key="page.name">
             <router-link
-              exact-active-class="bg-stone-400 text-white"
-              class="inline-flex items-center w-full text-sm font-semibold transition duration-200 ease-in hover:bg-stone-500 hover:text-white py-2 px-2 rounded-lg"
+              exact-active-class="bg-sky-400 text-white"
+              class="inline-flex items-center w-full text-sm font-semibold transition duration-200 ease-in hover:bg-sky-500 hover:text-white py-2 px-2 rounded-lg"
               :to="`/${page.to}`"
             >
               <Icon
@@ -61,7 +61,7 @@
         <ul>
           <li class="relative px-6 py-3" v-for="page in pages" :key="page.name">
             <router-link
-              active-class="bg-stone-200"
+              active-class="bg-sky-200"
               class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               :to="`/${page.to}`"
             >
@@ -85,11 +85,11 @@ const { isSideMenuOpen } = defineProps(["isSideMenuOpen"]);
 const emits = defineEmits(["closeSideMenu"]);
 
 const pages = [
-  {
+  /*{
     name: "Dashboard",
     icon: "mdi:view-dashboard-outline",
     to: "admin/dashboard",
-  },
+  },*/
   {
     name: "Reservas",
     icon: "mdi:calendar-text",

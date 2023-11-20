@@ -1,11 +1,13 @@
 import { useUserStore } from "@/stores/userStores";
+import { onMounted } from 'vue';
 
 export default defineNuxtRouteMiddleware((to, from) => {
+  onMounted(() => {
     const userStore = useUserStore();
-    const { token, user } = userStore;
-    
-    if (!token && !user?.email) {
-      return navigateTo('/login')
+
+    if (!userStore.token && !userStore.user?.email) {
+      return navigateTo('/login');
     }
-  })
-  
+  });
+
+})

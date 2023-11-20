@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 
 interface User {
+    _id: String
+    picture: String
     email: String
     name: String
     type: String

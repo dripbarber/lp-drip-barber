@@ -20,7 +20,7 @@
                 <span class="text-gray-700">E-mail</span>
                 <input
                   v-bind="form.email"
-                  class="block w-full mt-1 text-sm focus:border-stone-400 focus:outline-none focus:shadow-outline-black form-input"
+                  class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-black form-input"
                   placeholder="example@dripbarber.com"
                 />
                 <span class="text-red-600 text-sm mt-2">{{
@@ -31,7 +31,7 @@
                 <span class="text-gray-700">Senha</span>
                 <input
                   v-bind="form.password"
-                  class="block w-full mt-1 text-sm focus:border-stone-400 focus:outline-none focus:shadow-outline-black form-input"
+                  class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-black form-input"
                   placeholder="***************"
                   type="password"
                 />
@@ -41,7 +41,7 @@
               </label>
 
               <button
-                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-stone-600 border border-transparent rounded-lg active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-stone"
+                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-sky"
                 type="submit"
               >
                 Login
@@ -51,7 +51,7 @@
 
               <p class="mt-4">
                 <router-link
-                  class="text-sm font-medium text-stone-600 hover:underline"
+                  class="text-sm font-medium text-sky-600 hover:underline"
                   to="forgotpassword"
                 >
                   Esqueceu a senha?
@@ -59,7 +59,7 @@
               </p>
               <p class="mt-1">
                 <router-link
-                  class="text-sm font-medium text-stone-600 hover:underline"
+                  class="text-sm font-medium text-sky-600 hover:underline"
                   to="register"
                 >
                   Cadastre-se
@@ -111,10 +111,11 @@ const doLogin = async (values) => {
     }
 
     const userStore = useUserStore();
-    const { setToken, setUser } = userStore;
 
-    setToken(data.value.token);
-    setUser({
+    userStore.setToken(data.value.token);
+    userStore.setUser({
+      _id:  data.value.user._id,
+      picture: data.value.user.picture,
       email: data.value.user.email,
       name: data.value.user.name,
       type: data.value.user.type,
@@ -122,7 +123,7 @@ const doLogin = async (values) => {
 
     if (data.value.token) {
       if (data.value.user.type !== "user") {
-        router.push({ path: "admin/dashboard" });
+        router.push({ path: "admin/appointment" });
         return;
       }
 

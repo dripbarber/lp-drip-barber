@@ -28,31 +28,14 @@ const datasource: any = ref([]);
 const currentPage = ref(1);
 
 onMounted(async () => {
-  requestPagination()
+  await requestPagination()
+  await readAll()
 });
 
 const columns = [
   {
-    key: "createdBy",
-    label: "Criado por",
-    type: "user",
-  },
-  {
-    key: "note",
-    label: "Nota de Atendimento",
-    type: "status",
-    validate: (item: any, label: string) => {
-      return {
-        approved: item.note >= 7,
-        warning: (item.note <= 6 && item.note >= 5),
-        danger: item.note <= 4 
-      }
-    },
-    align: 'center'
-  },
-  {
     key: "message",
-    label: "Motivo",
+    label: "Mensagem",
   },
   {
     key: "createdAt",
@@ -61,17 +44,31 @@ const columns = [
   },
 ];
 
+const readAll = async () => {
+  try {
+    await $fetch(`${api_url}/user`, {
+      method: "POST",
+      body: { },
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.log(error)
+  }
+};
+
 const requestPagination = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/feedback`, {
+  const response: any = await $fetch(`${api_url}/notification`, {
     method: "GET",
-    query: { ...values },
+    query: { ...values, user: userStore.user._id },
     headers: {
       authorization: `Bearer ${token}`,
     },
   });
 
-  if (response?.feedbacks) {
-    datasource.value = response.feedbacks;
+  if (response?.notifications) {
+    datasource.value = response.notifications;
   }
 };
 
