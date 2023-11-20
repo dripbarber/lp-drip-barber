@@ -21,7 +21,7 @@
       :isOpen="isOpen"
       @closeModal="closeForm"
       :isUpdate="!!currentItem?._id"
-      title="serviço"
+      title="empresa"
     >
       <form
         class="h-full w-full flex flex-col justify-between"
@@ -347,10 +347,12 @@ const remove = async (_id: string) => {
             type: "success",
             text: response?.message,
           });
+
+                    await requestPagination();
+
         }
       });
 
-    await requestPagination();
   } catch (error) {
     closeForm();
     snackbar.add({

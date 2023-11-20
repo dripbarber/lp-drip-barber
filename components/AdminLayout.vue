@@ -3,7 +3,7 @@
     <Sidebar />
     
     <div class="w-full">
-      <Navigation />
+      <Navigation route="admin" />
 
       <div class="mx-8 mt-4">
         <slot />

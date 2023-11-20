@@ -88,7 +88,10 @@ const doSubmit = async (values) => {
       text: "Email de recuperação de senha enviado com sucesso.",
     });
   } catch (error) {
-    console.log("error", error);
+       snackbar.add({
+      type: "error",
+      text: "Ops! Ocorreu um erro.",
+    });
   }
 };
 

@@ -114,6 +114,8 @@ const doLogin = async (values) => {
 
     userStore.setToken(data.value.token);
     userStore.setUser({
+      _id:  data.value.user._id,
+      picture: data.value.user.picture,
       email: data.value.user.email,
       name: data.value.user.name,
       type: data.value.user.type,
@@ -121,7 +123,7 @@ const doLogin = async (values) => {
 
     if (data.value.token) {
       if (data.value.user.type !== "user") {
-        router.push({ path: "admin/dashboard" });
+        router.push({ path: "admin/appointment" });
         return;
       }
 

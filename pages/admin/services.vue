@@ -128,9 +128,7 @@ const form = ref({
 });
 
 onMounted(async () => {
-  loading.value = true;
   await requestPagination();
-  loading.value = false;
 });
 
 const handleCreate = (item: any) => {
@@ -192,16 +190,23 @@ const columns = [
 ];
 
 const requestPagination = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/service`, {
-    method: "GET",
-    query: { ...values },
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  });
+  loading.value = true;
 
-  if (response?.services) {
-    datasource.value = response.services;
+  try {
+    const response: any = await $fetch(`${api_url}/service`, {
+      method: "GET",
+      query: { ...values },
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response?.services) {
+      datasource.value = response.services;
+    }
+    loading.value = false;
+  } catch (error) {
+    loading.value = false;
   }
 };
 
@@ -279,6 +284,7 @@ const load = async (_id: string) => {
     setValues({
       description: response.service?.description ?? "",
       price: response.service?.price ?? 0,
+      time: response.service?.time ?? 0,
     });
   } catch (error) {
     closeForm();
@@ -320,10 +326,10 @@ const remove = async (_id: string) => {
             type: "success",
             text: response?.message,
           });
+
+          await requestPagination();
         }
       });
-
-    await requestPagination();
   } catch (error) {
     closeForm();
     snackbar.add({

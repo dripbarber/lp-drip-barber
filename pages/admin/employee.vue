@@ -21,13 +21,36 @@
       :isOpen="isOpen"
       @closeModal="closeForm"
       :isUpdate="!!currentItem?._id"
-      title="serviço"
+      title="barbeiro"
     >
       <form
         class="h-full w-full flex flex-col justify-between"
         @submit="onSubmit"
       >
         <div>
+          <div class="w-24 h-24 mx-auto cursor-pointer">
+            <input
+              type="file"
+              @change="uploadPhoto"
+              id="fileUpload"
+              hidden
+              accept=".jpg, .jpeg, .png, .svg"
+            />
+            <img
+              v-if="state.picture"
+              class="object-cover w-full h-full rounded-full"
+              :src="state.picture"
+              loading="lazy"
+              @click="openFileInput()"
+            />
+            <Icon
+              v-else
+              @click="openFileInput()"
+              name="ph:user-bold"
+              class="object-cover w-full h-full rounded-full"
+            />
+          </div>
+
           <label class="block text-sm">
             <span class="text-gray-700">Nome</span>
             <input
@@ -89,7 +112,6 @@
               </option>
             </select>
           </label>
-
 
           <label class="block text-sm mt-2">
             <span class="text-gray-700">Serviços</span>
@@ -176,6 +198,8 @@ const companys = ref([]);
 const services = ref([]);
 const state = ref({
   services: [],
+  picture: "" as unknown as any,
+  attachment: "" as unknown as any,
 });
 
 const {
@@ -219,7 +243,36 @@ onMounted(async () => {
   }
 });
 
+const openFileInput = () => {
+  document.getElementById("fileUpload")?.click();
+};
+
+const uploadPhoto = ({ target }: any) => {
+  state.value.attachment = target.files[0];
+
+  const maxSize = 50 * 1024; // 50 KB
+  if (state.value.attachment.size > maxSize) {
+    snackbar.add({
+      type: "error",
+      text: "Tamanho da imagem não pode exceder o limite (60 KB).",
+    });
+    return;
+  }
+
+  if (state.value.attachment) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      state.value.picture = reader.result;
+    };
+    reader.readAsDataURL(state.value.attachment);
+  }
+};
+
 const handleCreate = (item: any) => {
+  state.value.services = [];
+  state.value.picture = "";
+  state.value.attachment = "";
+
   resetForm();
   setValues({});
   currentItem.value = null;
@@ -227,6 +280,10 @@ const handleCreate = (item: any) => {
 };
 
 const handleUpdate = async (item: any) => {
+  state.value.services = [];
+  state.value.picture = "";
+  state.value.attachment = "";
+
   setValues({});
   resetForm();
   currentItem.value = item;
@@ -254,8 +311,9 @@ const onSubmit = handleSubmit(doAction);
 
 const columns = [
   {
-    key: "name",
+    key: "picture",
     label: "Nome",
+    type: "picture",
   },
   {
     key: "email",
@@ -397,7 +455,9 @@ const load = async (_id: string) => {
     setValues({
       ...response.user,
     });
-    state.value.services = response.user?.services ?? []
+
+    state.value.picture = response.user?.picture ?? "";
+    state.value.services = response.user?.services ?? [];
   } catch (error) {
     closeForm();
     snackbar.add({
@@ -438,10 +498,9 @@ const remove = async (_id: string) => {
             type: "success",
             text: response?.message,
           });
+          await requestPagination();
         }
       });
-
-    await requestPagination();
   } catch (error) {
     closeForm();
     snackbar.add({

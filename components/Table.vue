@@ -71,6 +71,7 @@
                         loading="lazy"
                       />
                       <Icon
+                        v-else
                         name="ph:user-bold"
                         class="object-cover w-full h-full rounded-full"
                       />
@@ -84,6 +85,31 @@
                       <p class="text-xs text-gray-600 dark:text-gray-400">
                         {{ item[column.key].phone ?? "-" }}
                       </p>
+                    </div>
+                  </span>
+                  <span v-else-if="column?.type === 'picture'" class="flex items-center">
+                    <div
+                      class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                    >
+                      <img
+                        v-if="item?.picture"
+                        class="object-cover w-full h-full rounded-full"
+                        :src="item?.picture"
+                        :alt="item?.name"
+                        loading="lazy"
+                      />
+                      <Icon
+                        v-else
+                        name="ph:user-bold"
+                        class="object-cover w-full h-full rounded-full"
+                      />
+                      <div
+                        class="absolute inset-0 rounded-full shadow-inner"
+                        aria-hidden="true"
+                      ></div>
+                    </div>
+                    <div>
+                      <p class="font-semibold">{{ item?.name }}</p>
                     </div>
                   </span>
                   <template v-else-if="column?.type === 'status'">
@@ -195,6 +221,8 @@ const getNormalized = (value: any, type: string) => {
   switch (type) {
     case "date":
       const date = new Date(value);
+      date.setHours(date.getHours() + 3);
+      
       const day = date.getDate().toString().padStart(2, "0");
       const month = (date.getMonth() + 1).toString().padStart(2, "0");
       const year = date.getFullYear().toString();
@@ -202,16 +230,15 @@ const getNormalized = (value: any, type: string) => {
       data = `${day}/${month}/${year}`;
       break;
     case "double":
-      data = value?.toFixed(2) ?? '';
+      data = value?.toFixed(2) ?? "";
       break;
     case "minutes":
-      data = value ? `${value} min` : '';
+      data = value ? `${value} min` : "";
       break;
     default:
       data = value;
       break;
   }
-  console.log(data);
   return data;
 };
 </script>

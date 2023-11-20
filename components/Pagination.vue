@@ -3,6 +3,7 @@
     {{ paginationStart }} - {{ paginationEnd }} de {{ data.length }} items
   </div>
   <div class="col-span-2"></div>
+  <!--
   <div class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
     <nav aria-label="Table navigation">
       <ul class="inline-flex items-center">
@@ -64,6 +65,7 @@
       </ul>
     </nav>
   </div>
+  -->
 </template>
 
 <script setup lang="ts">

@@ -85,11 +85,11 @@ const { isSideMenuOpen } = defineProps(["isSideMenuOpen"]);
 const emits = defineEmits(["closeSideMenu"]);
 
 const pages = [
-  {
+  /*{
     name: "Dashboard",
     icon: "mdi:view-dashboard-outline",
     to: "admin/dashboard",
-  },
+  },*/
   {
     name: "Reservas",
     icon: "mdi:calendar-text",
