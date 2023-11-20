@@ -13,15 +13,28 @@
           :slides-per-view="1"
           :loop="true"
           :autoplay="{
-            delay: 10000,
+            delay: 6000,
             disableOnInteraction: true,
+          }"                   
+          :navigation="true"
+          :breakpoints="{
+            '640': {
+              slidesPerView: 1,
+              grid: {
+                rows: 2
+              },
+              loop: false,
+              autoplay: false,
+              navigation: false  
+                        
+            }
           }"
         >
           <SwiperSlide>
             <iframe
               id="iframe-google-maps"
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3005.564881839044!2d-8.6112359!3d41.122193!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24654e2e820497%3A0x139159b796f5489e!2zRHJpcCBCUiBCYXJiZWFyaWHwn4en8J-HtyDwn5KI!5e0!3m2!1spt-BR!2sbr!4v1698618915741!5m2!1spt-BR!2sbr"
-              class="w-full h-auto"
+              class="w-full h-auto md:h-1/3"
               style="border: 0"
               allow="fullscreen"
               loading="lazy"
@@ -31,13 +44,14 @@
           </SwiperSlide>
           <SwiperSlide>
             <iframe
+              id="iframe-google-maps"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.5648818390446!2d-8.611235900000002!3d41.122192999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464d46529976f%3A0xf367a549873bae08!2sR.%20de%20Soares%20dos%20Reis%2044%2C%204430-315%20Vila%20Nova%20de%20Gaia!5e0!3m2!1spt-BR!2spt!4v1700411322396!5m2!1spt-BR!2spt"
-              width="600"
-              height="450"
+              class="w-full h-auto md:pt-4"
               style="border: 0"
-              allowfullscreen=""
+              allow="fullscreen"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
+              title="googleMaps"
             ></iframe>
           </SwiperSlide>
         </Swiper>
@@ -106,6 +120,7 @@
 </template> 
 
 <script setup lang="ts">
+
 const socialLinks = [
   {
     name: "Whatsapp",
@@ -122,7 +137,7 @@ const socialLinks = [
 
 <style scoped>
 #iframe-google-maps {
-  min-height: 450px;
+  min-height: 250px;  
 }
 
 @media (max-width: 600px) {
