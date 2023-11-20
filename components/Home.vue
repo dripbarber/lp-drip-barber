@@ -31,9 +31,9 @@
         />
       </div>
       <div class="md:grow">
-        <div class="flex items-center text-white md:h-full w-full relative z-10">
+        <div class="flex items-center justify-center text-white md:h-full w-full relative z-10 pt-6 md:pt-0">
             <video
-              class="w-1/2 mx-auto md:w-4/6  md:aspect-w-1 md:h-3/4 md:mx-8 pt-8"
+              class="w-1/2 mx-auto md:w-9/12  md:aspect-w-1 md:h-3/4 md:mx-8 pt-8"
               controls
               autoplay
             >

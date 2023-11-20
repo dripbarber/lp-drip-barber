@@ -16,7 +16,9 @@
             delay: 6000,
             disableOnInteraction: true,
           }"                   
-          :navigation="true"
+          :navigation="{
+            enabled: true
+          }"
           :breakpoints="{
             '640': {
               slidesPerView: 1,
@@ -25,8 +27,9 @@
               },
               loop: false,
               autoplay: false,
-              navigation: false  
-                        
+              navigation: {
+                enabled: false
+              }                        
             }
           }"
         >
