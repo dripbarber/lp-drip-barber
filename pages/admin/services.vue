@@ -102,7 +102,9 @@ const $swal: any = plugin.$swal;
 const { token } = userStore;
 
 definePageMeta({
-  middleware: "auth",
+  middleware: [
+    "auth",
+  ],
 });
 
 const api_url = config.public.api_url;
