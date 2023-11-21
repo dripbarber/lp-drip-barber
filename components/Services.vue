@@ -8,13 +8,9 @@
       class="flex items-center justify-between z-5 relative w-full"
     >
       <Swiper
-        :modules="[SwiperAutoplay, SwiperNavigation]"
-        :slides-per-view="2"
-        :loop="false"
-        :autoplay="{
-        delay: 3000,
-        disableOnInteraction: false,
-        }"
+        class="hidden md:w-full"
+        :slides-per-view="2"      
+        
       >
       <SwiperSlide
         v-for="(img, index) in imgCard"
