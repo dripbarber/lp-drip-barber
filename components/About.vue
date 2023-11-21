@@ -34,7 +34,7 @@
       <div
         class="md:w-1/2 xl:columns-3 columns-2 w-5/6 mx-auto gap-2 my-4 z-[5]"
       >
-        <div class="bg-no-repeat bg-top" 
+        <div class="bg-no-repeat bg-top h-full" 
         v-for="(img, index) in aboutImgs"
         :key="index"
         :class="img.class"
@@ -46,7 +46,7 @@
           class="pt-4 mx-auto"          
           fit="cover"
           width="289"
-          height="389"          
+          height="289"          
           loading="lazy"
         />
         </div>
