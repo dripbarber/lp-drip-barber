@@ -60,21 +60,21 @@
         }"
       >
         <SwiperSlide>
-          <div class="mx-auto px-4">
+          <div class="w-full items-center px-4">
             <NuxtImg
               format="webp"
               src="assets/gallery-item-1.png"
-              class="w-full aspect-video object-cover object-center"
+              class="w-full aspect-video object-cover object-center rounded-lg"
               alt="imagem da galeria de fotos"
               loading="lazy"
               width="540"
               height="574"
             />
-            <div class="flex pt-6 overflow-hidden">
+            <div class="flex pt-3 overflow-hidden">
               <NuxtImg
                 format="webp"
                 src="assets/gallery-item-2.png"
-                class="w-1/2 aspect-w-1 aspect-h-1 mr-auto object-cover object-center"
+                class="w-1/2 pr-1 aspect-w-1 aspect-h-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
@@ -83,7 +83,7 @@
               <NuxtImg
                 format="webp"
                 src="assets/gallery-item-3.png"
-                class="w-1/2 aspect-w-1 aspect-h-1 ml-4 object-cover object-center"
+                class="w-1/2 pl-1 aspect-w-1 aspect-h-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
@@ -93,12 +93,12 @@
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div class="w-full items-center mx-auto px-4">
-            <div class="flex pb-6 overflow-hidden">
+          <div class="w-full items-center px-4">
+            <div class="flex pb-3 justify-center">
               <NuxtImg
                 format="webp"
                 src="assets/gallery-item-4.png"
-                class="w-1/2 aspect-w-1 aspect-h-1 mr-auto object-cover object-center"
+                class="w-1/2 pr-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
@@ -107,7 +107,7 @@
               <NuxtImg
                 format="webp"
                 src="assets/gallery-item-5.png"
-                class="w-1/2 aspect-w-1 aspect-h-1 ml-4 object-cover object-center"
+                class="w-1/2 pl-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
@@ -117,7 +117,7 @@
             <NuxtImg
               format="webp"
               src="assets/gallery-item-6.png"
-              class="w-full aspect-video object-cover object-center"
+              class="w-full aspect-video object-cover object-center rounded-lg"
               alt="imagem da galeria de fotos"
               loading="lazy"
               width="540"
