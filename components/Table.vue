@@ -61,7 +61,8 @@
                 >
                   <span v-if="column?.type === 'user'" class="flex">
                     <div
-                      class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                      v-if="item[column.key]"
+                      class="relative w-8 h-8 mr-3 rounded-full md:block"
                     >
                       <img
                         v-if="item[column.key]?.picture"
@@ -80,14 +81,17 @@
                         aria-hidden="true"
                       ></div>
                     </div>
-                    <div>
+                    <div v-if="item[column.key]">
                       <p class="font-semibold">{{ item[column.key].name }}</p>
                       <p class="text-xs text-gray-600 dark:text-gray-400">
                         {{ item[column.key].phone ?? "-" }}
                       </p>
                     </div>
                   </span>
-                  <span v-else-if="column?.type === 'picture'" class="flex items-center">
+                  <span
+                    v-else-if="column?.type === 'picture'"
+                    class="flex items-center"
+                  >
                     <div
                       class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
                     >
@@ -115,19 +119,19 @@
                   <template v-else-if="column?.type === 'status'">
                     <span
                       v-if="column?.validate(item)?.approved"
-                      class="px-2 py-1 font-semibold leading-tight text-green-500 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                      class="px-3 py-1 font-semibold leading-tight text-green-500 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                     >
                       {{ getNormalized(item[column.key], column?.type) }}
                     </span>
                     <span
                       v-if="column?.validate(item)?.danger"
-                      class="px-2 py-1 font-semibold leading-tight text-red-500 bg-red-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                      class="px-3 py-1 font-semibold leading-tight text-red-500 bg-red-100 rounded-full dark:bg-green-700 dark:text-green-100"
                     >
                       {{ getNormalized(item[column.key], column?.type) }}
                     </span>
                     <span
                       v-if="column?.validate(item)?.warning"
-                      class="px-2 py-1 font-semibold leading-tight text-yellow-500 bg-yellow-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                      class="px-3 py-1 font-semibold leading-tight text-yellow-500 bg-yellow-100 rounded-full dark:bg-green-700 dark:text-green-100"
                     >
                       {{ getNormalized(item[column.key], column?.type) }}
                     </span>
@@ -218,22 +222,37 @@ const props = defineProps({
 
 const getNormalized = (value: any, type: string) => {
   let data = "";
+  const dayOfWeek = [
+    { label: "Domingo", value: "0" },
+    { label: "Segunda-feira", value: "1" },
+    { label: "Terça-feira", value: "2" },
+    { label: "Quarta-feira", value: "3" },
+    { label: "Quinta-feira", value: "4" },
+    { label: "Sexta-feira", value: "5" },
+    { label: "Sábado", value: "6" },
+  ];
+
   switch (type) {
     case "date":
-      const date = new Date(value);
-      date.setHours(date.getHours() + 3);
-      
-      const day = date.getDate().toString().padStart(2, "0");
-      const month = (date.getMonth() + 1).toString().padStart(2, "0");
-      const year = date.getFullYear().toString();
+      if (value) {
+        const date = new Date(value);
+        date.setHours(date.getHours() + 3);
 
-      data = `${day}/${month}/${year}`;
+        const day = date.getDate().toString().padStart(2, "0");
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear().toString();
+
+        data = `${day}/${month}/${year}`;
+      }
       break;
     case "double":
       data = value?.toFixed(2) ?? "";
       break;
     case "minutes":
       data = value ? `${value} min` : "";
+      break;
+    case "dayOfWeek":
+      data = value ? dayOfWeek[value].label : '';
       break;
     default:
       data = value;
