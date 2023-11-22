@@ -32,7 +32,7 @@
       </div>
       <div class="md:grow">
         <div
-          class="flex items-center justify-center text-white md:h-full w-full relative z-10 pt-6 md:pt-0"
+          class="flex items-center justify-center text-white h-full w-full relative z-10 pt-6 md:pt-0"
         >
           <iframe
             src="https://www.youtube.com/embed/lNllZSnbEXI?si=F_fxWA7qTI3a0ZQT"
@@ -40,8 +40,9 @@
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-            class="w-1/2 mx-auto md:w-9/12 md:aspect-w-1 md:h-3/4 md:mx-8 pt-8"
+            class="mx-auto md:w-9/12 md:aspect-w-1 md:h-3/4 md:mx-8 pt-8"
             autoplay
+            height="360"
           ></iframe>
         </div>
       </div>
