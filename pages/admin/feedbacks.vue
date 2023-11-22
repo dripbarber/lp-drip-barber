@@ -1,6 +1,12 @@
 <template>
   <AdminLayout>
-    <Table :columns="columns" :data="datasource" hide-update hide-delete hide-create>
+    <Table
+      :columns="columns"
+      :data="datasource"
+      hide-update
+      hide-delete
+      hide-create
+    >
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
@@ -19,7 +25,9 @@ const userStore = useUserStore();
 const { token } = userStore;
 
 definePageMeta({
-  middleware: 'auth'
+  middleware: [
+    "auth",
+  ],
 });
 
 const config = useRuntimeConfig();
@@ -28,7 +36,7 @@ const datasource: any = ref([]);
 const currentPage = ref(1);
 
 onMounted(async () => {
-  requestPagination()
+  requestPagination();
 });
 
 const columns = [
@@ -44,11 +52,11 @@ const columns = [
     validate: (item: any, label: string) => {
       return {
         approved: item.note >= 7,
-        warning: (item.note <= 6 && item.note >= 5),
-        danger: item.note <= 4 
-      }
+        warning: item.note <= 6 && item.note >= 5,
+        danger: item.note <= 4,
+      };
     },
-    align: 'center'
+    align: "center",
   },
   {
     key: "message",
@@ -74,5 +82,4 @@ const requestPagination = async (values: any = {}) => {
     datasource.value = response.feedbacks;
   }
 };
-
 </script>

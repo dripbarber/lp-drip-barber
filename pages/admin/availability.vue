@@ -21,40 +21,89 @@
       :isOpen="isOpen"
       @closeModal="closeForm"
       :isUpdate="!!currentItem?._id"
-      title="serviço"
+      title="Disponibilidade"
     >
       <form
         class="h-full w-full flex flex-col justify-between"
         @submit="onSubmit"
       >
         <div>
-          <label class="block text-sm">
-            <span class="text-gray-700">Descrição</span>
-            <input
+          <label class="block text-sm mt-2">
+            <span class="text-gray-700">Empresa</span>
+            <select
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.description"
-            />
+              v-bind="form.company"
+            >
+              <option v-for="item in companys" :key="item" :value="item._id">
+                {{ item.name }}
+              </option>
+            </select>
+            <span class="text-red-600 text-sm mt-2">{{ errors.company }}</span>
+          </label>
+
+          <label class="block text-sm mt-2">
+            <span class="text-gray-700">Dia da Semana</span>
+            <select
+              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+              v-bind="form.dayOfWeek"
+            >
+              <option
+                v-for="item in daysOfWeek"
+                :key="item"
+                :value="item.value"
+              >
+                {{ item.label }}
+              </option>
+            </select>
             <span class="text-red-600 text-sm mt-2">{{
-              errors.description
+              errors.dayOfWeek
             }}</span>
           </label>
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Valor</span>
+          <label class="block text-sm">
+            <span class="text-gray-700">Data</span>
             <input
+              type="date"
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.price"
+              v-bind="form.date"
+              :min="getMinDate"
             />
-            <span class="text-red-600 text-sm mt-2">{{ errors.price }}</span>
+            <span class="text-red-600 text-sm mt-2">{{ errors.date }}</span>
+          </label>
+
+          <label class="block text-sm">
+            <span class="text-gray-700">Inicia em</span>
+            <input
+              type="time"
+              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+              v-bind="form.startTime"
+            />
+            <span class="text-red-600 text-sm mt-2">{{
+              errors.startTime
+            }}</span>
+          </label>
+
+          <label class="block text-sm">
+            <span class="text-gray-700">Termina em</span>
+            <input
+              type="time"
+              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+              v-bind="form.endTime"
+            />
+            <span class="text-red-600 text-sm mt-2">{{ errors.endTime }}</span>
           </label>
 
           <label class="block text-sm mt-2">
-            <span class="text-gray-700">Tempo (minutos)</span>
-            <input
+            <span class="text-gray-700">Disponibilidade</span>
+            <select
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.time"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.time }}</span>
+              v-bind="form.type"
+            >
+              <option v-for="item in types" :key="item" :value="item.value">
+                {{ item.label }}
+              </option>
+            </select>
+            <span class="text-red-600 text-sm mt-2">{{ errors.type }}</span>
           </label>
         </div>
 
@@ -88,7 +137,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useForm } from "vee-validate";
+import { useForm, useFieldArray } from "vee-validate";
 import { useUserStore } from "@/stores/userStores";
 import { required, number } from "@/composable/rules";
 
@@ -102,9 +151,7 @@ const $swal: any = plugin.$swal;
 const { token } = userStore;
 
 definePageMeta({
-  middleware: [
-    "auth",
-  ],
+  middleware: ["auth"],
 });
 
 const api_url = config.public.api_url;
@@ -114,32 +161,72 @@ const loading = ref(false);
 const isOpen = ref(false);
 const currentItem = ref(null as unknown as any);
 
-const { defineInputBinds, handleSubmit, errors, setValues, resetForm } =
-  useForm({
-    validationSchema: {
-      description: [required],
-      price: [required, number],
-      time: [required, number],
-    },
-  });
+const companys = ref([]);
+
+const daysOfWeek = ref([
+  { label: "Domingo", value: "0" },
+  { label: "Segunda-feira", value: "1" },
+  { label: "Terça-feira", value: "2" },
+  { label: "Quarta-feira", value: "3" },
+  { label: "Quinta-feira", value: "4" },
+  { label: "Sexta-feira", value: "5" },
+  { label: "Sábado", value: "6" },
+]);
+
+const types = ref([
+  { label: "Dísponível", value: "available" },
+  { label: "Indisponível", value: "unavailable" },
+]);
+
+const state = ref({});
+
+const {
+  defineInputBinds,
+  defineComponentBinds,
+  handleSubmit,
+  errors,
+  setValues,
+  resetForm,
+} = useForm({
+  validationSchema: {
+    company: [required],
+    date: [],
+    dayOfWeek: [],
+    startTime: [required],
+    endTime: [required],
+    type: [required],
+  },
+});
 
 const form = ref({
-  description: defineInputBinds("description"),
-  price: defineInputBinds("price"),
-  time: defineInputBinds("time"),
+  date: defineInputBinds("date"),
+  company: defineInputBinds("company"),
+  dayOfWeek: defineInputBinds("dayOfWeek"),
+  startTime: defineInputBinds("startTime"),
+  endTime: defineInputBinds("endTime"),
+  type: defineInputBinds("type"),
 });
 
 onMounted(async () => {
-  await requestPagination();
+  try {
+    loading.value = true;
+    await requestPagination();
+    await requestPaginationCompanys();
+    loading.value = false;
+  } catch (error) {
+    loading.value = false;
+  }
 });
 
 const handleCreate = (item: any) => {
+  resetForm();
+  setValues({});
   currentItem.value = null;
   isOpen.value = true;
-  resetForm();
 };
 
 const handleUpdate = async (item: any) => {
+  setValues({});
   resetForm();
   currentItem.value = item;
   isOpen.value = true;
@@ -166,18 +253,39 @@ const onSubmit = handleSubmit(doAction);
 
 const columns = [
   {
-    key: "description",
-    label: "Nome",
+    key: "date",
+    label: "Data",
+    type: "date",
   },
   {
-    key: "price",
-    label: "Preço",
-    type: "double",
+    key: "dayOfWeek",
+    label: "Dia da Semana",
+    type: "dayOfWeek",
   },
   {
-    key: "time",
-    label: "Tempo",
-    type: "minutes",
+    key: "startTime",
+    label: "Inicia em",
+  },
+  {
+    key: "endTime",
+    label: "Termina em",
+  },
+  {
+    key: "",
+    label: "Status",
+    type: "status",
+    validate: (item: any, label: string) => {
+      return {
+        approved: item.type === "available",
+        warning: item.type === "unavailable",
+      };
+    },
+    align: "center",
+  },
+  {
+    key: "employee",
+    label: "Barbeiro",
+    type: "user",
   },
   {
     key: "createdBy",
@@ -191,38 +299,57 @@ const columns = [
   },
 ];
 
+const getMinDate = computed(() => {
+  const currentDate = new Date();
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const day = String(currentDate.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
+});
+
 const requestPagination = async (values: any = {}) => {
-  loading.value = true;
+  const response: any = await $fetch(`${api_url}/availability`, {
+    method: "GET",
+    query: { ...values },
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
 
-  try {
-    const response: any = await $fetch(`${api_url}/service`, {
-      method: "GET",
-      query: { ...values },
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
+  if (response?.availabilities) {
+    datasource.value = response.availabilities;
+  }
+};
 
-    if (response?.services) {
-      datasource.value = response.services;
-    }
-    loading.value = false;
-  } catch (error) {
-    loading.value = false;
+const requestPaginationCompanys = async (values: any = {}) => {
+  const response: any = await $fetch(`${api_url}/company`, {
+    method: "GET",
+    query: { ...values },
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (response?.companys) {
+    companys.value = response.companys;
   }
 };
 
 const create = async (values: any) => {
   try {
-    const response: any = await $fetch(`${api_url}/service`, {
+    const response: any = await $fetch(`${api_url}/availability`, {
       method: "POST",
-      body: { ...values },
+      body: { ...values, ...state.value },
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
 
-    if (!response?.service) {
+    if (!response?.availability) {
       snackbar.add({
         type: "error",
         text: response.message,
@@ -248,10 +375,10 @@ const create = async (values: any) => {
 const update = async (values: any) => {
   try {
     const response: any = await $fetch(
-      `${api_url}/service/${currentItem?.value?._id}`,
+      `${api_url}/availability/${currentItem?.value?._id}`,
       {
         method: "PUT",
-        body: { ...values },
+        body: { ...values, ...state.value },
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -276,7 +403,7 @@ const update = async (values: any) => {
 
 const load = async (_id: string) => {
   try {
-    const response: any = await $fetch(`${api_url}/service/${_id}`, {
+    const response: any = await $fetch(`${api_url}/availability/${_id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${token}`,
@@ -284,9 +411,10 @@ const load = async (_id: string) => {
     });
 
     setValues({
-      description: response.service?.description ?? "",
-      price: response.service?.price ?? 0,
-      time: response.service?.time ?? 0,
+      ...response.availability,
+      date: response.availability?.date
+        ? new Date(response.availability?.date).toISOString().split("T")[0]
+        : null,
     });
   } catch (error) {
     closeForm();
@@ -317,7 +445,7 @@ const remove = async (_id: string) => {
       })
       .then(async (result: any) => {
         if (result.isConfirmed) {
-          const response: any = await $fetch(`${api_url}/service/${_id}`, {
+          const response: any = await $fetch(`${api_url}/availability/${_id}`, {
             method: "DELETE",
             headers: {
               authorization: `Bearer ${token}`,

@@ -128,10 +128,10 @@
             aria-haspopup="true"
           >
             <img
-              v-if="item?.picture"
+              v-if="userStore.user?.picture"
               class="object-cover w-full h-full rounded-full"
-              :src="item?.picture"
-              :alt="item?.name"
+              :src="userStore.user?.picture"
+              :alt="userStore.user?.name"
               loading="lazy"
             />
             <Icon
