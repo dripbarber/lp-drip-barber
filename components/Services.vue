@@ -5,41 +5,31 @@
   >    
     <div
       id="testimonial-container"
-      class="flex items-center justify-between z-5 relative w-full"
-    >
-      <Swiper
-        class="hidden md:w-full"
-        :slides-per-view="2"      
-        
+      class="flex items-center justify-center z-5 relative w-full"
+    >   
+      <div
+      v-for="(img, index) in imgCard"
+      :key="index"
+      class="image-zoom-container card text-center text-white grayscale hover:grayscale-0  cursor-pointer  mt-24 z-0 hover:z-50 overflow-hidden hover:overflow-y-hidden hidden md:flex"      
       >
-      <SwiperSlide
-        v-for="(img, index) in imgCard"
-        :key="index"
-        class="z-0 hover:z-50 overflow-hidden hover:overflow-y-hidden"
-      >
-        <div
-        class="image-zoom-container card text-center text-white grayscale hover:grayscale-0  cursor-pointer  mt-24"      
-        >
-          <NuxtImg
-            format="webp"
-            :src=img.src
-            :alt=img.alt
-            class="image-zoom"
-            fit="cover"
-            height="700"
-            width="1100"            
-            loading="lazy"
-          />       
-          <div class="absolute group inset-0 flex flex-col items-center justify-center">
-            <h2 class="font-bold md:text-2xl lg:text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>            
-          </div>         
-        </div>   
-      </SwiperSlide>
-      </Swiper>
-             
+        <NuxtImg
+          format="webp"
+          :src=img.src
+          :alt=img.alt
+          class="image-zoom"
+          fit="cover"
+          height="700"
+          width="1100"            
+          loading="lazy"
+        />       
+        <div class="absolute group inset-0 flex flex-col items-center justify-center">
+          <h2 class="font-bold md:text-2xl lg:text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>            
+        </div>         
+      </div>   
+                    
       
-
-      <div class="md:hidden w-full mt-10 pt-6">
+      <!--Mobile slides-->
+      <div class="sm:hidden w-full mt-10 pt-6">
         <Swiper
           :modules="[SwiperAutoplay, SwiperNavigation]"
           :slides-per-view="1"
@@ -54,7 +44,7 @@
             :key="index"
             >
             <div
-              class="card text-center text-white mr-4 w-full flex flex-col items-center h-auto grayscale hover:grayscale-0 overflow-hidden hover:scale-110 transition duration-500"              
+              class="card text-center text-white mr-4 w-full flex flex-col items-center h-auto grayscale hover:grayscale-0 overflow-hidden hover:scale-110 transition duration-500 sm:hidden"              
             >             
               <NuxtImg
               format="webp"

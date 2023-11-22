@@ -5,10 +5,10 @@
   >
     <div
       id="about-container"
-      class="md:flex items-center text-top justify-center h-full overflow-hidden pt-12 md:pt-16 md:pb-6 px-6 z-[5]"
+      class="max-w-7xl md:flex items-center text-top justify-center h-full overflow-hidden pt-12 md:pt-16 md:pb-6 px-6 z-[5] mx-auto"
     >
       <div
-        class="text-left md:w-1/2 p-4 md:pt-0 md:px-6 xl:px-20"
+        class="text-left md:w-1/2 p-4 md:pt-0 md:px-6 xl:px-10"
       >
         <h3 
           class="text-third-color md:text-2xl text-2xl mb-1 md:mb-6 font-semibold">
@@ -32,24 +32,24 @@
         
       </div>
       <div
-        class="md:w-1/2 xl:columns-3 columns-2 w-5/6 mx-auto gap-2 my-4 z-[5]"
+        class="md:w-1/2  mx-auto z-[5]"
       >
-        <div class="bg-no-repeat bg-top h-full" 
-        v-for="(img, index) in aboutImgs"
-        :key="index"
-        :class="img.class"
+        <ul class="flex flex-wrap justify-center gap-2.5" 
         >
-          <NuxtImg          
-          format="webp"
-          :src=img.src
-          :alt=img.description
-          class="pt-4 mx-auto"          
-          fit="cover"
-          width="289"
-          height="289"          
-          loading="lazy"
-        />
-        </div>
+          <li
+          v-for="(img, index) in aboutImgs"
+          :key="index"
+          :class="img.class"
+          class="lg:basis-48 md:basis-36 basis-24 "
+          >            
+            <img        
+            :src=img.src
+            :alt=img.description
+            class=" object-cover h-auto w-full mx-auto align-middle rounded"
+            />
+
+          </li>
+        </ul>
         
        
       </div>
@@ -66,10 +66,10 @@
 
   const aboutImgs: aboutImgs[] =[
     {description: "image1", src: "assets/about-item001.jpg", class: ''},
-    {description: "image2", src: "assets/about-item002.jpg", class: 'transform scale-x-[-1]'},
-    {description: "image3", src: "assets/about-item03.jpg", class: ''},
-    {description: "image4", src: "assets/about-item04.jpg", class: ''},
-    {description: "image5", src: "assets/about-item05.jpg", class: 'transform scale-x-[-1]'},
-    {description: "image6", src: "assets/about-item006.jpg", class: ''},
+    {description: "image2", src: "assets/about-item03.jpg", class: ''},
+    {description: "image3", src: "assets/about-item05.jpg", class: 'transform scale-x-[-1]'},
+    {description: "image4", src: "assets/about-item006.jpg", class: 'transform scale-x-[-1]'},
+    {description: "image5", src: "assets/teste5.jpg", class: ''},
+    {description: "image6", src: "assets/teste3.jpg", class: 'transform scale-x-[-1]'},
   ]
 </script>
