@@ -12,20 +12,21 @@
     />
     <div
       id="testimonial-container"
-      class="flex items-center justify-center h-full p-6 max-w-7xl mx-auto z-5 relative"
+      class="flex items-center justify-center h-full p-6 max-w-7xl mx-auto z-5 relative h-auto"
     >
-      <div class="columns-3 md:flex hidden mt-20">
-        <div
-          class="w-1/3 p-4 card text-center flex flex-col items-center mr-4 h-auto"
+      <div class="columns-3 md:flex hidden mt-20 h-auto">
+        <iframe
+          class="w-full p-4 card text-center flex flex-col items-center mr-4"
           v-for="(card, index) in testimonialCards"
           :key="index"
-        >
-          <video class="aspect-w-1" controls>
-            <source :src="card.src" type="video/mp4" />
-            <track kind="captions" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+          :src="`https://www.youtube.com/embed/${card.src}`"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          autoplay
+          height="560"
+        ></iframe>
       </div>
 
       <div class="md:hidden w-11/12 mx-auto mt-8">
@@ -40,13 +41,18 @@
         >
           <SwiperSlide v-for="(card, index) in testimonialCards" :key="index">
             <div
-              class="card p-5 mt-4 md:mt-20 text-center mr-4 w-full flex flex-col items-center"
+              class=" p-5 mt-4 md:mt-20 text-center mr-4 w-full flex flex-col items-center"
             >
-              <video class="aspect-w-1" controls>
-                <source :src="card.src" type="video/mp4" />
-                <track kind="captions" />
-                Your browser does not support the video tag.
-              </video>
+              <iframe
+                class=""
+                :src="`https://www.youtube.com/embed/${card.src}`"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                autoplay
+                height="560"
+              ></iframe>
             </div>
           </SwiperSlide>
         </Swiper>
@@ -62,20 +68,20 @@ interface testimonialCards {
 
 const testimonialCards: testimonialCards[] = [
   {
-    src: "/assets/video-01.mp4",
+    src: "Gb4N2P8g-og?si=oo33lseUbgfPqDDa",
   },
   {
-    src: "/assets/video-02.mp4",
+    src: "ouO_A8zwNCE?si=oPvPNQLxPWl3Ax-9",
   },
   {
-    src: "/assets/video-03.mp4",
+    src: "80VVVyCG2Xo?si=WLdlV8rY0JJZjWnr",
   },
 ];
 </script>
 
 <style scoped>
 .card {
-  background: rgba(217, 217, 217, 0.95);
+  background: rgba(217, 217, 217, 0.15);
   border-radius: 20px;
 }
 
