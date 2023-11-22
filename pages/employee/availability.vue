@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout>
+  <EmployeeLayout>
     <Table
       :columns="columns"
       :data="datasource"
@@ -29,19 +29,6 @@
         @submit="onSubmit"
       >
         <div>
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Empresa</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.company"
-            >
-              <option v-for="item in companys" :key="item" :value="item._id">
-                {{ item.name }}
-              </option>
-            </select>
-            <span class="text-red-600 text-sm mt-2">{{ errors.company }}</span>
-          </label>
-
           <label class="block text-sm mt-2">
             <span class="text-gray-700">Dia da Semana</span>
             <select
@@ -94,18 +81,6 @@
             <span class="text-red-600 text-sm mt-2">{{ errors.endTime }}</span>
           </label>
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Disponibilidade</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.type"
-            >
-              <option v-for="item in types" :key="item" :value="item.value">
-                {{ item.label }}
-              </option>
-            </select>
-            <span class="text-red-600 text-sm mt-2">{{ errors.type }}</span>
-          </label>
         </div>
 
         <div class="flex justify-center">
@@ -133,7 +108,7 @@
         </div>
       </form>
     </SidebarForm>
-  </AdminLayout>
+  </EmployeeLayout>
 </template>
 
 <script setup lang="ts">
@@ -162,8 +137,6 @@ const loading = ref(false);
 const isOpen = ref(false);
 const currentItem = ref(null as unknown as any);
 
-const companys = ref([]);
-
 const daysOfWeek = ref([
   { label: "Domingo", value: "0" },
   { label: "Segunda-feira", value: "1" },
@@ -172,11 +145,6 @@ const daysOfWeek = ref([
   { label: "Quinta-feira", value: "4" },
   { label: "Sexta-feira", value: "5" },
   { label: "Sábado", value: "6" },
-]);
-
-const types = ref([
-  { label: "Dísponível", value: "available" },
-  { label: "Indisponível", value: "unavailable" },
 ]);
 
 const state = ref({});
@@ -190,7 +158,6 @@ const {
   resetForm,
 } = useForm({
   validationSchema: {
-    company: [required],
     date: [],
     dayOfWeek: [],
     startTime: [required],
@@ -201,7 +168,6 @@ const {
 
 const form = ref({
   date: defineInputBinds("date"),
-  company: defineInputBinds("company"),
   dayOfWeek: defineInputBinds("dayOfWeek"),
   startTime: defineInputBinds("startTime"),
   endTime: defineInputBinds("endTime"),
@@ -212,7 +178,6 @@ onMounted(async () => {
   try {
     loading.value = true;
     await requestPagination();
-    await requestPaginationCompanys();
     loading.value = false;
   } catch (error) {
     loading.value = false;
@@ -284,11 +249,6 @@ const columns = [
     align: "center",
   },
   {
-    key: "employee",
-    label: "Barbeiro",
-    type: "user",
-  },
-  {
     key: "createdBy",
     label: "Criado por",
     type: "user",
@@ -313,9 +273,9 @@ const getMinDate = computed(() => {
 });
 
 const requestPagination = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/availability`, {
+  const response: any = await $fetch(`${api_url}/availability/`, {
     method: "GET",
-    query: { ...values },
+    query: { ...values,  employee: userStore.user._id},
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -326,25 +286,12 @@ const requestPagination = async (values: any = {}) => {
   }
 };
 
-const requestPaginationCompanys = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/company`, {
-    method: "GET",
-    query: { ...values },
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (response?.companys) {
-    companys.value = response.companys;
-  }
-};
 
 const create = async (values: any) => {
   try {
     const response: any = await $fetch(`${api_url}/availability`, {
       method: "POST",
-      body: { ...values, ...state.value },
+      body: { ...values, ...state.value,  employee: userStore.user._id, type: 'unavailable' },
       headers: {
         authorization: `Bearer ${token}`,
       },

@@ -96,6 +96,7 @@
                 :disabled-dates="[
                   { start: null, end: new Date() },
                   { start: limitDate, end: null },
+                  ...optionDates
                 ]"
               />
 
@@ -157,7 +158,8 @@ import { useUserStore } from "@/stores/userStores";
 const optionsBarbers = ref([]);
 const optionsCompanys = ref([]);
 const optionsService = ref([]);
-const optionTimes = ref(["10:00", "10:30", "11:00", "20:00", "21:00", "19:00"]);
+const optionTimes = ref([]);
+const optionDates = ref([]);
 
 const userStore = useUserStore();
 const config = useRuntimeConfig();
@@ -199,7 +201,6 @@ watch(
   () => state.value.employee,
   async (newVal, oldVal) => {
     if (oldVal !== newVal) {
-      console.log({ newVal, optionsBarbers });
       state.value.services = [];
       optionsService.value = newVal
         ? (
@@ -208,6 +209,18 @@ watch(
             ) as any
           )?.services
         : [];
+    }
+    if (newVal) {
+      await requestPaginationDates();
+    }
+  }
+);
+
+watch(
+  () => state.value.date,
+  async (newVal, oldVal) => {
+    if (newVal) {
+      await requestPaginationHours();
     }
   }
 );
@@ -270,6 +283,39 @@ const requestPaginationBarbers = async (values: any = {}) => {
 
   if (response?.users) {
     optionsBarbers.value = response.users;
+  }
+};
+
+const requestPaginationDates = async (values: any = {}) => {
+  const response: any = await $fetch(
+    `${api_url}/availability/days-employee/${state.value.employee}`,
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${userStore.token}`,
+      },
+    }
+  );
+
+  if (response?.days) {
+    optionDates.value = response.days
+  }
+};
+
+const requestPaginationHours = async (values: any = {}) => {
+  const response: any = await $fetch(
+    `${api_url}/availability/hours-employee/${state.value.employee}`,
+    {
+      method: "GET",
+      query: { ...values, date: new Date(state.value.date) },
+      headers: {
+        authorization: `Bearer ${userStore.token}`,
+      },
+    }
+  );
+
+  if (response?.hours) {
+    optionTimes.value = response?.hours
   }
 };
 
