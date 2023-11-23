@@ -106,6 +106,7 @@
                 <router-link
                   class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                   :to="`/${route}/notification`"
+                  @click="readAllNotification"
                 >
                   <span>Notificações</span>
                   <span
@@ -448,6 +449,17 @@ const closeForm = () => {
   isOpen.value = false;
 };
 
+const readAllNotification = async () => {
+   await $fetch(`${api_url}/notification/read-all`, {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  await requestPagination();
+};
+
 const update = async (values: any) => {
   try {
     const response: any = await $fetch(
@@ -489,7 +501,7 @@ const load = async () => {
 
     setValues({
       ...response.user,
-      password: '',
+      password: "",
     });
 
     state.value.picture = response.user?.picture ?? "";
@@ -546,7 +558,12 @@ function searchShortcut(e: KeyboardEvent) {
 }
 
 onMounted(async () => {
+  const timeIntervalInMinutes = 10 * 60; //10 min
   await requestPagination();
+  setInterval(async () => {
+    requestPagination();
+  }, timeIntervalInMinutes * 1000); //Convert minutes to milliseconds
+
   document.addEventListener("keydown", searchShortcut);
 });
 onUnmounted(() => {

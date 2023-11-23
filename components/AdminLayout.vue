@@ -1,7 +1,7 @@
 <template>
   <main class="flex">
     <Sidebar :pages="pages" />
-    
+
     <div class="w-full">
       <Navigation route="admin" />
 
@@ -19,6 +19,11 @@ const { isSideMenuOpen } = defineProps(["isSideMenuOpen"]);
 const emits = defineEmits(["closeSideMenu"]);
 
 const pages = [
+  {
+    name: "Disponibilidade",
+    icon: "mdi:timetable",
+    to: "admin/availability",
+  },
   {
     name: "Reservas",
     icon: "mdi:calendar-text",
