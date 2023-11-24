@@ -63,7 +63,7 @@
           <div class="w-full items-center px-4">
             <NuxtImg
               format="webp"
-              src="../public/assets/gallery-item-1.png"
+              src="assets/gallery-item-1.png"
               class="w-full aspect-video object-cover object-center rounded-lg"
               alt="imagem da galeria de fotos"
               loading="lazy"
@@ -73,7 +73,7 @@
             <div class="flex pt-3 overflow-hidden">
               <NuxtImg
                 format="webp"
-                src="../public/assets/gallery-item-2.png"
+                src="assets/gallery-item-2.png"
                 class="w-1/2 pr-1 aspect-w-1 aspect-h-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -82,7 +82,7 @@
               />
               <NuxtImg
                 format="webp"
-                src="../public/assets/gallery-item-3.png"
+                src="assets/gallery-item-3.png"
                 class="w-1/2 pl-1 aspect-w-1 aspect-h-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -97,7 +97,7 @@
             <div class="flex pb-3 justify-center">
               <NuxtImg
                 format="webp"
-                src="../public/assets/gallery-item-4.png"
+                src="assets/gallery-item-4.png"
                 class="w-1/2 pr-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -106,7 +106,7 @@
               />
               <NuxtImg
                 format="webp"
-                src="../public/assets/gallery-item-5.png"
+                src="assets/gallery-item-5.png"
                 class="w-1/2 pl-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -116,7 +116,7 @@
             </div>
             <NuxtImg
               format="webp"
-              src="../public/assets/gallery-item-6.png"
+              src="assets/gallery-item-6.png"
               class="w-full aspect-video object-cover object-center rounded-lg"
               alt="imagem da galeria de fotos"
               loading="lazy"
