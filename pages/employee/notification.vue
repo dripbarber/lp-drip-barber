@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout>
+  <EmployeeLayout>
     <Table
       :columns="columns"
       :data="datasource"
@@ -15,7 +15,7 @@
         />
       </template>
     </Table>
-  </AdminLayout>
+  </EmployeeLayout>
 </template>
 
 <script setup lang="ts">

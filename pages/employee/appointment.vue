@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout>
+  <EmployeeLayout>
     <Table
       :columns="columns"
       :data="datasource"
@@ -18,49 +18,16 @@
     </Table>
 
     <SidebarForm
-      v-if="isOpen"
       :isOpen="isOpen"
       @closeModal="closeForm"
       :isUpdate="!!currentItem?._id"
-      title="Disponibilidade"
+      title="reserva"
     >
       <form
         class="h-full w-full flex flex-col justify-between"
         @submit="onSubmit"
       >
         <div>
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Empresa</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.company"
-            >
-              <option v-for="item in companys" :key="item" :value="item._id">
-                {{ item.name }}
-              </option>
-            </select>
-            <span class="text-red-600 text-sm mt-2">{{ errors.company }}</span>
-          </label>
-
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Dia da Semana</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.dayOfWeek"
-            >
-              <option
-                v-for="item in daysOfWeek"
-                :key="item"
-                :value="item.value"
-              >
-                {{ item.label }}
-              </option>
-            </select>
-            <span class="text-red-600 text-sm mt-2">{{
-              errors.dayOfWeek
-            }}</span>
-          </label>
-
           <label class="block text-sm">
             <span class="text-gray-700">Data</span>
             <input
@@ -68,12 +35,13 @@
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
               v-bind="form.date"
               :min="getMinDate"
+              :max="getMaxDate"
             />
             <span class="text-red-600 text-sm mt-2">{{ errors.date }}</span>
           </label>
 
           <label class="block text-sm">
-            <span class="text-gray-700">Inicia em</span>
+            <span class="text-gray-700">Hora</span>
             <input
               type="time"
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
@@ -84,27 +52,38 @@
             }}</span>
           </label>
 
-          <label class="block text-sm">
-            <span class="text-gray-700">Termina em</span>
-            <input
-              type="time"
+          <label class="block text-sm mt-2">
+            <span class="text-gray-700">Cliente</span>
+            <select
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.endTime"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.endTime }}</span>
+              v-bind="form.customer"
+            >
+              <option
+                v-for="client in clients"
+                :key="client"
+                :value="client._id"
+              >
+                {{ client.name }}
+              </option>
+            </select>
+            <span class="text-red-600 text-sm mt-2">{{ errors.customer }}</span>
           </label>
 
           <label class="block text-sm mt-2">
-            <span class="text-gray-700">Disponibilidade</span>
+            <span class="text-gray-700">Serviços</span>
             <select
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.type"
+              v-model="state.services"
+              multiple
             >
-              <option v-for="item in types" :key="item" :value="item.value">
-                {{ item.label }}
+              <option
+                v-for="service in services"
+                :key="service"
+                :value="service._id"
+              >
+                {{ service.description }}
               </option>
             </select>
-            <span class="text-red-600 text-sm mt-2">{{ errors.type }}</span>
           </label>
         </div>
 
@@ -133,7 +112,7 @@
         </div>
       </form>
     </SidebarForm>
-  </AdminLayout>
+  </EmployeeLayout>
 </template>
 
 <script setup lang="ts">
@@ -152,7 +131,9 @@ const $swal: any = plugin.$swal;
 const { token } = userStore;
 
 definePageMeta({
-  middleware: ["auth"],
+  middleware: [
+    "auth",
+  ],
 });
 
 const api_url = config.public.api_url;
@@ -162,24 +143,12 @@ const loading = ref(false);
 const isOpen = ref(false);
 const currentItem = ref(null as unknown as any);
 
-const companys = ref([]);
+const services = ref([]);
+const clients = ref([]);
 
-const daysOfWeek = ref([
-  { label: "Domingo", value: "0" },
-  { label: "Segunda-feira", value: "1" },
-  { label: "Terça-feira", value: "2" },
-  { label: "Quarta-feira", value: "3" },
-  { label: "Quinta-feira", value: "4" },
-  { label: "Sexta-feira", value: "5" },
-  { label: "Sábado", value: "6" },
-]);
-
-const types = ref([
-  { label: "Dísponível", value: "available" },
-  { label: "Indisponível", value: "unavailable" },
-]);
-
-const state = ref({});
+const state = ref({
+  services: [],
+});
 
 const {
   defineInputBinds,
@@ -190,29 +159,25 @@ const {
   resetForm,
 } = useForm({
   validationSchema: {
-    company: [required],
-    date: [],
-    dayOfWeek: [],
+    date: [required],
     startTime: [required],
-    endTime: [required],
-    type: [required],
+    customer: [required],
   },
 });
 
 const form = ref({
   date: defineInputBinds("date"),
-  company: defineInputBinds("company"),
-  dayOfWeek: defineInputBinds("dayOfWeek"),
   startTime: defineInputBinds("startTime"),
-  endTime: defineInputBinds("endTime"),
-  type: defineInputBinds("type"),
+  employee: defineInputBinds("employee"),
+  customer: defineInputBinds("customer"),
 });
 
 onMounted(async () => {
   try {
     loading.value = true;
     await requestPagination();
-    await requestPaginationCompanys();
+    await requestPaginationClients();
+    await requestPaginationServices();
     loading.value = false;
   } catch (error) {
     loading.value = false;
@@ -220,6 +185,8 @@ onMounted(async () => {
 });
 
 const handleCreate = (item: any) => {
+  state.value.services = [];
+
   resetForm();
   setValues({});
   currentItem.value = null;
@@ -227,6 +194,8 @@ const handleCreate = (item: any) => {
 };
 
 const handleUpdate = async (item: any) => {
+  state.value.services = [];
+
   setValues({});
   resetForm();
   currentItem.value = item;
@@ -254,34 +223,18 @@ const onSubmit = handleSubmit(doAction);
 
 const columns = [
   {
-    key: "startTime",
-    label: "Inicia em",
-  },
-  {
-    key: "endTime",
-    label: "Termina em",
-  },
-  {
     key: "date",
-    label: "Data",
+    label: "Dia marcado",
     type: "date",
   },
   {
-    key: "dayOfWeek",
-    label: "Dia da Semana",
-    type: "dayOfWeek",
+    key: "startTime",
+    label: "Hora marcada",
   },
   {
-    key: "",
-    label: "Status",
-    type: "status",
-    validate: (item: any, label: string) => {
-      return {
-        approved: item.type === "available",
-        danger: item.type === "unavailable",
-      };
-    },
-    align: "center",
+    key: "customer",
+    label: "Cliente",
+    type: "user",
   },
   {
     key: "employee",
@@ -312,22 +265,49 @@ const getMinDate = computed(() => {
   return formattedDate;
 });
 
+const getMaxDate = computed(() => {
+  const currentDate = new Date();
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 2).padStart(2, "0");
+  const day = String(currentDate.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
+});
+
 const requestPagination = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/availability`, {
+  const response: any = await $fetch(`${api_url}/appointment`, {
     method: "GET",
-    query: { ...values },
+    query: { ...values, employee: userStore.user._id },
     headers: {
       authorization: `Bearer ${token}`,
     },
   });
 
-  if (response?.availabilities) {
-    datasource.value = response.availabilities;
+  if (response?.appointments) {
+    datasource.value = response.appointments;
   }
 };
 
-const requestPaginationCompanys = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/company`, {
+const requestPaginationClients = async (values: any = {}) => {
+  const response: any = await $fetch(`${api_url}/user`, {
+    method: "GET",
+    query: { ...values, type: "user" },
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (response?.users) {
+    clients.value = response.users;
+  }
+};
+
+
+const requestPaginationServices = async (values: any = {}) => {
+  const response: any = await $fetch(`${api_url}/service`, {
     method: "GET",
     query: { ...values },
     headers: {
@@ -335,22 +315,22 @@ const requestPaginationCompanys = async (values: any = {}) => {
     },
   });
 
-  if (response?.companys) {
-    companys.value = response.companys;
+  if (response?.services) {
+    services.value = response.services;
   }
 };
 
 const create = async (values: any) => {
   try {
-    const response: any = await $fetch(`${api_url}/availability`, {
+    const response: any = await $fetch(`${api_url}/appointment`, {
       method: "POST",
-      body: { ...values, ...state.value },
+      body: { ...values, ...state.value,  employee: userStore.user._id },
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
 
-    if (!response?.availability) {
+    if (!response?.appointment) {
       snackbar.add({
         type: "error",
         text: response.message,
@@ -376,7 +356,7 @@ const create = async (values: any) => {
 const update = async (values: any) => {
   try {
     const response: any = await $fetch(
-      `${api_url}/availability/${currentItem?.value?._id}`,
+      `${api_url}/appointment/${currentItem?.value?._id}`,
       {
         method: "PUT",
         body: { ...values, ...state.value },
@@ -404,7 +384,7 @@ const update = async (values: any) => {
 
 const load = async (_id: string) => {
   try {
-    const response: any = await $fetch(`${api_url}/availability/${_id}`, {
+    const response: any = await $fetch(`${api_url}/appointment/${_id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${token}`,
@@ -412,11 +392,11 @@ const load = async (_id: string) => {
     });
 
     setValues({
-      ...response.availability,
-      date: response.availability?.date
-        ? new Date(response.availability?.date).toISOString().split("T")[0]
-        : null,
+      ...response.appointment,
+      date: new Date(response.appointment?.date).toISOString().split("T")[0],
     });
+
+    state.value.services = response.appointment?.services ?? [];
   } catch (error) {
     closeForm();
     snackbar.add({
@@ -446,7 +426,7 @@ const remove = async (_id: string) => {
       })
       .then(async (result: any) => {
         if (result.isConfirmed) {
-          const response: any = await $fetch(`${api_url}/availability/${_id}`, {
+          const response: any = await $fetch(`${api_url}/appointment/${_id}`, {
             method: "DELETE",
             headers: {
               authorization: `Bearer ${token}`,
@@ -461,6 +441,8 @@ const remove = async (_id: string) => {
           await requestPagination();
         }
       });
+
+    await requestPagination();
   } catch (error) {
     closeForm();
     snackbar.add({

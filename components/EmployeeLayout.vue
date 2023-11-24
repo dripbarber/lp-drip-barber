@@ -1,9 +1,9 @@
 <template>
   <main class="flex">
     <Sidebar :pages="pages" />
-
+    
     <div class="w-full">
-      <Navigation route="admin" />
+      <Navigation route="employee" />
 
       <div class="mx-8 mt-4">
         <slot />
@@ -22,32 +22,12 @@ const pages = [
   {
     name: "Disponibilidade",
     icon: "mdi:timetable",
-    to: "admin/availability",
+    to: "employee/availability",
   },
   {
     name: "Reservas",
     icon: "mdi:calendar-text",
-    to: "admin/appointment",
-  },
-  {
-    name: "Serviços",
-    icon: "mdi:toolbox-outline",
-    to: "admin/services",
-  },
-  {
-    name: "Barbeiros",
-    icon: "mdi:account-multiple-outline",
-    to: "admin/employee",
-  },
-  {
-    name: "Empresa",
-    icon: "mdi:domain",
-    to: "admin/company",
-  },
-  {
-    name: "Feedbacks",
-    icon: "mdi:comment-quote-outline",
-    to: "admin/feedbacks",
+    to: "employee/appointment",
   },
 ];
 
