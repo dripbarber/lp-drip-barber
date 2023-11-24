@@ -12,7 +12,7 @@
     />
     <div
       id="testimonial-container"
-      class="flex items-center justify-center h-full p-6 max-w-7xl mx-auto z-5 relative h-auto"
+      class="flex items-center justify-center h-full p-6 max-w-7xl mx-auto z-5 relative"
     >
       <div class="columns-3 md:flex hidden mt-20 h-auto">
         <iframe
@@ -31,17 +31,16 @@
 
       <div class="md:hidden w-11/12 mx-auto mt-8">
         <Swiper
-          :modules="[SwiperAutoplay, SwiperNavigation]"
+          :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination]"
           :slides-per-view="1"
-          :loop="true"
-          :autoplay="{
-            delay: 4000,
-            disableOnInteraction: true,
-          }"
+          :spaceBetween="30"
+          :pagination="{
+            clickable: true,
+          }"          
         >
           <SwiperSlide v-for="(card, index) in testimonialCards" :key="index">
             <div
-              class=" p-5 mt-4 md:mt-20 text-center mr-4 w-full flex flex-col items-center"
+              class=" p-5 mt-4 mb-4 md:mt-20 text-center mr-4 w-full flex flex-col items-center"
             >
               <iframe
                 class=""
