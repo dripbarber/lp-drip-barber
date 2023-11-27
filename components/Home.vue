@@ -40,7 +40,7 @@
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-            class="mx-auto md:w-9/12 md:aspect-w-1 md:h-3/4 md:mx-8 pt-8"
+            class="mx-auto aspect-[9/16] md:w-9/12 md:aspect-w-1 md:h-3/4 md:mx-8 pt-8"
             autoplay
             height="360"
           ></iframe>
