@@ -45,7 +45,6 @@
     <MessageBreak />
     <Gallery />    
     <Testimonial /> 
-    <ContactForm />
     <Place />
     <Footer />
   </div>

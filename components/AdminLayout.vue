@@ -20,14 +20,14 @@ const emits = defineEmits(["closeSideMenu"]);
 
 const pages = [
   {
-    name: "Disponibilidade",
-    icon: "mdi:timetable",
-    to: "admin/availability",
-  },
-  {
     name: "Reservas",
     icon: "mdi:calendar-text",
     to: "admin/appointment",
+  },
+  {
+    name: "Disponibilidade",
+    icon: "mdi:timetable",
+    to: "admin/availability",
   },
   {
     name: "Serviços",

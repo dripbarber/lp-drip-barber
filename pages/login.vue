@@ -114,7 +114,7 @@ const doLogin = async (values) => {
 
     userStore.setToken(data.value.token);
     userStore.setUser({
-      _id:  data.value.user._id,
+      _id: data.value.user._id,
       picture: data.value.user.picture,
       email: data.value.user.email,
       name: data.value.user.name,
@@ -122,12 +122,17 @@ const doLogin = async (values) => {
     });
 
     if (data.value.token) {
-      if (data.value.user.type !== "user") {
-        router.push({ path: "admin/appointment" });
+      if (data.value.user.type === "admin") {
+        router.replace({ path: "admin/appointment" });
         return;
       }
 
-      router.push({ path: "user/appointment" });
+      if (data.value.user.type === "employee") {
+        router.replace({ path: "employee/appointment" });
+        return;
+      }
+
+      router.replace({ path: "user/appointment" });
     }
   } catch (error) {
     console.log("error", error);
