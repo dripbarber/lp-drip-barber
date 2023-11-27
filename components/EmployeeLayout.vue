@@ -1,7 +1,7 @@
 <template>
   <main class="flex">
     <Sidebar :pages="pages" />
-    
+
     <div class="w-full">
       <Navigation route="employee" />
 
@@ -20,15 +20,15 @@ const emits = defineEmits(["closeSideMenu"]);
 
 const pages = [
   {
-    name: "Disponibilidade",
-    icon: "mdi:timetable",
-    to: "employee/availability",
-  },
-  {
     name: "Reservas",
     icon: "mdi:calendar-text",
     to: "employee/appointment",
   },
+  {
+    name: "Disponibilidade",
+    icon: "mdi:timetable",
+    to: "employee/availability",
+  }
 ];
 
 function closeSideMenu() {
