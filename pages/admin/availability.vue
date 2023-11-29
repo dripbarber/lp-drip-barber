@@ -42,7 +42,7 @@
             <span class="text-red-600 text-sm mt-2">{{ errors.company }}</span>
           </label>
 
-          <label class="block text-sm mt-2">
+          <label class="block text-sm mt-2" v-if="!form.date.value">
             <span class="text-gray-700">Dia da Semana</span>
             <select
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
@@ -61,7 +61,7 @@
             }}</span>
           </label>
 
-          <label class="block text-sm">
+          <label class="block text-sm" v-if="!form.dayOfWeek.value">
             <span class="text-gray-700">Data</span>
             <input
               type="date"
@@ -179,7 +179,9 @@ const types = ref([
   { label: "Indisponível", value: "unavailable" },
 ]);
 
-const state = ref({});
+const state = ref({
+  loadValue: {}
+});
 
 const {
   defineInputBinds,
@@ -379,7 +381,7 @@ const update = async (values: any) => {
       `${api_url}/availability/${currentItem?.value?._id}`,
       {
         method: "PUT",
-        body: { ...values, ...state.value },
+        body: {...state.value.loadValue, ...values, ...state.value },
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -411,8 +413,14 @@ const load = async (_id: string) => {
       },
     });
 
+    state.value.loadValue = response.availability;
+
     setValues({
-      ...response.availability,
+      company: response.availability.company,
+      dayOfWeek: response.availability.dayOfWeek,
+      startTime: response.availability.startTime,
+      endTime: response.availability.endTime,
+      type: response.availability.type,
       date: response.availability?.date
         ? new Date(response.availability?.date).toISOString().split("T")[0]
         : null,

@@ -166,6 +166,7 @@ const employees = ref([]);
 
 const state = ref({
   services: [],
+  loadValue: {},
 });
 
 const {
@@ -254,7 +255,7 @@ const columns = [
   {
     key: "customer",
     label: "Cliente",
-    type: "user",
+    type: "client",
   },
   {
     key: "employee",
@@ -392,7 +393,7 @@ const update = async (values: any) => {
       `${api_url}/appointment/${currentItem?.value?._id}`,
       {
         method: "PUT",
-        body: { ...values, ...state.value },
+        body: { ...state.value.loadValue, ...values, ...state.value },
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -424,8 +425,12 @@ const load = async (_id: string) => {
       },
     });
 
+    state.value.loadValue = response.appointment;
+
     setValues({
-      ...response.appointment,
+      startTime: response.appointment.startTime,
+      employee: response.appointment.employee,
+      customer: response.appointment.customer,
       date: new Date(response.appointment?.date).toISOString().split("T")[0],
     });
 
