@@ -143,6 +143,7 @@
             <button
               class="px-4 mt-4 text-sm font-medium leading-7 text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray disabled:bg-sky-400"
               :disabled="!state.employee || !state.date || !state.startTime"
+              type="button"
               @click="createAppointment"
             >
               Agendar
@@ -165,14 +166,14 @@
                 Agradecemos por sua reserva!
               </h2>
               <p class="mb-6 text-gray-600 dark:text-gray-100">
-                Obrigado por escolher a nossa barbearia! Estamos ansiosos para
+                Obrigado por escolher a nossa barbearia!<br>Estamos ansiosos para
                 recebê-lo em breve.
               </p>
 
               <div class="grid gap-1">
                 <p><b>Local:</b> {{ getCompanyName(state.company) }}</p>
                 <p><b>Barbeiro:</b> {{ getBarberName(state.employee) }}</p>
-                <p><b>Data:</b> {{ state.date }}</p>
+                <p><b>Data:</b> {{ formatDate(state.date) }}</p>
                 <p><b>Hora:</b> {{ state.startTime }}</p>
                 <p><b>Serviços:</b> {{ getServiceDescriptions() }}</p>
               </div>
@@ -211,7 +212,7 @@ const state = ref({
   services: [] as string[],
 });
 
-const itsThanks = ref(true);
+const itsThanks = ref(false);
 
 definePageMeta({
   middleware: "auth",
@@ -279,17 +280,21 @@ const createAppointment = async () => {
       },
     });
 
-    if (!response?.user) {
+    if (!response?.appointment) {
       snackbar.add({
         type: "error",
         text: response.message,
       });
+
+      return
     }
 
     snackbar.add({
       type: "success",
       text: response?.message,
     });
+
+    itsThanks.value = true
   } catch (error) {
     snackbar.add({
       type: "error",
@@ -396,6 +401,17 @@ const getCompanyName = (companyId: string) => {
     ? `${selectedCompany.name} - ${selectedCompany.address}`
     : "";
 };
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const formattedDate = `${day}/${month}/${year}`;
+
+  return formattedDate;
+}
 </script>
 
 <style>
