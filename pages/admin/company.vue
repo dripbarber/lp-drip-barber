@@ -56,15 +56,6 @@
           </label>
 
           <label class="block text-sm mt-2">
-            <span class="text-gray-700">Sobre</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.about"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.about }}</span>
-          </label>
-
-          <label class="block text-sm mt-2">
             <span class="text-gray-700">Endereço</span>
             <input
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
@@ -118,9 +109,7 @@ const $swal: any = plugin.$swal;
 const { token } = userStore;
 
 definePageMeta({
-  middleware: [
-    "auth",
-  ],
+  middleware: ["auth"],
 });
 
 const api_url = config.public.api_url;
@@ -136,16 +125,18 @@ const { defineInputBinds, handleSubmit, errors, setValues, resetForm } =
       name: [required],
       email: [required],
       phone: [required],
-      about: [],
       address: [required],
     },
   });
+
+const state = ref({
+  loadValue: {},
+});
 
 const form = ref({
   name: defineInputBinds("name"),
   email: defineInputBinds("email"),
   phone: defineInputBinds("phone"),
-  about: defineInputBinds("about"),
   address: defineInputBinds("address"),
 });
 
@@ -274,7 +265,7 @@ const update = async (values: any) => {
       `${api_url}/company/${currentItem?.value?._id}`,
       {
         method: "PUT",
-        body: { ...values },
+        body: { ...state.value.loadValue, ...values },
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -306,8 +297,13 @@ const load = async (_id: string) => {
       },
     });
 
+    state.value.loadValue = response.company;
+
     setValues({
-      ...response.company,
+      name: response.company.name,
+      email: response.company.email,
+      phone: response.company.phone,
+      address: response.company.address,
     });
   } catch (error) {
     closeForm();

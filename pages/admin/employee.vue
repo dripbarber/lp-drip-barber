@@ -184,9 +184,7 @@ const $swal: any = plugin.$swal;
 const { token } = userStore;
 
 definePageMeta({
-  middleware: [
-    "auth",
-  ],
+  middleware: ["auth"],
 });
 
 const api_url = config.public.api_url;
@@ -202,6 +200,7 @@ const state = ref({
   services: [],
   picture: "" as unknown as any,
   attachment: "" as unknown as any,
+  loadValue: {},
 });
 
 const {
@@ -422,7 +421,7 @@ const update = async (values: any) => {
       `${api_url}/user/${currentItem?.value?._id}`,
       {
         method: "PUT",
-        body: { ...values, ...state.value },
+        body: { ...state.value.loadValue, ...values, ...state.value },
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -454,8 +453,16 @@ const load = async (_id: string) => {
       },
     });
 
+    state.value.loadValue = response.user;
+
     setValues({
-      ...response.user,
+      name: response.user.name,
+      email: response.user.email,
+      phone: response.user.phone,
+      about: response.user.about,
+      password: response.user.password,
+      employer: response.user.employer,
+      address: response.user.address,
     });
 
     state.value.picture = response.user?.picture ?? "";

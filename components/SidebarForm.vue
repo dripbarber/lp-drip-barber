@@ -2,7 +2,7 @@
   <Transition name="slide-fade">
     <div
       v-if="isOpen"
-      class="fixed top-0 right-0 h-screen w-1/4 bg-white shadow-md flex flex-col"
+      class="fixed top-0 right-0 h-screen w-1/4 bg-white shadow-md flex flex-col z-30"
     >
       <div class="bg-gray-100 text-gray-500 py-4 px-4 flex justify-between">
         <div class="flex items-center justify-center">
@@ -22,10 +22,9 @@
           />
         </button>
       </div>
-      <div class="p-4 h-full">
+      <div class="p-4 h-full overflow-y-auto">
         <slot></slot>
       </div>
-
     </div>
   </Transition>
 </template>

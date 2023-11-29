@@ -1,6 +1,6 @@
 <template>
   <header
-    class="z-10 py-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+    class="z-10 fixed w-screen py-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
   >
     <div
       class="container flex items-center justify-between h-full px-6 mx-auto text-sky-600 dark:text-sky-300"
@@ -32,6 +32,7 @@
       </div>
       <ul class="flex items-center flex-shrink-0 space-x-6">
         <!-- Theme toggler -->
+        <!--
         <li class="flex">
           <button
             class="rounded-md focus:outline-none focus:shadow-outline-sky"
@@ -66,6 +67,7 @@
             </template>
           </button>
         </li>
+        -->
         <!-- Notifications menu -->
         <li class="relative">
           <button
@@ -271,24 +273,6 @@
             />
             <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
           </label>
-
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Sobre</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.about"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.about }}</span>
-          </label>
-
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Endereço</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.address"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.address }}</span>
-          </label>
         </div>
 
         <div class="flex justify-center">
@@ -378,8 +362,6 @@ const {
     email: [required],
     password: [],
     phone: [required],
-    about: [],
-    address: [],
   },
 });
 
@@ -387,9 +369,7 @@ const form = ref({
   name: defineInputBinds("name"),
   email: defineInputBinds("email"),
   phone: defineInputBinds("phone"),
-  about: defineInputBinds("about"),
   password: defineInputBinds("password"),
-  address: defineInputBinds("address"),
 });
 
 const logout = () => {
@@ -401,7 +381,7 @@ const logout = () => {
     name: "",
     type: "",
   });
-  router.push({ path: "/" });
+  router.push({ path: "/login" });
 };
 
 const openFileInput = () => {

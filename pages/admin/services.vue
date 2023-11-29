@@ -29,7 +29,7 @@
       >
         <div>
           <label class="block text-sm">
-            <span class="text-gray-700">Descrição</span>
+            <span class="text-gray-700">Nome</span>
             <input
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
               v-bind="form.description"
@@ -39,11 +39,23 @@
             }}</span>
           </label>
 
+          <label class="block text-sm">
+            <span class="text-gray-700">Descrição</span>
+            <input
+              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+              v-bind="form.about"
+            />
+            <span class="text-red-600 text-sm mt-2">{{
+              errors.about
+            }}</span>
+          </label>
+
           <label class="block text-sm mt-2">
-            <span class="text-gray-700">Valor</span>
+            <span class="text-gray-700">A partir de</span>
             <input
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
               v-bind="form.price"
+              placeholder="00.00"
             />
             <span class="text-red-600 text-sm mt-2">{{ errors.price }}</span>
           </label>
@@ -102,9 +114,7 @@ const $swal: any = plugin.$swal;
 const { token } = userStore;
 
 definePageMeta({
-  middleware: [
-    "auth",
-  ],
+  middleware: ["auth"],
 });
 
 const api_url = config.public.api_url;
@@ -118,13 +128,19 @@ const { defineInputBinds, handleSubmit, errors, setValues, resetForm } =
   useForm({
     validationSchema: {
       description: [required],
+      about: [],
       price: [required, number],
       time: [required, number],
     },
   });
 
+const state = ref({
+  loadValue: {},
+});
+
 const form = ref({
   description: defineInputBinds("description"),
+  about: defineInputBinds("about"),
   price: defineInputBinds("price"),
   time: defineInputBinds("time"),
 });
@@ -251,7 +267,7 @@ const update = async (values: any) => {
       `${api_url}/service/${currentItem?.value?._id}`,
       {
         method: "PUT",
-        body: { ...values },
+        body: { ...state.value.loadValue, ...values },
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -283,10 +299,13 @@ const load = async (_id: string) => {
       },
     });
 
+    state.value.loadValue = response.service;
+
     setValues({
-      description: response.service?.description ?? "",
-      price: response.service?.price ?? 0,
-      time: response.service?.time ?? 0,
+      description: response.service?.description,
+      price: response.service?.price,
+      time: response.service?.time,
+      about: response.service?.about,
     });
   } catch (error) {
     closeForm();
