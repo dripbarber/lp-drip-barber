@@ -35,7 +35,7 @@
           class="flex items-center justify-center text-white h-full w-full relative z-10 pt-6 md:pt-0"
         >
           <iframe
-            src="https://www.youtube.com/embed/lNllZSnbEXI?si=F_fxWA7qTI3a0ZQT"
+            src="https://www.youtube.com/embed/PBZrIEw2A5A?si=k8r-B_GuM57gRvu6"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
