@@ -1,9 +1,8 @@
 <template>
   <div class="flex items-center col-span-3">
-    {{ paginationStart }} - {{ paginationEnd }} de {{ data.length }} items
+    {{ paginationStart }} - {{ paginationEnd }} de {{ total_items }} items
   </div>
   <div class="col-span-2"></div>
-  <!--
   <div class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
     <nav aria-label="Table navigation">
       <ul class="inline-flex items-center">
@@ -32,15 +31,14 @@
             @click="goToPage(pageNumber)"
             class="px-3 py-1 rounded-md"
             :class="{
-              'focus:outline-none focus:shadow-outline-sky': currentPage !== pageNumber,
-              'text-white transition-colors duration-150 bg-sky-600 border border-r-0 border-sky-600 rounded-md focus:outline-none focus:shadow-outline-sky': currentPage === pageNumber,
+              'focus:outline-none focus:shadow-outline-sky':
+                currentPage !== pageNumber,
+              'text-white transition-colors duration-150 bg-sky-600 border border-r-0 border-sky-600 rounded-md focus:outline-none focus:shadow-outline-sky':
+                currentPage === pageNumber,
             }"
           >
             {{ pageNumber }}
           </button>
-        </li>
-        <li>
-          <span class="px-3 py-1">...</span>
         </li>
         <li>
           <button
@@ -65,13 +63,12 @@
       </ul>
     </nav>
   </div>
-  -->
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, defineProps, defineEmits } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 
-const { data, current_page, items_per_page } = defineProps({
+const props = defineProps({
   data: {
     type: Array,
     default: () => [],
@@ -84,42 +81,78 @@ const { data, current_page, items_per_page } = defineProps({
     type: Number,
     default: 10,
   },
+  total_items: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const emit = defineEmits();
 
-const currentPage = ref(current_page);
-const itemsPerPage = ref(items_per_page);
+const paginationEnd = computed(() =>
+  Math.min(props.current_page * props.items_per_page, props.total_items)
+);
+const paginationStart = computed(() =>
+  paginationEnd.value ? (props.current_page - 1) * props.items_per_page + 1 : 0
+);
 
-const paginationEnd = computed(() => Math.min(currentPage.value * items_per_page, data.length));
-const paginationStart = computed(() => paginationEnd.value ? (currentPage.value - 1 ) * items_per_page + 1 : 0);
+const totalPages = computed(() =>
+  Math.ceil(props.total_items / props.items_per_page)
+);
 
-const totalPages = computed(() => Math.ceil(data.length / items_per_page));
+const VISIBLE_PAGES = 3;
 
 const visiblePageNumbers = computed(() => {
   const pageNumbers = [];
-  for (let i = 1; i <= totalPages.value; i++) {
+  const totalPagesValue = totalPages.value;
+  const currentPageValue = props.current_page;
+
+  for (
+    let i = Math.max(1, currentPageValue - VISIBLE_PAGES);
+    i < currentPageValue;
+    i++
+  ) {
     pageNumbers.push(i);
   }
+
+  pageNumbers.push(currentPageValue);
+
+  for (
+    let i = currentPageValue + 1;
+    i <= Math.min(totalPagesValue, currentPageValue + VISIBLE_PAGES);
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
+
   return pageNumbers;
 });
 
 const previousPage = () => {
-  if (currentPage.value > 1) {
-    currentPage.value--;
-    emit("page-changed", { currentPage: currentPage.value, itemsPerPage: itemsPerPage.value });
+  if (props.current_page > 1) {
+    emit("page-changed", {
+      paginate: {
+        currentPage: props.current_page - 1,
+        itemsPerPage: props.items_per_page,
+      },
+    });
   }
 };
 
 const nextPage = () => {
-  if (currentPage.value < totalPages.value) {
-    currentPage.value++;
-    emit("page-changed", { currentPage: currentPage.value,  itemsPerPage: itemsPerPage.value });
+  if (props.current_page < totalPages.value) {
+    emit("page-changed", {
+      paginate: {
+        currentPage: props.current_page + 1,
+        itemsPerPage: props.items_per_page,
+      },
+    });
   }
 };
 
 const goToPage = (pageNumber: any) => {
-  currentPage.value = pageNumber;
-  emit("page-changed", { currentPage: pageNumber,  itemsPerPage: itemsPerPage.value });
+  emit("page-changed", {
+    paginate: { currentPage: pageNumber, itemsPerPage: props.items_per_page },
+  });
 };
 </script>

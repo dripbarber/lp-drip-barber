@@ -22,7 +22,29 @@
           >
             <template v-for="column in columns" :key="column">
               <th class="px-4 py-3" :class="`text-${column?.align}`">
-                {{ column.label }}
+                <span class="flex gap-1">
+                  {{ column.label }}
+
+                  <a
+                    v-if="column?.sort"
+                    class="inline-flex items-center text-sm font-semibold rounded-full cursor-pointer"
+                    @click="$emit('sort-changed', item)"
+                    :class="{ 'opacity-30': sorted?.key !== column.key }"
+                  >
+                    <Icon
+                      v-if="sorted?.order === 1"
+                      name="material-symbols:expand-less"
+                      class="flex-shrink-0 h-4 w-4"
+                      aria-hidden="true"
+                    />
+                    <Icon
+                      v-else
+                      name="material-symbols:expand-more"
+                      class="flex-shrink-0 h-4 w-4"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </span>
               </th>
             </template>
             <th v-if="!hideUpdate || !hideDelete" class="px-4 py-3 text-center">
@@ -246,6 +268,10 @@ const props = defineProps({
   hideDelete: {
     type: Boolean,
     default: false,
+  },
+  sorted: {
+    type: Object,
+    default: () => ({}),
   },
 });
 
