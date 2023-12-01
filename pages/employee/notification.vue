@@ -6,11 +6,15 @@
       hide-update
       hide-delete
       hide-create
+      :sorted="sort"
+      @sort-changed="requestPagination"
     >
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
+          :items_per_page="itemsPerPage"
           :current_page="currentPage"
+          :total_items="totalItems"
           @page-changed="requestPagination"
         />
       </template>
@@ -25,15 +29,20 @@ const userStore = useUserStore();
 const { token } = userStore;
 
 definePageMeta({
-  middleware: [
-    "auth",
-  ],
+  middleware: ["auth"],
 });
 
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
 const datasource: any = ref([]);
 const currentPage = ref(1);
+const itemsPerPage = ref(10);
+const totalItems = ref(0);
+
+const sort = ref({
+  key: "date",
+  order: 1,
+});
 
 onMounted(async () => {
   await requestPagination();
@@ -48,7 +57,7 @@ const columns = [
   {
     key: "createdAt",
     label: "Criado em",
-    type: 'date'
+    type: "date",
   },
 ];
 
@@ -67,7 +76,7 @@ const readAll = async () => {
 };
 
 const requestPagination = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/notification`, {
+  const response: any = await $fetch(`${api_url}/notification/paginate`, {
     method: "GET",
     query: { ...values, user: userStore.user._id },
     headers: {
@@ -77,6 +86,11 @@ const requestPagination = async (values: any = {}) => {
 
   if (response?.notifications) {
     datasource.value = response.notifications;
+    currentPage.value = response.paginate.currentPage;
+    itemsPerPage.value = response.paginate.itemsPerPage;
+    totalItems.value = response.paginate.totalItems;
+    sort.value.key = response?.sort?.key;
+    sort.value.order = response?.sort?.order;
   }
 };
 </script>

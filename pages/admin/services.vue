@@ -7,11 +7,15 @@
       @update="handleUpdate"
       @delete="handleDelete"
       :loading="loading"
+            :sorted="sort"
+      @sort-changed="requestPagination"
     >
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
+          :items_per_page="itemsPerPage"
           :current_page="currentPage"
+          :total_items="totalItems"
           @page-changed="requestPagination"
         />
       </template>
@@ -45,9 +49,7 @@
               class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
               v-bind="form.about"
             />
-            <span class="text-red-600 text-sm mt-2">{{
-              errors.about
-            }}</span>
+            <span class="text-red-600 text-sm mt-2">{{ errors.about }}</span>
           </label>
 
           <label class="block text-sm mt-2">
@@ -120,6 +122,14 @@ definePageMeta({
 const api_url = config.public.api_url;
 const datasource: any = ref([]);
 const currentPage = ref(1);
+const itemsPerPage = ref(10);
+const totalItems = ref(0);
+
+const sort = ref({
+  key: 'date',
+  order: 1
+});
+
 const loading = ref(false);
 const isOpen = ref(false);
 const currentItem = ref(null as unknown as any);
@@ -211,7 +221,7 @@ const requestPagination = async (values: any = {}) => {
   loading.value = true;
 
   try {
-    const response: any = await $fetch(`${api_url}/service`, {
+    const response: any = await $fetch(`${api_url}/service/paginate`, {
       method: "GET",
       query: { ...values },
       headers: {
@@ -221,6 +231,11 @@ const requestPagination = async (values: any = {}) => {
 
     if (response?.services) {
       datasource.value = response.services;
+      currentPage.value = response.paginate.currentPage;
+      itemsPerPage.value = response.paginate.itemsPerPage;
+      totalItems.value = response.paginate.totalItems;
+          sort.value.key = response?.sort?.key
+    sort.value.order = response?.sort?.order
     }
     loading.value = false;
   } catch (error) {

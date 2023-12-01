@@ -7,11 +7,15 @@
       @update="handleUpdate"
       @delete="handleDelete"
       :loading="loading"
+      :sorted="sort"
+      @sort-changed="requestPagination"
     >
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
+          :items_per_page="itemsPerPage"
           :current_page="currentPage"
+          :total_items="totalItems"
           @page-changed="requestPagination"
         />
       </template>
@@ -156,8 +160,17 @@ definePageMeta({
 });
 
 const api_url = config.public.api_url;
+
 const datasource: any = ref([]);
 const currentPage = ref(1);
+const itemsPerPage = ref(10);
+const totalItems = ref(0);
+
+const sort = ref({
+  key: "date",
+  order: 1,
+});
+
 const loading = ref(false);
 const isOpen = ref(false);
 const currentItem = ref(null as unknown as any);
@@ -180,7 +193,7 @@ const types = ref([
 ]);
 
 const state = ref({
-  loadValue: {}
+  loadValue: {},
 });
 
 const {
@@ -315,7 +328,7 @@ const getMinDate = computed(() => {
 });
 
 const requestPagination = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/availability`, {
+  const response: any = await $fetch(`${api_url}/availability/paginate`, {
     method: "GET",
     query: { ...values },
     headers: {
@@ -325,6 +338,11 @@ const requestPagination = async (values: any = {}) => {
 
   if (response?.availabilities) {
     datasource.value = response.availabilities;
+    currentPage.value = response.paginate.currentPage;
+    itemsPerPage.value = response.paginate.itemsPerPage;
+    totalItems.value = response.paginate.totalItems;
+    sort.value.key = response?.sort?.key;
+    sort.value.order = response?.sort?.order;
   }
 };
 
@@ -381,7 +399,7 @@ const update = async (values: any) => {
       `${api_url}/availability/${currentItem?.value?._id}`,
       {
         method: "PUT",
-        body: {...state.value.loadValue, ...values, ...state.value },
+        body: { ...state.value.loadValue, ...values, ...state.value },
         headers: {
           authorization: `Bearer ${token}`,
         },

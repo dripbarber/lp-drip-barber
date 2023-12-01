@@ -7,11 +7,15 @@
       @update="handleUpdate"
       @delete="handleDelete"
       :loading="loading"
+      :sorted="sort"
+      @sort-changed="requestPagination"
     >
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
+          :items_per_page="itemsPerPage"
           :current_page="currentPage"
+          :total_items="totalItems"
           @page-changed="requestPagination"
         />
       </template>
@@ -148,14 +152,20 @@ const $swal: any = plugin.$swal;
 const { token } = userStore;
 
 definePageMeta({
-  middleware: [
-    "auth",
-  ],
+  middleware: ["auth"],
 });
 
 const api_url = config.public.api_url;
 const datasource: any = ref([]);
 const currentPage = ref(1);
+const itemsPerPage = ref(10);
+const totalItems = ref(0);
+
+const sort = ref({
+  key: 'date',
+  order: 1
+});
+
 const loading = ref(false);
 const isOpen = ref(false);
 const currentItem = ref(null as unknown as any);
@@ -299,7 +309,7 @@ const getMaxDate = computed(() => {
 });
 
 const requestPagination = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/appointment`, {
+  const response: any = await $fetch(`${api_url}/appointment/paginate`, {
     method: "GET",
     query: { ...values },
     headers: {
@@ -309,6 +319,11 @@ const requestPagination = async (values: any = {}) => {
 
   if (response?.appointments) {
     datasource.value = response.appointments;
+    currentPage.value = response.paginate.currentPage;
+    itemsPerPage.value = response.paginate.itemsPerPage;
+    totalItems.value = response.paginate.totalItems;
+    sort.value.key = response?.sort?.key
+    sort.value.order = response?.sort?.order
   }
 };
 

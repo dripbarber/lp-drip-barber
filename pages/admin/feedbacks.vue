@@ -6,11 +6,15 @@
       hide-update
       hide-delete
       hide-create
+            :sorted="sort"
+      @sort-changed="requestPagination"
     >
       <template v-slot:paginate>
         <Pagination
           :data="datasource"
+          :items_per_page="itemsPerPage"
           :current_page="currentPage"
+          :total_items="totalItems"
           @page-changed="requestPagination"
         />
       </template>
@@ -25,15 +29,20 @@ const userStore = useUserStore();
 const { token } = userStore;
 
 definePageMeta({
-  middleware: [
-    "auth",
-  ],
+  middleware: ["auth"],
 });
 
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
 const datasource: any = ref([]);
 const currentPage = ref(1);
+const itemsPerPage = ref(10);
+const totalItems = ref(0);
+
+const sort = ref({
+  key: 'date',
+  order: 1
+});
 
 onMounted(async () => {
   requestPagination();
@@ -70,7 +79,7 @@ const columns = [
 ];
 
 const requestPagination = async (values: any = {}) => {
-  const response: any = await $fetch(`${api_url}/feedback`, {
+  const response: any = await $fetch(`${api_url}/feedback/paginate`, {
     method: "GET",
     query: { ...values },
     headers: {
@@ -80,6 +89,11 @@ const requestPagination = async (values: any = {}) => {
 
   if (response?.feedbacks) {
     datasource.value = response.feedbacks;
+    currentPage.value = response.paginate.currentPage;
+    itemsPerPage.value = response.paginate.itemsPerPage;
+    totalItems.value = response.paginate.totalItems;
+        sort.value.key = response?.sort?.key
+    sort.value.order = response?.sort?.order
   }
 };
 </script>

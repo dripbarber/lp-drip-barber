@@ -1,9 +1,9 @@
 <template>
   <header
-    class="z-10 fixed w-screen py-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+    class="z-10 w-full py-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
   >
     <div
-      class="container flex items-center justify-between h-full px-6 mx-auto text-sky-600 dark:text-sky-300"
+      class="container flex items-center justify-between h-full mx-auto px-6 text-sky-600 dark:text-sky-300"
     >
       <!-- Mobile hamburger -->
       <button
