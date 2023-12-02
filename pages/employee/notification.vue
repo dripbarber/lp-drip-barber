@@ -57,7 +57,7 @@ const columns = [
   {
     key: "createdAt",
     label: "Criado em",
-    type: "date",
+    type: "date"
   },
 ];
 

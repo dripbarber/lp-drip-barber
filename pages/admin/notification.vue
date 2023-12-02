@@ -6,8 +6,8 @@
       hide-update
       hide-delete
       hide-create
-            :sorted="sort"
-      @sort-changed="requestPagination"
+      :sorted="sort"
+      @sort-changed="requestPaginationSorted"
     >
       <template v-slot:paginate>
         <Pagination
@@ -41,8 +41,8 @@ const itemsPerPage = ref(10);
 const totalItems = ref(0);
 
 const sort = ref({
-  key: 'date',
-  order: 1
+  key: "date",
+  order: 1,
 });
 
 onMounted(async () => {
@@ -76,6 +76,16 @@ const readAll = async () => {
   }
 };
 
+const requestPaginationSorted = async (values: any = {}) => {
+  await requestPagination({
+    ...values,
+    paginate: {
+      currentPage,
+      itemsPerPage,
+    },
+  });
+};
+
 const requestPagination = async (values: any = {}) => {
   const response: any = await $fetch(`${api_url}/notification/paginate`, {
     method: "GET",
@@ -90,8 +100,8 @@ const requestPagination = async (values: any = {}) => {
     currentPage.value = response.paginate.currentPage;
     itemsPerPage.value = response.paginate.itemsPerPage;
     totalItems.value = response.paginate.totalItems;
-        sort.value.key = response?.sort?.key
-    sort.value.order = response?.sort?.order
+    sort.value.key = response?.sort?.key;
+    sort.value.order = response?.sort?.order;
   }
 };
 </script>
