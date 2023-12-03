@@ -21,30 +21,46 @@
             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
           >
             <template v-for="column in columns" :key="column">
-              <th class="px-4 py-3" :class="`text-${column?.align}`">
-                <span class="flex gap-1">
-                  {{ column.label }}
-
-                  <a
-                    v-if="column?.sort"
-                    class="inline-flex items-center text-sm font-semibold rounded-full cursor-pointer"
-                    @click="$emit('sort-changed', item)"
-                    :class="{ 'opacity-30': sorted?.key !== column.key }"
-                  >
-                    <Icon
-                      v-if="sorted?.order === 1"
-                      name="material-symbols:expand-less"
-                      class="flex-shrink-0 h-4 w-4"
-                      aria-hidden="true"
-                    />
-                    <Icon
-                      v-else
-                      name="material-symbols:expand-more"
-                      class="flex-shrink-0 h-4 w-4"
-                      aria-hidden="true"
-                    />
-                  </a>
-                </span>
+              <th class="px-4 py-3">
+                <div  :class="`flex justify-${column?.align}`">
+                  <span class="flex gap-1">
+                    {{ column.label }}
+                    <a
+                      v-if="column?.sort"
+                      class="inline-flex items-center text-sm font-semibold rounded-full cursor-pointer"
+                      :class="{ 'opacity-50': sorted?.key !== column.key }"
+                    >
+                      <Icon
+                        v-if="sorted?.order === 1"
+                        name="material-symbols:expand-less"
+                        class="flex-shrink-0 h-4 w-4"
+                        aria-hidden="true"
+                        @click="
+                          $emit('sort-changed', {
+                            sort: {
+                              key: column.key,
+                              order: -1,
+                            },
+                          })
+                        "
+                      />
+                      <Icon
+                        v-else
+                        name="material-symbols:expand-more"
+                        class="flex-shrink-0 h-4 w-4"
+                        aria-hidden="true"
+                        @click="
+                          $emit('sort-changed', {
+                            sort: {
+                              key: column.key,
+                              order: 1,
+                            },
+                          })
+                        "
+                      />
+                    </a>
+                  </span>
+                </div>
               </th>
             </template>
             <th v-if="!hideUpdate || !hideDelete" class="px-4 py-3 text-center">
@@ -172,19 +188,25 @@
                       v-if="column?.validate(item)?.approved"
                       class="px-3 py-1 font-semibold leading-tight text-black bg-green-500 rounded-full dark:bg-green-700 dark:text-green-100"
                     >
-                      {{ getNormalized(item[column.key], column?.type) }}
+                      <template v-if="!column?.withoutText">
+                        {{ getNormalized(item[column.key], column?.type) }}
+                      </template>
                     </span>
                     <span
                       v-if="column?.validate(item)?.danger"
                       class="px-3 py-1 font-semibold leading-tight text-black bg-red-500 rounded-full dark:bg-red-700 dark:text-green-100"
                     >
-                      {{ getNormalized(item[column.key], column?.type) }}
+                      <template v-if="!column?.withoutText">
+                        {{ getNormalized(item[column.key], column?.type) }}
+                      </template>
                     </span>
                     <span
                       v-if="column?.validate(item)?.warning"
                       class="px-3 py-1 font-semibold leading-tight text-black bg-yellow-500 rounded-full dark:bg-yellow-700 dark:text-green-100"
                     >
-                      {{ getNormalized(item[column.key], column?.type) }}
+                      <template v-if="!column?.withoutText">
+                        {{ getNormalized(item[column.key], column?.type) }}
+                      </template>
                     </span>
                   </template>
                   <span class="" v-else>

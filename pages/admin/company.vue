@@ -8,7 +8,7 @@
       @delete="handleDelete"
       :loading="loading"
       :sorted="sort"
-      @sort-changed="requestPagination"
+      @sort-changed="requestSorted"
     >
       <template v-slot:paginate>
         <Pagination
@@ -16,7 +16,7 @@
           :items_per_page="itemsPerPage"
           :current_page="currentPage"
           :total_items="totalItems"
-          @page-changed="requestPagination"
+          @page-changed="requestPaginated"
         />
       </template>
     </Table>
@@ -124,7 +124,7 @@ const itemsPerPage = ref(10);
 const totalItems = ref(0);
 
 const sort = ref({
-  key: "date",
+  key: "name",
   order: 1,
 });
 
@@ -200,10 +200,12 @@ const columns = [
   {
     key: "name",
     label: "Nome",
+    sort: true,
   },
   {
     key: "email",
     label: "Email",
+    sort: true,
   },
   {
     key: "phone",
@@ -222,8 +224,29 @@ const columns = [
     key: "createdAt",
     label: "Criado em",
     type: "date",
+    sort: true,
   },
 ];
+
+const requestSorted = async (values: any = {}) => {
+  await requestPagination({
+    ...values,
+    paginate: {
+      currentPage: currentPage.value,
+      itemsPerPage: itemsPerPage.value,
+    },
+  });
+};
+
+const requestPaginated = async (values: any = {}) => {
+  await requestPagination({
+    ...values,
+    sort: {
+      key: sort.value.key,
+      order: sort.value.order,
+    },
+  });
+};
 
 const requestPagination = async (values: any = {}) => {
   const response: any = await $fetch(`${api_url}/company/paginate`, {
