@@ -21,7 +21,7 @@
               'cursor-default': currentStep < index
             }"
           >
-            <span class="text-sm">{{ item }}</span>
+            <span class="text-xs sm:text-sm">{{ item }}</span>
           </a>
         </li>
       </template>

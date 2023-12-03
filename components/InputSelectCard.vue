@@ -2,7 +2,7 @@
   <div class="block text-sm grid gap-2">
     <span class="text-gray-700 dark:text-gray-400 font-semibold text-lg"> {{ label }} </span>
 
-    <div class="grid gap-4 grid-cols-4">
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
       <template v-for="(item, index) in options" :key="index">
         <span
           :class="{

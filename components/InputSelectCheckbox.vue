@@ -20,8 +20,8 @@
                 :name="title"
                 :value="item[key]"
                 :checked="model.includes(item[key])"
-              /><span>{{ item[title] }}</span> - A partir de:
-              {{ convertToEuro(item.price) }}
+              />
+             {{ item[title] }} - A partir de: {{ convertToEuro(item.price) }}
             </span>
             <p class="text-sm">{{ item[text] }}</p></label
           >

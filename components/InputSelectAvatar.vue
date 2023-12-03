@@ -4,15 +4,8 @@
       {{ label }}
     </span>
 
-    <div class="flex gap-4">
+    <div class="flex grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
       <template v-for="(item, index) in options" :key="index">
-        <input
-          v-model="value"
-          type="radio"
-          :name="title"
-          :value="item[key]"
-          class="hidden"
-        />
         <button
           :class="{
             'border-sky-400 shadow-sm ': value === item[key],
@@ -22,6 +15,13 @@
           @click="value = item[key]"
           type="button"
         >
+          <input
+            v-model="value"
+            type="radio"
+            :name="title"
+            :value="item[key]"
+            class="hidden"
+          />
           <label class="grid gap-1" :for="item[title]">
             <span class="cursor-pointer flex flex-col gap-1.5">
               <div class="relative mx-auto w-20 h-20 rounded-full md:block">
@@ -44,7 +44,7 @@
         </button>
       </template>
       <template v-if="!options.length">
-        <p class=" italic text-gray-400"> Não existem registros disponíveis</p>
+        <p class="italic text-gray-400">Não existem registros disponíveis</p>
       </template>
     </div>
   </div>
