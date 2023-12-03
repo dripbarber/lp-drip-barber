@@ -190,8 +190,8 @@ const currentStep = computed({
 }
 
 .form-step.form-step-completed a:after {
-  -webkit-mask-image: url("assets/check.svg");
-  mask-image: url("assets/check.svg");
+  -webkit-mask-image: url("../public/assets/check.svg");
+  mask-image: url("../public/assets/check.svg");
   background: #fff;
   -webkit-mask-position: 0 0;
   mask-position: 0 0;
