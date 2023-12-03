@@ -158,7 +158,7 @@
         <template v-else>
           <div class="h-full flex items-center justify-center">
             <div
-              class="p-8 mb-8 -mt-20 bg-white rounded-lg shadow-md dark:bg-gray-800 grid gap-2"
+              class="p-8 mb-8 mt-10 sm:mt-20 bg-white rounded-lg shadow-md dark:bg-gray-800 grid gap-2"
             >
               <h2
                 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 flex gap-2"
