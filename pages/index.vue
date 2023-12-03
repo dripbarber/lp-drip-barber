@@ -80,6 +80,10 @@ html {
   font-family: "Kalam", sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
+
 .font-roboto {
   font-family: "Roboto", sans-serif;
 }

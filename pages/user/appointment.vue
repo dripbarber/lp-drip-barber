@@ -1,11 +1,11 @@
 <template>
   <section class="h-screen overflow-y-auto dark:bg-gray-900">
     <Navigation />
-    <main class="overflow-y-auto dark:bg-gray-900 h-full">
-      <div class="container max-w-4xl mx-auto h-full">
+    <main class="overflow-y-auto dark:bg-gray-900">
+      <div class="container max-w-4xl mx-auto h-full p-4 sm:p-0">
         <template v-if="!itsThanks">
           <h2
-            class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+            class="my-3 sm:my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
           >
             Reserve um horário
           </h2>
@@ -107,7 +107,7 @@
                   </div>
 
                   <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400"
+                    <span class="text-gray-700 dark:text-gray-400 font-semibold"
                       >Mensagem</span
                     >
                     <textarea
