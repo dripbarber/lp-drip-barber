@@ -10,7 +10,7 @@
       <div
       v-for="(img, index) in imgCard"
       :key="index"
-      class="image-zoom-container card text-center text-white grayscale hover:grayscale-0  cursor-pointer  mt-24 z-0 hover:z-50 overflow-hidden hover:overflow-y-hidden hidden md:flex"      
+      class="image-zoom-container card text-center text-white grayscale hover:grayscale-0 select-none mt-24 z-0 hover:z-50 overflow-hidden hover:overflow-y-hidden hidden md:flex"      
       >
         <NuxtImg
           format="webp"
@@ -77,7 +77,12 @@ interface imgCard {
 }
 
 const imgCard: imgCard[] = [
-  { name: "CORTE & BARBA", link: "#", src: "assets/services-shave-haircut.jpg", alt: "serviços de corte e barba" },
+  { name: "BARBA ALINHADA", link: "#", src: "assets/barba-alinhada.jpg", alt: "serviços de corte e barba" },
+  { name: "CLIENTES", link: "#", src: "assets/services-clients.jpg", alt: "clientes na barbearia" },
+  { name: "CLIENTES", link: "#", src: "assets/services-clients.jpg", alt: "clientes na barbearia" },
+  { name: "CLIENTES", link: "#", src: "assets/services-clients.jpg", alt: "clientes na barbearia" },
+  { name: "CLIENTES", link: "#", src: "assets/services-clients.jpg", alt: "clientes na barbearia" },
+  { name: "CLIENTES", link: "#", src: "assets/services-clients.jpg", alt: "clientes na barbearia" },
   { name: "CLIENTES", link: "#", src: "assets/services-clients.jpg", alt: "clientes na barbearia" },
 ];
 
