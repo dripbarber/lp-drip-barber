@@ -78,19 +78,7 @@
             <span class="flex items-center"> Voltar </span>
           </button>
 
-          <button
-            class="block px-6 py-3 mt-4 text-lg font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue flex items-center ml-auto"
-            type="submit"
-          >
-            <span class="flex items-center">
-              <Icon
-                name="material-symbols:save"
-                class="flex-shrink-0 h-4 w-4 mr-2"
-                aria-hidden="true"
-              />
-              Salvar
-            </span>
-          </button>
+          <SaveButton :loading="loading" />
         </div>
       </form>
     </SidebarForm>
@@ -269,6 +257,7 @@ const requestPagination = async (values: any = {}) => {
 
 const create = async (values: any) => {
   try {
+    loading.value = true;
     const response: any = await $fetch(`${api_url}/company`, {
       method: "POST",
       body: { ...values },
@@ -292,7 +281,9 @@ const create = async (values: any) => {
     closeForm();
 
     await requestPagination();
+    loading.value = false;
   } catch (error) {
+    loading.value = false;
     snackbar.add({
       type: "error",
       text: "Ops! Ocorreu um erro...",
@@ -302,6 +293,7 @@ const create = async (values: any) => {
 
 const update = async (values: any) => {
   try {
+    loading.value = true;
     const response: any = await $fetch(
       `${api_url}/company/${currentItem?.value?._id}`,
       {
@@ -321,7 +313,10 @@ const update = async (values: any) => {
     closeForm();
 
     await requestPagination();
+    loading.value = false;
   } catch (error) {
+    loading.value = false;
+
     snackbar.add({
       type: "error",
       text: "Ops! Ocorreu um erro...",
