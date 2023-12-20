@@ -1,23 +1,37 @@
 <template>
-  <div class="loading-container">
-    <div class="loader"></div>
+  <div :style="`height: ${heightContainer}`" class="loading-container">
+    <div :style="`height: ${size}; width: ${size}`" class="loader"></div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+
+const props = defineProps({
+  heightContainer: {
+    type: String,
+    default: '100px',
+  },
+  size: {
+    type: String,
+    default: '40px',
+  },
+});
+
+
+</script>
 
 <style scoped>
 .loading-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
 }
 
 .loader {
   border: 6px solid #f3f3f3;
   border-top: 6px solid #3498db;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
   animation: spin 2s linear infinite;
 }
 

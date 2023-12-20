@@ -39,13 +39,8 @@
                   errors.password
                 }}</span>
               </label>
-
-              <button
-                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-sky"
-                type="submit"
-              >
-                Login
-              </button>
+              
+              <SubmitButton :loading="loading" />
 
               <hr class="my-8" />
 
@@ -90,6 +85,8 @@ const { defineInputBinds, handleSubmit, errors } = useForm({
   },
 });
 
+const loading = ref(false);
+
 const form = ref({
   email: defineInputBinds("email"),
   password: defineInputBinds("password"),
@@ -97,6 +94,7 @@ const form = ref({
 
 const doLogin = async (values) => {
   try {
+    loading.value = true;
     const { data, error } = await useFetch(`${api_url}/login`, {
       method: "POST",
       body: { ...values },
@@ -134,7 +132,9 @@ const doLogin = async (values) => {
 
       router.replace({ path: "user/appointment" });
     }
+    loading.value = false;
   } catch (error) {
+    loading.value = false;
     console.log("error", error);
   }
 };
