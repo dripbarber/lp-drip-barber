@@ -92,6 +92,28 @@ const form = ref({
   password: defineInputBinds("password"),
 });
 
+onMounted(() => {
+  const userStore = useUserStore();
+  redirectUser(userStore.token, userStore.user)
+
+})
+
+const redirectUser = (token, user) => {
+    if (token) {
+      if (user.type === "admin") {
+        router.replace({ path: "admin/appointment" });
+        return;
+      }
+
+      if (user.type === "employee") {
+        router.replace({ path: "employee/appointment" });
+        return;
+      }
+
+      router.replace({ path: "user/appointment" });
+    }
+}
+
 const doLogin = async (values) => {
   try {
     loading.value = true;
@@ -101,10 +123,11 @@ const doLogin = async (values) => {
     });
 
     if (error.value?.data?.message) {
+      loading.value = false;
       snackbar.add({
         type: "error",
         text: error.value.data.message,
-      });
+      });data.value.
       return;
     }
 
@@ -119,19 +142,7 @@ const doLogin = async (values) => {
       type: data.value.user.type,
     });
 
-    if (data.value.token) {
-      if (data.value.user.type === "admin") {
-        router.replace({ path: "admin/appointment" });
-        return;
-      }
-
-      if (data.value.user.type === "employee") {
-        router.replace({ path: "employee/appointment" });
-        return;
-      }
-
-      router.replace({ path: "user/appointment" });
-    }
+    redirectUser(data.value.token, data.value.user)
     loading.value = false;
   } catch (error) {
     loading.value = false;
