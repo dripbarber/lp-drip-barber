@@ -36,7 +36,12 @@
           :spaceBetween="30"
           :pagination="{
             clickable: true,
-          }"          
+          }"
+          style="
+          --swiper-pagination-bullet-size: 14px; 
+          --swiper-pagination-bullet-horizontal-gap: 8px;
+          --swiper-pagination-bottom: 0.5px;
+          --swiper-pagination-color: #009c3b"          
         >
           <SwiperSlide v-for="(card, index) in testimonialCards" :key="index">
             <div

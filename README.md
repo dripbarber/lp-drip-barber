@@ -1,10 +1,10 @@
 <h1 align="center">
-  💻<br>Landing Page - Jambu Resto Bar
+  💻<br>Landing Page - Barbearia Drip BR
 </h1>
 
 ![Final result of the project](public/preview.png)
 
-<h4 align="center"><a href="https://lp-jambu-bar.vercel.app/">Click to visit the project</a></h4>
+<h4 align="center"><a href="https://www.dripbr.com/">Click to visit the project</a></h4>
 
 ---
 
