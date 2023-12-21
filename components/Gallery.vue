@@ -70,30 +70,30 @@
             <NuxtImg
               format="webp"
               src="assets/gallery-item-1.jpg"
-              class="w-full aspect-video object-cover object-center rounded-lg"
+              class="w-full object-cover object-center rounded-lg"
               alt="imagem da galeria de fotos"
               loading="lazy"
               width="540"
-              height="574"
+              height="474"
             />
             <div class="flex pt-3 overflow-hidden">
               <NuxtImg
                 format="webp"
                 src="assets/gallery-item-2.jpg"
-                class="w-1/2 pr-1 aspect-w-1 aspect-h-1 object-cover object-center rounded-lg"
+                class="w-1/2 pr-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
-                height="274"
+                height="374"
               />
               <NuxtImg
                 format="webp"
                 src="assets/gallery-item-3.jpg"
-                class="w-1/2 pl-1 aspect-w-1 aspect-h-1 object-cover object-center rounded-lg"
+                class="w-1/2 pl-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
-                height="274"
+                height="374"
               />
             </div>
           </div>
@@ -108,7 +108,7 @@
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
-                height="274"
+                height="374"
               />
               <NuxtImg
                 format="webp"
@@ -117,17 +117,17 @@
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
-                height="274"
+                height="374"
               />
             </div>
             <NuxtImg
               format="webp"
               src="assets/gallery-item-6.jpg"
-              class="w-full aspect-video object-cover object-center rounded-lg"
+              class="w-full object-cover object-center rounded-lg"
               alt="imagem da galeria de fotos"
               loading="lazy"
               width="540"
-              height="574"
+              height="474"
             />
           </div>
         </SwiperSlide>
