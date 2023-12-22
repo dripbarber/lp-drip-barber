@@ -7,25 +7,40 @@
       id="testimonial-container"
       class="flex items-center justify-center z-5 relative w-full"
     >   
-      <div
-      v-for="(img, index) in imgCard"
-      :key="index"
-      class="image-zoom-container card text-center text-white grayscale hover:grayscale-0  cursor-pointer  mt-24 z-0 hover:z-50 overflow-hidden hover:overflow-y-hidden hidden md:flex"      
+      <Swiper
+        :modules="[SwiperAutoplay, SwiperNavigation]"
+        :slides-per-view="3"
+        :loop="true"
+        :autoplay="{
+        delay: 3000,
+        disableOnInteraction: false,
+      }"      
       >
-        <NuxtImg
-          format="webp"
-          :src=img.src
-          :alt=img.alt
-          class="image-zoom"
-          fit="cover"
-          height="700"
-          width="1100"            
-          loading="lazy"
-        />       
-        <div class="absolute group inset-0 flex flex-col items-center justify-center">
-          <h2 class="font-bold md:text-2xl lg:text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>            
-        </div>         
-      </div>   
+        <SwiperSlide
+          v-for="(img, index) in imgCard"
+          :key="index"          
+        >
+          <div
+            class="image-zoom-container card text-center text-white grayscale hover:grayscale-0 select-none   mt-24 z-0 hover:z-50 overflow-hidden hover:overflow-y-hidden hidden md:flex"
+          >
+            <NuxtImg
+              format="webp"
+              :src=img.src
+              :alt=img.alt
+              class="image-zoom"
+              fit="cover"
+              height="700"
+              width="1100"            
+              loading="lazy"
+            />       
+            <div class="absolute group inset-0 flex flex-col items-center justify-center">
+              <h2 class="font-bold md:text-2xl lg:text-5xl z-10" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">{{ img.name }}</h2>            
+            </div>         
+
+          </div>
+
+        </SwiperSlide>
+      </Swiper>   
                     
       
       <!--Mobile slides-->
@@ -77,8 +92,13 @@ interface imgCard {
 }
 
 const imgCard: imgCard[] = [
-  { name: "CORTE & BARBA", link: "#", src: "assets/services-shave-haircut.jpg", alt: "serviços de corte e barba" },
-  { name: "CLIENTES", link: "#", src: "assets/services-clients.jpg", alt: "clientes na barbearia" },
+  { name: "BARBA ALINHADA", link: "#", src: "assets/barba-alinhada.jpg", alt: "serviços de corte e barba" },
+  { name: "CAVANHAQUE", link: "#", src: "assets/cavanhaque.jpg", alt: "clientes na barbearia" },
+  { name: "JEITINHO NA SOBRANCELHA", link: "#", src: "assets/jeitinho-na-sobrancelha.jpg", alt: "clientes na barbearia" },
+  { name: "LIMPEZA DE PELE", link: "#", src: "assets/limpeza-de-pele.jpg", alt: "clientes na barbearia" },
+  { name: "LUZES", link: "#", src: "assets/luzes.jpg", alt: "clientes na barbearia" },
+  { name: "NEVADO", link: "#", src: "assets/nevado.jpg", alt: "clientes na barbearia" },
+  { name: "REGUA", link: "#", src: "assets/regua.jpg", alt: "clientes na barbearia" },
 ];
 
 
