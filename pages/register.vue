@@ -20,6 +20,16 @@
               </h1>
 
               <label class="block text-sm">
+                <span class="text-gray-700">Nome</span>
+                <input
+                  class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+                  placeholder="example@dripbarber.com"
+                  v-bind="form.name"
+                />
+                <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
+              </label>
+
+              <label class="block text-sm">
                 <span class="text-gray-700">E-mail</span>
                 <input
                   class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
@@ -57,12 +67,7 @@
                 }}</span>
               </label>
 
-              <button
-                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-sky"
-                type="submit"
-              >
-                Cadastrar
-              </button>
+              <SubmitButton :loading="loading"> Cadastrar </SubmitButton>
 
               <hr class="my-8" />
 
@@ -92,8 +97,11 @@ const config = useRuntimeConfig();
 const api_url = config.public.api_url;
 const snackbar = useSnackbar();
 
+const loading = ref(false);
+
 const { defineInputBinds, handleSubmit, errors } = useForm({
   validationSchema: {
+    name: [required],
     email: [required, email],
     password: [required, password],
     confirmPassword: [required, password],
@@ -101,6 +109,7 @@ const { defineInputBinds, handleSubmit, errors } = useForm({
 });
 
 const form = ref({
+  name: defineInputBinds("name"),
   email: defineInputBinds("email"),
   password: defineInputBinds("password"),
   confirmPassword: defineInputBinds("confirmPassword"),
@@ -108,12 +117,14 @@ const form = ref({
 
 const doSignup = async (values) => {
   try {
+    loading.value = true;
     const { error } = await useFetch(`${api_url}/signup`, {
       method: "POST",
       body: { ...values },
     });
 
     if (error.value?.data?.message) {
+      loading.value = false;
       snackbar.add({
         type: "error",
         text: error.value?.data?.message,
@@ -125,11 +136,13 @@ const doSignup = async (values) => {
       type: "success",
       text: "Usuário criado com sucesso.",
     });
+    loading.value = false;
 
     setTimeout(() => {
       router.push({ path: "/login" });
     }, 1500);
   } catch (error) {
+    loading.value = false;
     snackbar.add({
       type: "error",
       text: "Ops! Ocorreu um erro...",

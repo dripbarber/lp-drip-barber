@@ -6,7 +6,9 @@
     :disabled="loading"
   >
     <span class="flex justify-center items-center gap-2">
+      <slot v-if="!loading">
       Login
+      </slot>
       <Loading v-if="loading" heightContainer="12px" size="12px" />
     </span>
   </button>
