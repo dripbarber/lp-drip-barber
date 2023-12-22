@@ -25,14 +25,15 @@ export default defineNuxtConfig({
   ],
   mail: {
     message: {
-      to: 'dripbrbarbearia@gmail.com',
+      name: "DripBr Barbearia",
+      to: 'danielsoaresf@hotmail.com'
     },
     smtp: {
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
       auth: {
-        user: '0a76285ac64525',
-        pass: '34d692164befe8',
+        user: 'e6b1d3ea00c140',//'api',
+        pass: '91f3b8ad74e0c1'//'758d9bbb4e57c936b121700144d0f474',
     },
     },
   },
