@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   mail: {
     message: {
       name: "DripBr Barbearia",
-      to: 'dripbrbarbearia@noreply.com'
+      to: 'danielsoaresf@hotmail.com'
     },
     smtp: {
       host: "sandbox.smtp.mailtrap.io",
