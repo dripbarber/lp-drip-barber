@@ -19,11 +19,11 @@
                 Cadastre-se
               </h1>
 
-              <label class="block text-sm">
+              <label class="block text-sm mb-2">
                 <span class="text-gray-700">Nome</span>
                 <input
                   class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-                  placeholder="example@dripbarber.com"
+                  placeholder="Drip Barber"
                   v-bind="form.name"
                 />
                 <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
