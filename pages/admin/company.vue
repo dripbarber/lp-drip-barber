@@ -26,61 +26,46 @@
       @closeModal="closeForm"
       :isUpdate="!!currentItem?._id"
       title="empresa"
+      @submit="onSubmit"
+      :loading="loading"
     >
-      <form
-        class="h-full w-full flex flex-col justify-between"
-        @submit="onSubmit"
-      >
-        <div>
-          <label class="block text-sm">
-            <span class="text-gray-700">Nome</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.name"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
-          </label>
+      <div>
+        <label class="block text-sm">
+          <span class="text-gray-700">Nome</span>
+          <input
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.name"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
+        </label>
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Email</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.email"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.email }}</span>
-          </label>
+        <label class="block text-sm mt-2">
+          <span class="text-gray-700">Email</span>
+          <input
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.email"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.email }}</span>
+        </label>
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Telefone</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.phone"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
-          </label>
+        <label class="block text-sm mt-2">
+          <span class="text-gray-700">Telefone</span>
+          <input
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.phone"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
+        </label>
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Endereço</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.address"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.address }}</span>
-          </label>
-        </div>
-
-        <div class="flex justify-center">
-          <button
-            class="block px-6 py-3 mt-4 text-lg font-medium leading-5 text-center text-white transition-colors duration-150 bg-gray-600 border border-transparent rounded-lg active:bg-gray-600 hover:bg-gray-700 focus:outline-none focus:shadow-outline-gray"
-            type="button"
-            @click="closeForm"
-          >
-            <span class="flex items-center"> Voltar </span>
-          </button>
-
-          <SaveButton :loading="loading" />
-        </div>
-      </form>
+        <label class="block text-sm mt-2">
+          <span class="text-gray-700">Endereço</span>
+          <input
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.address"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.address }}</span>
+        </label>
+      </div>
     </SidebarForm>
   </AdminLayout>
 </template>

@@ -7,8 +7,6 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    //'@nuxtjs/stylelint-module',
-    //'@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
     'nuxt-swiper',

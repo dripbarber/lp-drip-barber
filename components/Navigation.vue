@@ -207,98 +207,70 @@
       :isOpen="isOpen"
       @closeModal="closeForm"
       :isUpdate="true"
-      title="Perfil"
+      title="perfil"
+      @submit="onSubmit"
     >
-      <form
-        class="h-full w-full flex flex-col justify-between"
-        @submit="onSubmit"
-      >
-        <div>
-          <div class="w-24 h-24 mx-auto cursor-pointer">
-            <input
-              type="file"
-              @change="uploadPhoto"
-              id="fileUpload"
-              hidden
-              accept=".jpg, .jpeg, .png, .svg"
-            />
-            <img
-              v-if="state.picture"
-              class="object-cover w-full h-full rounded-full"
-              :src="state.picture"
-              loading="lazy"
-              @click="openFileInput()"
-            />
-            <Icon
-              v-else
-              @click="openFileInput()"
-              name="ph:user-bold"
-              class="object-cover w-full h-full rounded-full"
-            />
-          </div>
-
-          <label class="block text-sm">
-            <span class="text-gray-700">Nome</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.name"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
-          </label>
-
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Email</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.email"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.email }}</span>
-          </label>
-
-          <label class="block text-sm mt-2" v-if="!currentItem">
-            <span class="text-gray-700">Password</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.password"
-              type="password"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.password }}</span>
-          </label>
-
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Telefone</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.phone"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
-          </label>
+      <div>
+        <div class="w-24 h-24 mx-auto cursor-pointer">
+          <input
+            type="file"
+            @change="uploadPhoto"
+            id="fileUpload"
+            hidden
+            accept=".jpg, .jpeg, .png, .svg"
+          />
+          <img
+            v-if="state.picture"
+            class="object-cover w-full h-full rounded-full"
+            :src="state.picture"
+            loading="lazy"
+            @click="openFileInput()"
+          />
+          <Icon
+            v-else
+            @click="openFileInput()"
+            name="ph:user-bold"
+            class="object-cover w-full h-full rounded-full"
+          />
         </div>
 
-        <div class="flex justify-center">
-          <button
-            class="block px-6 py-3 mt-4 text-lg font-medium leading-5 text-center text-white transition-colors duration-150 bg-gray-600 border border-transparent rounded-lg active:bg-gray-600 hover:bg-gray-700 focus:outline-none focus:shadow-outline-gray"
-            type="button"
-            @click="closeForm"
-          >
-            <span class="flex items-center"> Voltar </span>
-          </button>
+        <label class="block text-sm">
+          <span class="text-gray-700">Nome</span>
+          <input
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.name"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
+        </label>
 
-          <button
-            class="block px-6 py-3 mt-4 text-lg font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue flex items-center ml-auto"
-            type="submit"
-          >
-            <span class="flex items-center">
-              <Icon
-                name="material-symbols:save"
-                class="flex-shrink-0 h-4 w-4 mr-2"
-                aria-hidden="true"
-              />
-              Salvar
-            </span>
-          </button>
-        </div>
-      </form>
+        <label class="block text-sm mt-2">
+          <span class="text-gray-700">Email</span>
+          <input
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.email"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.email }}</span>
+        </label>
+
+        <label class="block text-sm mt-2" v-if="!currentItem">
+          <span class="text-gray-700">Password</span>
+          <input
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.password"
+            type="password"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.password }}</span>
+        </label>
+
+        <label class="block text-sm mt-2">
+          <span class="text-gray-700">Telefone</span>
+          <input
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.phone"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
+        </label>
+      </div>
     </SidebarForm>
   </header>
 </template>
@@ -430,7 +402,7 @@ const closeForm = () => {
 };
 
 const readAllNotification = async () => {
-   await $fetch(`${api_url}/notification/read-all`, {
+  await $fetch(`${api_url}/notification/read-all`, {
     method: "POST",
     headers: {
       authorization: `Bearer ${token}`,

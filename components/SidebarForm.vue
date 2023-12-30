@@ -23,7 +23,14 @@
         </button>
       </div>
       <div class="p-4 h-full overflow-y-auto">
-        <slot></slot>
+        <form
+          class="h-full w-full flex flex-col justify-between"
+          @submit="$emit('submit')"
+        >
+          <slot></slot>
+
+          <side-form-footer @back="$emit('closeModal', false)" :loading="loading" />
+        </form>
       </div>
     </div>
   </Transition>
