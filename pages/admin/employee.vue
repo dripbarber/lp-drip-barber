@@ -60,13 +60,16 @@
             :errors="errors.employer"
           />
 
-          <FormSelectModel
-            label="Serviços"
-            v-model="state.services"
+          <FormMultiselect
+            @input="onSelect"
+            :value="state.services.map(item => services.find(service => service._id === item))"
             :options="services"
+            labelTitle="Serviços"
+            placeholder="Escolha uma opção"
+            label="description"
+            track-by="_id"
             multiple
-            labelField="description"
-          />
+          ></FormMultiselect>
 
           <FormInput
             label="Endereço"
@@ -341,7 +344,7 @@ const create = async (values: any) => {
     loading.value = true;
 
     await uploadAvatar();
-    
+
     const response: any = await $fetch(`${api_url}/user`, {
       method: "POST",
       body: { ...values, ...state.value, type: "employee" },
@@ -481,4 +484,8 @@ const remove = async (_id: string) => {
     });
   }
 };
+
+function onSelect(options: any, id: string) {
+  state.value.services = options.map((opt: any) => opt?._id ? opt._id : opt )
+}
 </script>

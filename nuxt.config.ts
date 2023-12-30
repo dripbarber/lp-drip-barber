@@ -19,22 +19,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@samk-dev/nuxt-vcalendar',
     'nuxt-snackbar',
-    'nuxt-mail'
   ],
-  mail: {
-    message: {
-      name: "DripBr Barbearia",
-      to: 'danielsoaresf@hotmail.com'
-    },
-    smtp: {
-      host: "sandbox.smtp.mailtrap.io",
-      port: 2525,
-      auth: {
-        user: 'e6b1d3ea00c140',//'api',
-        pass: '91f3b8ad74e0c1'//'758d9bbb4e57c936b121700144d0f474',
-    },
-    },
-  },
   i18n: {
     vueI18n: './i18n.config.ts',
     compilation: {

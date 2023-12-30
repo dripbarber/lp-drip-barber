@@ -29,45 +29,31 @@
       @submit="onSubmit"
       :loading="loading"
     >
-      <div>
-        <label class="block text-sm">
-          <span class="text-gray-700">Nome</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.description"
-          />
-          <span class="text-red-600 text-sm mt-2">{{
-            errors.description
-          }}</span>
-        </label>
+      <div class="grid gap-4">
+        <FormInput
+          label="Nome"
+          v-bind="form.description"
+          :errors="errors.description"
+        />
 
-        <label class="block text-sm">
-          <span class="text-gray-700">Descrição</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.about"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.about }}</span>
-        </label>
+        <FormInput
+          label="Descrição"
+          v-bind="form.about"
+          :errors="errors.about"
+        />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">A partir de</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.price"
-            placeholder="00.00"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.price }}</span>
-        </label>
+        <FormInput
+          label="A partir de"
+          v-bind="form.price"
+          placeholder="00.00"
+          :errors="errors.price"
+        />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Tempo (minutos)</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.time"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.time }}</span>
-        </label>
+       <FormInput
+          label="Tempo (minutos)"
+          v-bind="form.time"
+          :errors="errors.time"
+        />
       </div>
     </SidebarForm>
   </AdminLayout>
