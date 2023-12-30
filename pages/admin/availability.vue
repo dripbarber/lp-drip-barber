@@ -27,103 +27,80 @@
       @closeModal="closeForm"
       :isUpdate="!!currentItem?._id"
       title="Disponibilidade"
+      @submit="onSubmit"
+      :loading="loading"
     >
-      <form
-        class="h-full w-full flex flex-col justify-between"
-        @submit="onSubmit"
-      >
-        <div>
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Empresa</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.company"
-            >
-              <option v-for="item in companys" :key="item" :value="item._id">
-                {{ item.name }}
-              </option>
-            </select>
-            <span class="text-red-600 text-sm mt-2">{{ errors.company }}</span>
-          </label>
-
-          <label class="block text-sm mt-2" v-if="!form.date.value">
-            <span class="text-gray-700">Dia da Semana</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.dayOfWeek"
-            >
-              <option
-                v-for="item in daysOfWeek"
-                :key="item"
-                :value="item.value"
-              >
-                {{ item.label }}
-              </option>
-            </select>
-            <span class="text-red-600 text-sm mt-2">{{
-              errors.dayOfWeek
-            }}</span>
-          </label>
-
-          <label class="block text-sm" v-if="!form.dayOfWeek.value">
-            <span class="text-gray-700">Data</span>
-            <input
-              type="date"
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.date"
-              :min="getMinDate"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.date }}</span>
-          </label>
-
-          <label class="block text-sm">
-            <span class="text-gray-700">Inicia em</span>
-            <input
-              type="time"
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.startTime"
-            />
-            <span class="text-red-600 text-sm mt-2">{{
-              errors.startTime
-            }}</span>
-          </label>
-
-          <label class="block text-sm">
-            <span class="text-gray-700">Termina em</span>
-            <input
-              type="time"
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.endTime"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.endTime }}</span>
-          </label>
-
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Disponibilidade</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.type"
-            >
-              <option v-for="item in types" :key="item" :value="item.value">
-                {{ item.label }}
-              </option>
-            </select>
-            <span class="text-red-600 text-sm mt-2">{{ errors.type }}</span>
-          </label>
-        </div>
-
-        <div class="flex justify-center">
-          <button
-            class="block px-6 py-3 mt-4 text-lg font-medium leading-5 text-center text-white transition-colors duration-150 bg-gray-600 border border-transparent rounded-lg active:bg-gray-600 hover:bg-gray-700 focus:outline-none focus:shadow-outline-gray"
-            type="button"
-            @click="closeForm"
+      <div>
+        <label class="block text-sm mt-2">
+          <span class="text-gray-700">Empresa</span>
+          <select
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.company"
           >
-            <span class="flex items-center"> Voltar </span>
-          </button>
+            <option v-for="item in companys" :key="item" :value="item._id">
+              {{ item.name }}
+            </option>
+          </select>
+          <span class="text-red-600 text-sm mt-2">{{ errors.company }}</span>
+        </label>
 
-          <SaveButton :loading="loading" />
-        </div>
-      </form>
+        <label class="block text-sm mt-2" v-if="!form.date.value">
+          <span class="text-gray-700">Dia da Semana</span>
+          <select
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.dayOfWeek"
+          >
+            <option v-for="item in daysOfWeek" :key="item" :value="item.value">
+              {{ item.label }}
+            </option>
+          </select>
+          <span class="text-red-600 text-sm mt-2">{{ errors.dayOfWeek }}</span>
+        </label>
+
+        <label class="block text-sm" v-if="!form.dayOfWeek.value">
+          <span class="text-gray-700">Data</span>
+          <input
+            type="date"
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.date"
+            :min="getMinDate"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.date }}</span>
+        </label>
+
+        <label class="block text-sm">
+          <span class="text-gray-700">Inicia em</span>
+          <input
+            type="time"
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.startTime"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.startTime }}</span>
+        </label>
+
+        <label class="block text-sm">
+          <span class="text-gray-700">Termina em</span>
+          <input
+            type="time"
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.endTime"
+          />
+          <span class="text-red-600 text-sm mt-2">{{ errors.endTime }}</span>
+        </label>
+
+        <label class="block text-sm mt-2">
+          <span class="text-gray-700">Disponibilidade</span>
+          <select
+            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+            v-bind="form.type"
+          >
+            <option v-for="item in types" :key="item" :value="item.value">
+              {{ item.label }}
+            </option>
+          </select>
+          <span class="text-red-600 text-sm mt-2">{{ errors.type }}</span>
+        </label>
+      </div>
     </SidebarForm>
   </AdminLayout>
 </template>

@@ -23,139 +23,58 @@
 
     <SidebarForm
       :isOpen="isOpen"
-      @closeModal="closeForm"
       :isUpdate="!!currentItem?._id"
       title="barbeiro"
+      @closeModal="closeForm"
+      @submit="onSubmit"
+      :loading="loading"
     >
-      <form
-        class="h-full w-full flex flex-col justify-between"
-        @submit="onSubmit"
-      >
-        <div>
-          <div class="w-24 h-24 mx-auto cursor-pointer">
-            <input
-              type="file"
-              @change="uploadPhoto"
-              id="fileUpload"
-              hidden
-              accept=".jpg, .jpeg, .png, .svg"
-            />
-            <img
-              v-if="state.picture"
-              class="object-cover w-full h-full rounded-full"
-              :src="state.picture"
-              loading="lazy"
-              @click="openFileInput()"
-            />
-            <Icon
-              v-else
-              @click="openFileInput()"
-              name="ph:user-bold"
-              class="object-cover w-full h-full rounded-full"
-            />
-          </div>
+      <div>
+        <FormAvatar v-model="state.attachment" :src="state.picture" />
 
-          <label class="block text-sm">
-            <span class="text-gray-700">Nome</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.name"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
-          </label>
+        <div class="grid gap-4">
+          <FormInput label="Nome" v-bind="form.name" :errors="errors.name" />
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Email</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.email"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.email }}</span>
-          </label>
+          <FormInput label="Email" v-bind="form.email" :errors="errors.email" />
 
-          <label class="block text-sm mt-2" v-if="!currentItem">
-            <span class="text-gray-700">Password</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.password"
-              type="password"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.password }}</span>
-          </label>
+          <FormInput
+            v-if="!currentItem"
+            label="Password"
+            v-bind="form.password"
+            type="password"
+            :errors="errors.password"
+          />
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Telefone</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.phone"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
-          </label>
+          <FormInput
+            label="Telefone"
+            v-bind="form.phone"
+            :errors="errors.phone"
+          />
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Sobre</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.about"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.about }}</span>
-          </label>
+          <FormInput label="Sobre" v-bind="form.about" :errors="errors.about" />
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Empresa</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.employer"
-            >
-              <option
-                v-for="company in companys"
-                :key="company"
-                :value="company._id"
-              >
-                {{ company.name }}
-              </option>
-            </select>
-          </label>
+          <FormSelect
+            label="Empresa"
+            v-bind="form.employer"
+            :options="companys"
+            :errors="errors.employer"
+          />
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Serviços</span>
-            <select
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-model="state.services"
-              multiple
-            >
-              <option
-                v-for="service in services"
-                :key="service"
-                :value="service._id"
-              >
-                {{ service.description }}
-              </option>
-            </select>
-          </label>
+          <FormSelectModel
+            label="Serviços"
+            v-model="state.services"
+            :options="services"
+            multiple
+            labelField="description"
+          />
 
-          <label class="block text-sm mt-2">
-            <span class="text-gray-700">Endereço</span>
-            <input
-              class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-              v-bind="form.address"
-            />
-            <span class="text-red-600 text-sm mt-2">{{ errors.address }}</span>
-          </label>
+          <FormInput
+            label="Endereço"
+            v-bind="form.address"
+            :errors="errors.address"
+          />
         </div>
-
-        <div class="flex justify-center">
-          <button
-            class="block px-6 py-3 mt-4 text-lg font-medium leading-5 text-center text-white transition-colors duration-150 bg-gray-600 border border-transparent rounded-lg active:bg-gray-600 hover:bg-gray-700 focus:outline-none focus:shadow-outline-gray"
-            type="button"
-            @click="closeForm"
-          >
-            <span class="flex items-center"> Voltar </span>
-          </button>
-
-          <SaveButton :loading="loading" />
-        </div>
-      </form>
+      </div>
     </SidebarForm>
   </AdminLayout>
 </template>
@@ -178,7 +97,6 @@ const { token } = userStore;
 definePageMeta({
   middleware: ["auth"],
 });
-
 const api_url = config.public.api_url;
 
 const datasource: any = ref([]);
@@ -244,31 +162,6 @@ onMounted(async () => {
     loading.value = false;
   }
 });
-
-const openFileInput = () => {
-  document.getElementById("fileUpload")?.click();
-};
-
-const uploadPhoto = ({ target }: any) => {
-  state.value.attachment = target.files[0];
-
-  const maxSize = 50 * 1024; // 50 KB
-  if (state.value.attachment.size > maxSize) {
-    snackbar.add({
-      type: "error",
-      text: "Tamanho da imagem não pode exceder o limite (60 KB).",
-    });
-    return;
-  }
-
-  if (state.value.attachment) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      state.value.picture = reader.result;
-    };
-    reader.readAsDataURL(state.value.attachment);
-  }
-};
 
 const handleCreate = (item: any) => {
   state.value.services = [];
@@ -410,9 +303,45 @@ const requestPaginationServices = async (values: any = {}) => {
   }
 };
 
+const uploadAvatar = async () => {
+  try {
+    if (!state.value.attachment) {
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append("avatar", state.value.attachment);
+
+    const response: any = await $fetch(`${api_url}/avatar`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response?.avatar) {
+      snackbar.add({
+        type: "error",
+        text: response.message,
+      });
+    }
+
+    state.value.picture = response.avatar.url;
+  } catch (error) {
+    snackbar.add({
+      type: "error",
+      text: "Ops! Ocorreu um erro ao fazer upload da imagem...",
+    });
+  }
+};
+
 const create = async (values: any) => {
   try {
     loading.value = true;
+
+    await uploadAvatar();
+    
     const response: any = await $fetch(`${api_url}/user`, {
       method: "POST",
       body: { ...values, ...state.value, type: "employee" },
@@ -449,6 +378,8 @@ const create = async (values: any) => {
 
 const update = async (values: any) => {
   try {
+    await uploadAvatar();
+
     const response: any = await $fetch(
       `${api_url}/user/${currentItem?.value?._id}`,
       {
