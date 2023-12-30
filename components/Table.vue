@@ -22,7 +22,7 @@
           >
             <template v-for="column in columns" :key="column">
               <th class="px-4 py-3">
-                <div  :class="`flex justify-${column?.align}`">
+                <div :class="`flex justify-${column?.align}`">
                   <span class="flex gap-1">
                     {{ column.label }}
                     <a
@@ -102,22 +102,10 @@
                       v-if="item[column.key]"
                       class="relative w-8 h-8 mr-3 rounded-full md:block"
                     >
-                      <img
-                        v-if="item[column.key]?.picture"
-                        class="object-cover w-full h-full rounded-full"
+                      <TableAvatar
                         :src="item[column.key]?.picture"
                         :alt="item[column.key]?.name"
-                        loading="lazy"
                       />
-                      <Icon
-                        v-else
-                        name="ph:user-bold"
-                        class="object-cover w-full h-full rounded-full"
-                      />
-                      <div
-                        class="absolute inset-0 rounded-full shadow-inner"
-                        aria-hidden="true"
-                      ></div>
                     </div>
                     <div v-if="item[column.key]">
                       <p class="font-semibold">{{ item[column.key].name }}</p>
@@ -131,22 +119,10 @@
                       v-if="item[column.key]"
                       class="relative w-8 h-8 mr-3 rounded-full md:block"
                     >
-                      <img
-                        v-if="item[column.key]?.picture"
-                        class="object-cover w-full h-full rounded-full"
-                        :src="item[column.key]?.picture"
+                      <TableAvatar
                         :alt="item[column.key]?.name"
-                        loading="lazy"
+                        :src="item[column.key]?.picture"
                       />
-                      <Icon
-                        v-else
-                        name="ph:user-bold"
-                        class="object-cover w-full h-full rounded-full"
-                      />
-                      <div
-                        class="absolute inset-0 rounded-full shadow-inner"
-                        aria-hidden="true"
-                      ></div>
                     </div>
                     <div v-if="item[column.key]">
                       <p class="font-semibold">{{ item[column.key].email }}</p>
@@ -162,22 +138,7 @@
                     <div
                       class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
                     >
-                      <img
-                        v-if="item?.picture"
-                        class="object-cover w-full h-full rounded-full"
-                        :src="item?.picture"
-                        :alt="item?.name"
-                        loading="lazy"
-                      />
-                      <Icon
-                        v-else
-                        name="ph:user-bold"
-                        class="object-cover w-full h-full rounded-full"
-                      />
-                      <div
-                        class="absolute inset-0 rounded-full shadow-inner"
-                        aria-hidden="true"
-                      ></div>
+                      <TableAvatar :alt="item?.name" :src="item?.picture" />
                     </div>
                     <div>
                       <p class="font-semibold">{{ item?.name }}</p>

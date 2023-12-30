@@ -211,65 +211,27 @@
       @submit="onSubmit"
     >
       <div>
-        <div class="w-24 h-24 mx-auto cursor-pointer">
-          <input
-            type="file"
-            @change="uploadPhoto"
-            id="fileUpload"
-            hidden
-            accept=".jpg, .jpeg, .png, .svg"
-          />
-          <img
-            v-if="state.picture"
-            class="object-cover w-full h-full rounded-full"
-            :src="state.picture"
-            loading="lazy"
-            @click="openFileInput()"
-          />
-          <Icon
-            v-else
-            @click="openFileInput()"
-            name="ph:user-bold"
-            class="object-cover w-full h-full rounded-full"
-          />
-        </div>
+        <FormAvatar v-model="state.attachment" :src="state.picture" />
 
-        <label class="block text-sm">
-          <span class="text-gray-700">Nome</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.name"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
-        </label>
+        <div class="grid gap-4">
+          <FormInput label="Nome" v-bind="form.name" :errors="errors.name" />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Email</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.email"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.email }}</span>
-        </label>
+          <FormInput label="Email" v-bind="form.email" :errors="errors.email" />
 
-        <label class="block text-sm mt-2" v-if="!currentItem">
-          <span class="text-gray-700">Password</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+          <FormInput
+            v-if="!currentItem"
+            label="Password"
             v-bind="form.password"
             type="password"
+            :errors="errors.password"
           />
-          <span class="text-red-600 text-sm mt-2">{{ errors.password }}</span>
-        </label>
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Telefone</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+          <FormInput
+            label="Telefone"
             v-bind="form.phone"
+            :errors="errors.phone"
           />
-          <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
-        </label>
+        </div>
       </div>
     </SidebarForm>
   </header>
@@ -356,28 +318,36 @@ const logout = () => {
   router.push({ path: "/login" });
 };
 
-const openFileInput = () => {
-  document.getElementById("fileUpload")?.click();
-};
+const uploadAvatar = async () => {
+  try {
+    if (!state.value.attachment) {
+      return;
+    }
 
-const uploadPhoto = ({ target }: any) => {
-  state.value.attachment = target.files[0];
+    let formData = new FormData();
+    formData.append("avatar", state.value.attachment);
 
-  const maxSize = 50 * 1024; // 50 KB
-  if (state.value.attachment.size > maxSize) {
+    const response: any = await $fetch(`${api_url}/avatar`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response?.avatar) {
+      snackbar.add({
+        type: "error",
+        text: response.message,
+      });
+    }
+
+    state.value.picture = response.avatar.url;
+  } catch (error) {
     snackbar.add({
       type: "error",
-      text: "Tamanho da imagem não pode exceder o limite (60 KB).",
+      text: "Ops! Ocorreu um erro ao fazer upload da imagem...",
     });
-    return;
-  }
-
-  if (state.value.attachment) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      state.value.picture = reader.result;
-    };
-    reader.readAsDataURL(state.value.attachment);
   }
 };
 
@@ -414,6 +384,8 @@ const readAllNotification = async () => {
 
 const update = async (values: any) => {
   try {
+    await uploadAvatar();
+
     const response: any = await $fetch(
       `${api_url}/user/${userStore?.user?._id}`,
       {

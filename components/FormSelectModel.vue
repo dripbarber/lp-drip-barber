@@ -6,11 +6,19 @@
       v-model="value"
       :multiple="multiple"
     >
-      <option v-for="option in options" :key="option" :value="option[valueField]">
+      <option
+        v-for="option in options"
+        :key="option"
+        :value="option[valueField]"
+      >
         {{ option[labelField] }}
       </option>
     </select>
-    <span class="text-red-600 text-sm mt-2 transition-opacity duration-300">{{ errors }}</span>
+    <Transition>
+      <span v-if="errors" class="text-red-600 text-sm mt-2 transition-opacity duration-300">{{
+        errors
+      }}</span>
+    </Transition>
   </label>
 </template>
 
@@ -59,3 +67,16 @@ const value = computed({
   },
 });
 </script>
+
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

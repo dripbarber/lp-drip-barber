@@ -4,7 +4,9 @@
       {{ label }}
     </span>
 
-    <div class="flex grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+    <div
+      class="flex grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
+    >
       <template v-for="(item, index) in options" :key="index">
         <button
           :class="{
@@ -25,18 +27,7 @@
           <label class="grid gap-1" :for="item[title]">
             <span class="cursor-pointer flex flex-col gap-1.5">
               <div class="relative mx-auto w-20 h-20 rounded-full md:block">
-                <img
-                  v-if="item.picture"
-                  class="object-cover w-full h-full rounded-full border border-gray-300"
-                  :src="item.picture"
-                  :alt="item.name"
-                  loading="lazy"
-                />
-                <Icon
-                  v-else
-                  name="ph:user-bold"
-                  class="object-cover w-full h-full rounded-full"
-                />
+                <TableAvatar :src="item.picture" :alt="item.name" />
               </div>
               <div class="font-semibold">{{ item?.name }}</div>
             </span>

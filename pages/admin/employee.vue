@@ -97,7 +97,6 @@ const { token } = userStore;
 definePageMeta({
   middleware: ["auth"],
 });
-
 const api_url = config.public.api_url;
 
 const datasource: any = ref([]);
@@ -306,14 +305,14 @@ const requestPaginationServices = async (values: any = {}) => {
 
 const uploadAvatar = async () => {
   try {
-    if (state.value.attachment) {
+    if (!state.value.attachment) {
       return;
     }
 
     let formData = new FormData();
     formData.append("avatar", state.value.attachment);
 
-    const response: any = await $fetch(`${api_url}/user`, {
+    const response: any = await $fetch(`${api_url}/avatar`, {
       method: "POST",
       body: formData,
       headers: {
@@ -342,7 +341,7 @@ const create = async (values: any) => {
     loading.value = true;
 
     await uploadAvatar();
-
+    
     const response: any = await $fetch(`${api_url}/user`, {
       method: "POST",
       body: { ...values, ...state.value, type: "employee" },
@@ -379,6 +378,8 @@ const create = async (values: any) => {
 
 const update = async (values: any) => {
   try {
+    await uploadAvatar();
+
     const response: any = await $fetch(
       `${api_url}/user/${currentItem?.value?._id}`,
       {

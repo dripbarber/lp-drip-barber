@@ -25,7 +25,6 @@
       <div class="p-4 h-full overflow-y-auto">
         <form
           class="h-full w-full flex flex-col justify-between"
-          @submit="$emit('submit')"
         >
           <slot></slot>
 
