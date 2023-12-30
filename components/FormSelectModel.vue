@@ -1,6 +1,6 @@
 <template>
   <label class="block text-sm">
-    <span class="text-gray-700">{{ label }}</span>
+    <span class="text-gray-700 font-semibold">{{ label }}</span>
     <select
       class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
       v-model="value"

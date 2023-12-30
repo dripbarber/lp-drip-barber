@@ -29,42 +29,22 @@
       @submit="onSubmit"
       :loading="loading"
     >
-      <div>
-        <label class="block text-sm">
-          <span class="text-gray-700">Nome</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.name"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
-        </label>
+      <div class="grid gap-4">
+        <FormInput label="Nome" v-bind="form.name" :errors="errors.name" />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Email</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.email"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.email }}</span>
-        </label>
+        <FormInput label="Email" v-bind="form.email" :errors="errors.email" />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Telefone</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.phone"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
-        </label>
+        <FormInput
+          label="Telefone"
+          v-bind="form.phone"
+          :errors="errors.phone"
+        />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Endereço</span>
-          <input
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.address"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.address }}</span>
-        </label>
+        <FormInput
+          label="Endereço"
+          v-bind="form.address"
+          :errors="errors.address"
+        />
       </div>
     </SidebarForm>
   </AdminLayout>

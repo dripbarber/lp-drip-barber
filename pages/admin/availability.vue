@@ -30,76 +30,54 @@
       @submit="onSubmit"
       :loading="loading"
     >
-      <div>
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Empresa</span>
-          <select
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.company"
-          >
-            <option v-for="item in companys" :key="item" :value="item._id">
-              {{ item.name }}
-            </option>
-          </select>
-          <span class="text-red-600 text-sm mt-2">{{ errors.company }}</span>
-        </label>
+      <div class="grid gap-4">
+        <FormSelect
+          label="Empresa"
+          v-bind="form.company"
+          :options="companys"
+          :errors="errors.company"
+        />
 
-        <label class="block text-sm mt-2" v-if="!form.date.value">
-          <span class="text-gray-700">Dia da Semana</span>
-          <select
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.dayOfWeek"
-          >
-            <option v-for="item in daysOfWeek" :key="item" :value="item.value">
-              {{ item.label }}
-            </option>
-          </select>
-          <span class="text-red-600 text-sm mt-2">{{ errors.dayOfWeek }}</span>
-        </label>
+        <FormSelect
+          label="Dia da Semana"
+          v-bind="form.dayOfWeek"
+          :options="daysOfWeek"
+          :errors="errors.dayOfWeek"
+          valueField="value"
+          labelField="label"
+        />
 
-        <label class="block text-sm" v-if="!form.dayOfWeek.value">
-          <span class="text-gray-700">Data</span>
-          <input
-            type="date"
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.date"
-            :min="getMinDate"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.date }}</span>
-        </label>
+        <FormInput
+          v-if="!form.dayOfWeek.value"
+          label="Data"
+          type="date"
+          v-bind="form.date"
+          :min="getMinDate"
+          :errors="errors.date"
+        />
 
-        <label class="block text-sm">
-          <span class="text-gray-700">Inicia em</span>
-          <input
-            type="time"
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.startTime"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.startTime }}</span>
-        </label>
+        <FormInput
+          label="Inicia em"
+          type="time"
+          v-bind="form.startTime"
+          :errors="errors.startTime"
+        />
 
-        <label class="block text-sm">
-          <span class="text-gray-700">Termina em</span>
-          <input
-            type="time"
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.endTime"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.endTime }}</span>
-        </label>
+        <FormInput
+          label="Termina em"
+          type="time"
+          v-bind="form.endTime"
+          :errors="errors.endTime"
+        />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Disponibilidade</span>
-          <select
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.type"
-          >
-            <option v-for="item in types" :key="item" :value="item.value">
-              {{ item.label }}
-            </option>
-          </select>
-          <span class="text-red-600 text-sm mt-2">{{ errors.type }}</span>
-        </label>
+        <FormSelect
+          label="Disponibilidade"
+          v-bind="form.type"
+          :options="types"
+          :errors="errors.type"
+          valueField="value"
+          labelField="label"
+        />
       </div>
     </SidebarForm>
   </AdminLayout>

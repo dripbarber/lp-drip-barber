@@ -1,6 +1,6 @@
 <template>
   <label class="block text-sm">
-    <span class="text-gray-700">{{ label }}</span>
+    <span class="text-gray-700 font-semibold">{{ label }}</span>
     <input
       :type="type"
       class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
@@ -40,5 +40,12 @@ const props = defineProps({
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+</style>
+
+<style >
+.form-input {
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
 }
 </style>

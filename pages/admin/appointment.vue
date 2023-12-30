@@ -29,75 +29,57 @@
       @submit="onSubmit"
       :loading="loading"
     >
-      <div>
-        <label class="block text-sm">
-          <span class="text-gray-700">Data</span>
-          <input
-            type="date"
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.date"
-            :min="getMinDate"
-            :max="getMaxDate"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.date }}</span>
-        </label>
+      <div class="grid gap-4">
+        <FormInput
+          label="Data"
+          type="date"
+          v-bind="form.date"
+          :min="getMinDate"
+          :max="getMaxDate"
+          :errors="errors.date"
+        />
 
-        <label class="block text-sm">
-          <span class="text-gray-700">Hora</span>
-          <input
-            type="time"
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.startTime"
-          />
-          <span class="text-red-600 text-sm mt-2">{{ errors.startTime }}</span>
-        </label>
+        <FormInput
+          label="Hora"
+          type="time"
+          v-bind="form.startTime"
+          :errors="errors.startTime"
+        />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Cliente</span>
-          <select
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.customer"
-          >
-            <option v-for="client in clients" :key="client" :value="client._id">
-              {{ client.name }}
-            </option>
-          </select>
-          <span class="text-red-600 text-sm mt-2">{{ errors.customer }}</span>
-        </label>
+        <FormSelect
+          label="Cliente"
+          v-bind="form.customer"
+          :options="
+            clients.map((client) => {
+              if (!client?.name) {
+                client.name = client.email;
+              }
+              return client;
+            })
+          "
+          :errors="errors.customer"
+        />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Barbeiro</span>
-          <select
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-bind="form.employee"
-          >
-            <option
-              v-for="employee in employees"
-              :key="employee"
-              :value="employee._id"
-            >
-              {{ employee.name }}
-            </option>
-          </select>
-          <span class="text-red-600 text-sm mt-2">{{ errors.employee }}</span>
-        </label>
+        <FormSelect
+          label="Barbeiro"
+          v-bind="form.employee"
+          :options="employees"
+          :errors="errors.employee"
+        />
 
-        <label class="block text-sm mt-2">
-          <span class="text-gray-700">Serviços</span>
-          <select
-            class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
-            v-model="state.services"
-            multiple
-          >
-            <option
-              v-for="service in services"
-              :key="service"
-              :value="service._id"
-            >
-              {{ service.description }}
-            </option>
-          </select>
-        </label>
+        <FormMultiselect
+          @input="onSelect"
+          :value="
+            state.services.map((item) =>
+              services.find((service) => service._id === item)
+            )
+          "
+          :options="services"
+          placeholder="Serviços"
+          label="description"
+          track-by="_id"
+          multiple
+        ></FormMultiselect>
       </div>
     </SidebarForm>
   </AdminLayout>
@@ -499,4 +481,8 @@ const remove = async (_id: string) => {
     });
   }
 };
+
+function onSelect(options: any, id: string) {
+  state.value.services = options.map((opt: any) => (opt?._id ? opt._id : opt));
+}
 </script>

@@ -33,7 +33,6 @@
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/nuxt": "^4.11.8",
     "@vercel/analytics": "^1.1.1",
-    "@vueform/nuxt": "^1.1.0",
     "@vuepic/vue-datepicker": "^7.2.1",
     "date-fns": "^2.30.0",
     "nuxt-mail": "^4.0.1",
@@ -42,6 +41,7 @@
     "nuxt-swiper": "^1.2.2",
     "pinia": "^2.1.7",
     "sweetalert2": "^11.9.0",
-    "vue": "^3.3.7"
+    "vue": "^3.3.7",
+    "vue-multiselect": "^2.1.8"
   }
 }
