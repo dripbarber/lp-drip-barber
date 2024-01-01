@@ -85,7 +85,7 @@ const testimonialCards: testimonialCards[] = [
 
 <style scoped>
 .card {
-  background: rgba(217, 217, 217, 0.15);
+  background: rgba(31, 30, 30, 0.5);
   border-radius: 20px;
 }
 
