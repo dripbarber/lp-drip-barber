@@ -107,7 +107,6 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const mail = useMail();
 
 const state = ref({
   selectedStore: "Drip 1",
@@ -118,12 +117,4 @@ const state = ref({
   phone: "",
   email: "",
 });
-
-const submitForm = () => {
-  mail.send({
-    from: "Drip Barber System",
-    subject: "Confirmação de Marcação de Hora na Drip Barber",
-    text: `Nova marcação de hora realizada na barbearia ${state.value.selectedStore}.\n\nDetalhes da Marcação:\n\nServiço: ${state.value.service}\nBarbeiro: ${state.value.barber}\nData e Hora: ${state.value.dateTime}\n\nCliente:\n\nNome: ${state.value.name}\nTelefone: ${state.value.phone}\nEmail: ${state.value.email}`,
-  });
-};
 </script>

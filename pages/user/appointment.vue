@@ -208,7 +208,6 @@ const loadingHour = ref(false);
 const userStore = useUserStore();
 const config = useRuntimeConfig();
 const snackbar = useSnackbar();
-const mail = useMail()
 
 const api_url = config.public.api_url;
 
@@ -290,12 +289,6 @@ const createAppointment = async () => {
 
       return;
     }
-
-    mail.send({
-      from: userStore.user.email,
-      subject: 'Marcação realizada com Sucesso',
-      text: 'This is an incredible test message',
-    })
 
     snackbar.add({
       type: "success",
