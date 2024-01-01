@@ -67,7 +67,7 @@
       >
         <SwiperSlide>
           <div class="w-full items-center px-4">
-            <img
+            <NuxtImg
               format="webp"
               src="assets/gallery-item-1.jpg"
               class="w-full object-cover object-center rounded-lg"
@@ -77,7 +77,7 @@
               height="474"
             />
             <div class="flex pt-3 overflow-hidden">
-              <img
+              <NuxtImg
                 format="webp"
                 src="assets/gallery-item-2-2.jpg"
                 class="w-1/2 pr-1 object-cover object-center rounded-lg"
@@ -86,7 +86,7 @@
                 width="255"
                 height="374"
               />
-              <img
+              <NuxtImg
                 format="webp"
                 src="assets/gallery-item-3-2.jpg"
                 class="w-1/2 pl-1 object-cover object-center rounded-lg"
@@ -101,7 +101,7 @@
         <SwiperSlide>
           <div class="w-full items-center px-4">
             <div class="flex pb-3 justify-center">
-              <img
+              <NuxtImg
                 format="webp"
                 src="assets/gallery-item-4-2.jpg"
                 class="w-1/2 pr-1 object-cover object-center rounded-lg"
@@ -110,7 +110,7 @@
                 width="255"
                 height="374"
               />
-              <img
+              <NuxtImg
                 format="webp"
                 src="assets/gallery-item-5-2.jpg"
                 class="w-1/2 pl-1 object-cover object-center rounded-lg"
@@ -120,7 +120,7 @@
                 height="374"
               />
             </div>
-            <img
+            <NuxtImg
               format="webp"
               src="assets/gallery-item-6.jpg"
               class="w-full object-cover object-center rounded-lg"
