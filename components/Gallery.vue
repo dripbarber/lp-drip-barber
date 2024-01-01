@@ -67,7 +67,7 @@
       >
         <SwiperSlide>
           <div class="w-full items-center px-4">
-            <NuxtImg
+            <img
               format="webp"
               src="assets/gallery-item-1.jpg"
               class="w-full object-cover object-center rounded-lg"
@@ -77,18 +77,18 @@
               height="474"
             />
             <div class="flex pt-3 overflow-hidden">
-              <NuxtImg
+              <img
                 format="webp"
-                src="assets/gallery-item-2.jpg"
+                src="assets/gallery-item-2-2.jpg"
                 class="w-1/2 pr-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
                 height="374"
               />
-              <NuxtImg
+              <img
                 format="webp"
-                src="assets/gallery-item-3.jpg"
+                src="assets/gallery-item-3-2.jpg"
                 class="w-1/2 pl-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -101,18 +101,18 @@
         <SwiperSlide>
           <div class="w-full items-center px-4">
             <div class="flex pb-3 justify-center">
-              <NuxtImg
+              <img
                 format="webp"
-                src="assets/gallery-item-4.jpg"
+                src="assets/gallery-item-4-2.jpg"
                 class="w-1/2 pr-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
                 width="255"
                 height="374"
               />
-              <NuxtImg
+              <img
                 format="webp"
-                src="assets/gallery-item-5.jpg"
+                src="assets/gallery-item-5-2.jpg"
                 class="w-1/2 pl-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -120,7 +120,7 @@
                 height="374"
               />
             </div>
-            <NuxtImg
+            <img
               format="webp"
               src="assets/gallery-item-6.jpg"
               class="w-full object-cover object-center rounded-lg"
