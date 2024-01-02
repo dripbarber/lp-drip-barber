@@ -79,7 +79,7 @@
             <div class="flex pt-3 overflow-hidden">
               <NuxtImg
                 format="webp"
-                src="assets/gallery-item-2.jpg"
+                src="assets/gallery-item-2-2.jpg"
                 class="w-1/2 pr-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -88,7 +88,7 @@
               />
               <NuxtImg
                 format="webp"
-                src="assets/gallery-item-3.jpg"
+                src="assets/gallery-item-3-2.jpg"
                 class="w-1/2 pl-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -103,7 +103,7 @@
             <div class="flex pb-3 justify-center">
               <NuxtImg
                 format="webp"
-                src="assets/gallery-item-4.jpg"
+                src="assets/gallery-item-4-2.jpg"
                 class="w-1/2 pr-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
@@ -112,7 +112,7 @@
               />
               <NuxtImg
                 format="webp"
-                src="assets/gallery-item-5.jpg"
+                src="assets/gallery-item-5-2.jpg"
                 class="w-1/2 pl-1 object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"

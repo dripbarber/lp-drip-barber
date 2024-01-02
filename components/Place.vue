@@ -1,7 +1,7 @@
 <template>
   <section
     id="place_section"
-    class="w-full  md:min-h-screen z-[5] relative overflow-hidden"
+    class="w-full  md:min-h-screen z-[5] relative overflow-hidden bg-primary-color pt-5 md:pt-10 lg:pt-28"
   >
     <NuxtImg
       format="webp"
