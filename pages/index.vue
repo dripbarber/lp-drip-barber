@@ -44,7 +44,8 @@
     <About />
     <MessageBreak />
     <Gallery />    
-    <Testimonial /> 
+    <Testimonial />
+    <MessageBreak /> 
     <Place />
     <Footer />
   </div>

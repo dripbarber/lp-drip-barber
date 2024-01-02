@@ -40,9 +40,8 @@
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-            class="mx-auto aspect-[9/16] md:w-9/12 md:aspect-w-1 md:h-3/4 md:mx-8 pt-8 max-h-[400px] max-w-[210px]"
-            autoplay
-            height="360"
+            class="mx-auto aspect-[9/17] lg:aspect-auto md:mx-8 pt-8 h-[360px] lg:h-[560px]"
+            autoplay            
           ></iframe>
         </div>
       </div>
