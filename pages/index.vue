@@ -45,7 +45,7 @@
     <MessageBreak />
     <Gallery />    
     <Testimonial />
-    <MessageBreak /> 
+    <MessageBreakFooter /> 
     <Place />
     <Footer />
   </div>

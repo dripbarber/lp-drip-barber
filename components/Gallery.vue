@@ -7,47 +7,59 @@
       <div class="-m-1 flex flex-wrap md:-m-2">
         <div class="flex w-1/2 flex-wrap">
           <div class="w-1/2 p-1 md:p-2">
-            <img
+            <NuxtImg
+              format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
               src="../public/assets/gallery-item-2.jpg"
+              loading="lazy"
             />
           </div>
           <div class="w-1/2 p-1 md:p-2">
-            <img
+            <NuxtImg
+              format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
               src="../public/assets/gallery-item-3.jpg"
+              loading="lazy"
             />
           </div>
           <div class="w-full p-1 md:p-2">
-            <img
+            <NuxtImg
+              format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
               src="../public/assets/gallery-item-1.jpg"
+              loading="lazy"
             />
           </div>
         </div>
         <div class="flex w-1/2 flex-wrap">
           <div class="w-full p-1 md:p-2">
-            <img
+            <NuxtImg
+              format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
               src="../public/assets/gallery-item-6.jpg"
+              loading="lazy"
             />
           </div>
           <div class="w-1/2 p-1 md:p-2">
-            <img
+            <NuxtImg
+              format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
               src="../public/assets/gallery-item-5.jpg"
+              loading="lazy"
             />
           </div>
           <div class="w-1/2 p-1 md:p-2">
-            <img
+            <NuxtImg
+              format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
               src="../public/assets/gallery-item-4.jpg"
+              loading="lazy"
             />
           </div>
         </div>
