@@ -1,7 +1,7 @@
 <template>
   <section
     id="home_section"
-    class="w-full h-[100vh] bg-cover bg-center relative"
+    class="w-full h-[100vh] bg-cover items-center flex bg-center relative"
   >
     <NuxtImg
       format="webp"
@@ -10,11 +10,11 @@
       class="absolute h-full w-full object-cover object-center z-[5]"
     />
     <div
-      class="font-permanent-marker h-full flex flex-col-reverse justify-center md:flex-row max-w-7xl mx-auto"
+      class="font-permanent-marker h-2/3 flex flex-col-reverse items-center justify-center md:flex-row max-w-7xl mx-auto"
     >
       <div
         id="home-container"
-        class="flex flex-col items-center justify-center md:h-full z-10 relative pt-8 md:pt-12 md:grow"
+        class="flex flex-col items-center justify-center md:h-full z-10 relative pt-8 md:pt-12"
       >
         <div class="text-white text-center">
           <h1 class="relative text-3xl mb-2 md:text-4xl lg:text-8xl">
@@ -30,9 +30,9 @@
           class="bg-fourth-color hover:bg-sixth-color mt-5 md:mt-10"
         />
       </div>
-      <div class="md:grow">
+      <div class="h-full flex items-center justify-center ">
         <div
-          class="flex items-center justify-center text-white h-full w-full relative z-10 pt-6 md:pt-0"
+          class="flex h-auto relative z-10 pt-6 md:pt-0"
         >
           <iframe
             src="https://www.youtube.com/embed/PBZrIEw2A5A?si=k8r-B_GuM57gRvu6"
@@ -40,10 +40,12 @@
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-            class="mx-auto aspect-[9/17] md:mx-8 pt-8 h-[360px] lg:h-[580px]"
+            class="mx-auto aspect-[9/16] md:mx-8 max-h-[320px] md:max-h-[500px]"
             autoplay            
           ></iframe>
         </div>
+        
+
       </div>
     </div>
   </section>
