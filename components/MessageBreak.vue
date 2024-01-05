@@ -14,7 +14,9 @@
         <h1
           class="text-xl sm:text-3xl lg:text-5xl lg:mb-6 mb-3"
         >
-          Na barba, no cabelo, e na atitude.<br> Descubra a <span class="font-bold text-second-color" >Drip!</span> 
+          <slot>
+            Na barba, no cabelo, e na atitude.<br> Descubra a <span class="font-bold text-second-color" >Drip!</span>             
+          </slot>
         </h1>
         
       </div>
