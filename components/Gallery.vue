@@ -11,7 +11,7 @@
               format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
-              src="../public/assets/gallery-item-2.jpg"
+              src="assets/gallery-item-2.jpg"
               loading="lazy"
             />
           </div>
@@ -20,7 +20,7 @@
               format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
-              src="../public/assets/gallery-item-3.jpg"
+              src="assets/gallery-item-3.jpg"
               loading="lazy"
             />
           </div>
@@ -29,7 +29,7 @@
               format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
-              src="../public/assets/gallery-item-1.jpg"
+              src="assets/gallery-item-1.jpg"
               loading="lazy"
             />
           </div>
@@ -40,7 +40,7 @@
               format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
-              src="../public/assets/gallery-item-6.jpg"
+              src="assets/gallery-item-6.jpg"
               loading="lazy"
             />
           </div>
@@ -49,7 +49,7 @@
               format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
-              src="../public/assets/gallery-item-5.jpg"
+              src="assets/gallery-item-5.jpg"
               loading="lazy"
             />
           </div>
@@ -58,7 +58,7 @@
               format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
-              src="../public/assets/gallery-item-4.jpg"
+              src="assets/gallery-item-4.jpg"
               loading="lazy"
             />
           </div>
