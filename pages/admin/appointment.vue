@@ -90,6 +90,7 @@ import { ref } from "vue";
 import { useForm, useFieldArray } from "vee-validate";
 import { useUserStore } from "@/stores/userStores";
 import { required, number } from "@/composable/rules";
+import { onlyAdmin } from "@/composable/auth";
 
 const userStore = useUserStore();
 const plugin = useNuxtApp();
@@ -99,10 +100,6 @@ const snackbar = useSnackbar();
 const $swal: any = plugin.$swal;
 
 const { token } = userStore;
-
-definePageMeta({
-  middleware: ["auth"],
-});
 
 const api_url = config.public.api_url;
 const datasource: any = ref([]);
@@ -154,6 +151,7 @@ const form = ref({
 onMounted(async () => {
   try {
     loading.value = true;
+    onlyAdmin()
     await requestPagination();
     await requestPaginationClients();
     await requestPaginationEmployees();
