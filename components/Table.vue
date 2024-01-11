@@ -108,7 +108,7 @@
                       />
                     </div>
                     <div v-if="item[column.key]">
-                      <p class="font-semibold">{{ item[column.key].name }}</p>
+                      <p class="font-semibold">{{ item[column.key]?.name ?? item[column.key]?.email }}</p>
                       <p class="text-xs text-gray-600 dark:text-gray-400">
                         {{ item[column.key].phone ?? "-" }}
                       </p>

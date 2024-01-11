@@ -29,6 +29,16 @@
                 <span class="text-red-600 text-sm mt-2">{{ errors.name }}</span>
               </label>
 
+              <label class="block text-sm mb-2">
+                <span class="text-gray-700">Telefone</span>
+                <input
+                  class="block w-full mt-1 text-sm focus:border-sky-400 focus:outline-none focus:shadow-outline-sky form-input"
+                  placeholder="+351 999 999 999"
+                  v-bind="form.phone"
+                />
+                <span class="text-red-600 text-sm mt-2">{{ errors.phone }}</span>
+              </label>
+
               <label class="block text-sm">
                 <span class="text-gray-700">E-mail</span>
                 <input
@@ -102,6 +112,7 @@ const loading = ref(false);
 const { defineInputBinds, handleSubmit, errors } = useForm({
   validationSchema: {
     name: [required],
+    phone: [required],
     email: [required, email],
     password: [required, password],
     confirmPassword: [required, password],
@@ -110,6 +121,7 @@ const { defineInputBinds, handleSubmit, errors } = useForm({
 
 const form = ref({
   name: defineInputBinds("name"),
+  phone: defineInputBinds("phone"),
   email: defineInputBinds("email"),
   password: defineInputBinds("password"),
   confirmPassword: defineInputBinds("confirmPassword"),

@@ -25,12 +25,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useUserStore } from "@/stores/userStores";
+import { onlyEmployee } from "@/composable/auth";
+
 const userStore = useUserStore();
 const { token } = userStore;
 
-definePageMeta({
-  middleware: ["auth"],
-});
 
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
@@ -45,6 +44,7 @@ const sort = ref({
 });
 
 onMounted(async () => {
+  onlyEmployee()
   await requestPagination();
   await readAll();
 });

@@ -27,10 +27,7 @@ import { ref } from "vue";
 import { useUserStore } from "@/stores/userStores";
 const userStore = useUserStore();
 const { token } = userStore;
-
-definePageMeta({
-  middleware: ["auth"],
-});
+import { onlyAdmin } from "@/composable/auth";
 
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
@@ -45,6 +42,7 @@ const sort = ref({
 });
 
 onMounted(async () => {
+  onlyAdmin()
   requestPagination();
 });
 

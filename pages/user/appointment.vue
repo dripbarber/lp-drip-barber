@@ -193,6 +193,7 @@
 <script setup lang="ts">
 import { useThemeStore } from "@/stores/themeStores";
 import { useUserStore } from "@/stores/userStores";
+import { onlyUser } from "@/composable/auth";
 
 const optionsBarbers = ref([]);
 const optionsCompanys = ref([]);
@@ -228,6 +229,7 @@ definePageMeta({
 });
 
 onMounted(async () => {
+  onlyUser()
   await requestPaginationCompanys();
 });
 
