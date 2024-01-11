@@ -14,9 +14,9 @@
       id="testimonial-container"
       class="flex items-center justify-center h-full p-6 max-w-7xl mx-auto z-5 relative"
     >
-      <div class="columns-3 md:flex hidden mt-20 h-auto">
+      <div class="md:flex hidden mt-20 h-auto">
         <iframe
-          class="w-full p-4 card text-center flex flex-col items-center mr-4"
+          class="w-full aspect-[9/16] md:h-[360px] lg:h-[560px] drop-shadow-2xl card text-center flex flex-col items-center mr-6"
           v-for="(card, index) in testimonialCards"
           :key="index"
           :src="`https://www.youtube.com/embed/${card.src}`"
@@ -45,17 +45,17 @@
         >
           <SwiperSlide v-for="(card, index) in testimonialCards" :key="index">
             <div
-              class=" p-5 mt-4 mb-4 md:mt-20 text-center mr-4 w-full flex flex-col items-center"
+              class="h-auto p-5 mt-4 mb-4 md:mt-20 text-center mr-4 w-full flex flex-col items-center"
             >
               <iframe
-                class=""
+                class="card aspect-[9/16] drop-shadow-2xl"
                 :src="`https://www.youtube.com/embed/${card.src}`"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
                 autoplay
-                height="560"
+                height="360"
               ></iframe>
             </div>
           </SwiperSlide>
@@ -84,8 +84,7 @@ const testimonialCards: testimonialCards[] = [
 </script>
 
 <style scoped>
-.card {
-  background: rgba(31, 30, 30, 0.5);
+.card {  
   border-radius: 20px;
 }
 
