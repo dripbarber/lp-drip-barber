@@ -16,7 +16,7 @@ export const onlyEmployee = () => {
     }
 }
 
-export const onlyUser = (value: any) => {
+export const onlyUser = () => {
     const userStore = useUserStore();
 
     if(userStore.user.type !== 'user') {

@@ -224,9 +224,6 @@ const state = ref({
 
 const itsThanks = ref(false);
 
-definePageMeta({
-  middleware: "auth",
-});
 
 onMounted(async () => {
   onlyUser()
