@@ -19,12 +19,17 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@samk-dev/nuxt-vcalendar',
     'nuxt-snackbar',
+    'dayjs-nuxt'
   ],
   i18n: {
     vueI18n: './i18n.config.ts',
     compilation: {
       jit: false,
     },
+  },
+  dayjs: {
+    locales: ['pt'],
+    defaultLocale: 'pt',
   },
   runtimeConfig: {
     public: {

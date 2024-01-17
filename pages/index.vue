@@ -36,26 +36,49 @@
     <Meta name="og:type”" content="website" />
     <Meta name="og:site_name" content="Barbearia - Drip BR" />
   </Head>
-  <div class="relative bg-slate-200">
-    <Header />
-    <Home />
-    <Reservation />
-    <Services />    
-    <About />
-    <MessageBreak />
-    <Gallery />    
-    <Testimonial />
-    <MessageBreakFooter /> 
-    <Place />
-    <Footer />
-  </div>
+  <Body>
+    <div class="relative bg-slate-200">
+      <Header />
+      <Home />
+      <Reservation />
+      <template v-if="loading">
+        <Services />
+        <About />
+        <MessageBreak />
+        <Gallery />
+        <Testimonial />
+        <MessageBreakFooter />
+        <Place />
+        <Footer />
+      </template>
+    </div>
+    <NoScript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WS7KDGV5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </NoScript>
+  </Body>
 </template>
 
 <script setup lang="ts">
+const loading = ref(false);
+onMounted(() => {
+  loading.value = true;
+});
+
 useHead({
   htmlAttrs: {
     lang: "pt",
   },
+  script: [
+    {
+      src: "./google-analytics.js",
+      tagPosition: "head",
+    },
+  ],
   meta: [{ charset: "utf-8" }],
   link: [
     { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -72,9 +95,8 @@ useHead({
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Kalam:wght@400;700&family=Open+Sans&family=Roboto:wght@100;300;400;500;700;900&family=Smythe&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Kalam:wght@400;700&family=Open+Sans&family=Roboto:wght@100;300;400;500;700;900&family=Smythe&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
 html {
   scroll-behavior: smooth;
