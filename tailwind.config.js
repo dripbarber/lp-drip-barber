@@ -1,6 +1,21 @@
 /** @type {import('tailwindcss').Config} */
+
+const labelsClasses = [
+    "indigo",
+    "gray",
+    "green",
+    "blue",
+    "red",
+    "purple",
+];
+
 module.exports = {
     content: ["./src/**/*.{vue,html,js}", "index.html", 'docs/content/**/*.md'],
+    safelist: [
+        ...labelsClasses.map((lbl) => `bg-${lbl}-500`),
+        ...labelsClasses.map((lbl) => `bg-${lbl}-200`),
+        ...labelsClasses.map((lbl) => `text-${lbl}-400`)
+    ],
     darkMode: "class",
     theme: {
         extend: {
@@ -18,6 +33,9 @@ module.exports = {
                 button: {
                     cta: '#fff',
                 }
+            },
+            gridTemplateColumns: {
+                "1/5": "1fr 5fr"
             }
         },
     },
@@ -25,6 +43,6 @@ module.exports = {
         require('@tailwindcss/forms'),
         function ({ addVariant }) {
             addVariant("initial", "html :where(&)");
-          }
+        }
     ]
 }
