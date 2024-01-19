@@ -1,15 +1,17 @@
-// store/index.ts
 import { defineStore } from 'pinia';
+import { useUserStore } from "@/stores/userStores";
+import { getMonth } from "@/composable/util";
 
 interface GlobalState {
     monthIndex: number;
     smallCalendarMonth: number;
     daySelected: Date | null;
     showEventModal: boolean;
-    savedEvents: any[]; // Altere o tipo conforme necessário
-    selectedEvent: any | null; // Altere o tipo conforme necessário
-    labels: any[]; // Altere o tipo conforme necessário
-    filteredEvents: any[]; // Altere o tipo conforme necessário
+    savedEvents: any[];
+    selectedEvent: any | null; 
+    labels: any[];
+    filteredEvents: any[];
+    labelBarber: any[];
 }
 
 export const useCalendarStore = defineStore('calendar', {
@@ -22,8 +24,8 @@ export const useCalendarStore = defineStore('calendar', {
         selectedEvent: null,
         labels: [],
         filteredEvents: [],
+        labelBarber: []
     }),
-
     actions: {
         setMonthIndex(index: number) {
             this.monthIndex = index;
@@ -52,5 +54,8 @@ export const useCalendarStore = defineStore('calendar', {
         setFilteredEvents(events: any[]) {
             this.filteredEvents = events;
         },
-    },
+        setLabelBarber(events: any[]) {
+            this.labelBarber = events;
+        },
+    }
 });

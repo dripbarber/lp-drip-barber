@@ -1,15 +1,20 @@
 <template>
   <div class="flex-1 grid grid-cols-7 grid-rows-5">
-    <template v-for="(row, i) in month" >
+    <template v-for="(row, i) in month">
       <template v-for="(day, idx) in row" :key="idx">
-        <Day :day="day" :rowIdx="i"  />
+        <Day
+          @create="(evt) => $emit('create', evt)"
+          @update="(evt) => $emit('update', evt)"
+          :day="day"
+          :rowIdx="i"
+        />
       </template>
     </template>
   </div>
 </template>
 
 <script>
-import Day from '@/components/Calendar/Day';
+import Day from "@/components/Calendar/Day";
 
 export default {
   props: {
@@ -20,7 +25,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-/* Adicione seus estilos específicos do componente aqui */
-</style>

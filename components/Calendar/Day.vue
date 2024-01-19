@@ -16,10 +16,14 @@
         :class="[
           'bg-' +
             evt.label +
-            '-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate',
+            '-200 p-1 mx-2 text-gray-600 text-sm rounded mb-1 truncate pl-2',
         ]"
       >
-        {{ evt.title }}
+        {{ evt?.startTime }}:
+        <span class="capitalize">{{
+          evt?.customer?.name ?? evt?.customer?.email
+        }}</span>
+        - {{ evt?.employee?.name }}
       </div>
     </div>
   </div>
@@ -32,14 +36,15 @@ import { useCalendarStore } from "@/stores/calendarStores";
 const props = defineProps({
   day: {
     type: Object,
-    required: true
+    required: true,
   },
   rowIdx: {
-    type: Number
+    type: Number,
   },
-})
+});
 
-const dayEvents = ref([]);
+const emit = defineEmits(["update", "create"]);
+
 const dayjs = useDayjs();
 const store = useCalendarStore();
 
@@ -50,30 +55,47 @@ const getCurrentDayClass = computed(() => {
 });
 
 const handleDayClick = () => {
-  store.setDaySelected(props.day);
+  emit("create", { date: props.day.format("YYYY-MM-DD") });
   store.setShowEventModal(true);
 };
 
 const handleEventClick = (evt) => {
-  store.setSelectedEvent(evt);
+  emit("update", evt);
 };
 
-onMounted(() => {
-  updateDayEvents();
-});
+function getRandomLabel() {
+  const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple", "slate", "purple"];
+  const randomIndex = Math.floor(Math.random() * labelsClasses.length);
+  return labelsClasses[randomIndex];
+}
 
-watch(() => props.day, () => {
-  updateDayEvents();
-});
+const dayEvents = computed(() => {
+  return store.filteredEvents
+    .map((item) => {
+      const combinedDateTime = dayjs(
+        `${item.date.replace("T00:00:00.000Z", "")}T${item.startTime}`
+      );
 
-watch(() => store.filteredEvents, () => {
-  updateDayEvents();
-});
+      if(!store.labelBarber[item.employee.name]) {
+        const labelBarber = store.labelBarber
+        labelBarber[item.employee.name] = getRandomLabel();
+        store.setLabelBarber(labelBarber)
+      }
 
-const updateDayEvents = () => {
-  const events = store.filteredEvents.filter(
-    (evt) => dayjs(evt.day).format("DD-MM-YY") === props.day.format("DD-MM-YY")
-  );
-  dayEvents.value = events;
-};
+      return {
+        ...item,
+        date: combinedDateTime.format("DD-MM-YY"),
+        label: store.labelBarber[item.employee.name],
+      };
+    })
+    .filter((evt) => {
+      return evt.date === props.day.format("DD-MM-YY");
+    })
+    .sort((a, b) => {
+      const timeA = dayjs(`2000-01-01 ${a.startTime}`);
+      const timeB = dayjs(`2000-01-01 ${b.startTime}`);
+
+      return timeA.isBefore(timeB) ? -1 : timeA.isAfter(timeB) ? 1 : 0;
+    });
+});
 </script>

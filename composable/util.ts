@@ -1,5 +1,5 @@
 
-export function getMonth(month = null) {
+export function getMonth(month: any = null) {
   const dayjs = useDayjs()
   let monthNomalized = month ? Math.floor(month) : Math.floor(dayjs()?.month());
   const year = dayjs().year();
