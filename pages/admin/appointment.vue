@@ -1,6 +1,7 @@
 <template>
   <AdminLayout>
     <Table
+      v-if="isTable"
       :columns="columns"
       :data="datasource"
       @create="handleCreate"
@@ -8,6 +9,8 @@
       @delete="handleDelete"
       :loading="loading"
       :sorted="sort"
+      hasMultipleView
+      @change-view="isTable = !isTable"
       @sort-changed="requestSorted"
     >
       <template v-slot:paginate>
@@ -20,7 +23,12 @@
         />
       </template>
     </Table>
-
+    <Calendar
+      v-else
+      @create="handleCreate"
+      @update="handleUpdate"
+      @change-view="isTable = !isTable"
+    />
     <SidebarForm
       :isOpen="isOpen"
       @closeModal="closeForm"
@@ -80,6 +88,13 @@
           track-by="_id"
           multiple
         ></FormMultiselect>
+
+        <FormInput
+          label="Mensagem"
+          type="text"
+          v-bind="form.message"
+          :errors="errors.message"
+        />
       </div>
     </SidebarForm>
   </AdminLayout>
@@ -91,6 +106,7 @@ import { useForm, useFieldArray } from "vee-validate";
 import { useUserStore } from "@/stores/userStores";
 import { required, number } from "@/composable/rules";
 import { onlyAdmin } from "@/composable/auth";
+import Calendar from "@/components/Calendar/Calendar.vue";
 
 const userStore = useUserStore();
 const plugin = useNuxtApp();
@@ -114,6 +130,7 @@ const sort = ref({
 
 const loading = ref(false);
 const isOpen = ref(false);
+const isTable = ref(false);
 const currentItem = ref(null as unknown as any);
 
 const services = ref([]);
@@ -138,6 +155,7 @@ const {
     startTime: [required],
     employee: [required],
     customer: [required],
+    message: [],
   },
 });
 
@@ -146,12 +164,13 @@ const form = ref({
   startTime: defineInputBinds("startTime"),
   employee: defineInputBinds("employee"),
   customer: defineInputBinds("customer"),
+  message: defineInputBinds("message"),
 });
 
 onMounted(async () => {
   try {
     loading.value = true;
-    onlyAdmin()
+    onlyAdmin();
     await requestPagination();
     await requestPaginationClients();
     await requestPaginationEmployees();
@@ -164,10 +183,14 @@ onMounted(async () => {
 
 const handleCreate = (item: any) => {
   state.value.services = [];
-
   resetForm();
   setValues({});
   currentItem.value = null;
+
+  if (item) {
+    setValues(item);
+  }
+
   isOpen.value = true;
 };
 

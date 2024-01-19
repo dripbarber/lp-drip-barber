@@ -1,49 +1,65 @@
 <template>
   <div>
-    <EventModal v-if="showEventModal" />
     <div class="h-screen flex flex-col">
-      <CalendarHeader />
+      <CalendarHeader @create="$emit('create')"  @change-view="$emit('change-view')"/>
       <div class="flex flex-1">
-        <Month :month="currentMonth" />
+        <Month
+          @create="(evt) => $emit('create', evt)"
+          @update="(evt) => $emit('update', evt)"
+          :month="getMonth(store.monthIndex)"
+        />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { ref, watch } from 'vue';
-import { getMonth } from '@/composable/util';
+<script setup lang="ts">
+import { getMonth } from "@/composable/util";
 import { useCalendarStore } from "@/stores/calendarStores";
+import CalendarHeader from "@/components/Calendar/CalendarHeader";
+import Month from "@/components/Calendar/Month";
 
-import CalendarHeader from '@/components/Calendar/CalendarHeader';
-import Month from '@/components/Calendar/Month';
-import EventModal from '@/components/Calendar/EventModal';
+const userStore = useUserStore();
 
-export default {
-  components: {
-    CalendarHeader,
-    SidebarCalendar,
-    Month,
-    EventModal,
+const config = useRuntimeConfig();
+const api_url = config.public.api_url;
+
+const store = useCalendarStore();
+
+const props = defineProps({
+  id: {
+    type: String,
+    default: null
   },
-  setup() {
-    const store = useCalendarStore();
-    const currentMonth = ref(getMonth());
+});
 
-    watch(store.monthIndex, (newVal) => {
-      currentMonth.value = getMonth(newVal);
+
+watch(
+  () => store.monthIndex,
+  (newValue, oldValue) => {
+    requestAppointment();
+  }
+);
+
+const requestAppointment = async () => {
+  const index: number = store.monthIndex ?? 0;
+  const dates = getMonth(index)
+    .flat()
+    .map((item) => item.format("YYYY-MM-DD"));
+
+    const response: any = await $fetch(`${api_url}/appointment`, {
+      method: "GET",
+      query: {
+        employee: props.id,
+        startDate: dates[0],
+        endDate: dates[dates.length - 1]
+      },
+      headers: {
+        authorization: `Bearer ${userStore.token}`,
+      },
     });
 
-    const showEventModal = computed(() => store.showEventModal) 
+    store.setFilteredEvents([...store.filteredEvents, ...response?.appointments]);};
 
-    return {
-      currentMonth,
-      showEventModal,
-    };
-  },
-};
+requestAppointment();
 </script>
-
-<style scoped>
-/* Adicione seus estilos específicos do componente aqui */
-</style>

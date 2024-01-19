@@ -1,6 +1,7 @@
 <template>
   <EmployeeLayout>
     <Table
+      v-if="isTable"
       :columns="columns"
       :data="datasource"
       @create="handleCreate"
@@ -9,6 +10,8 @@
       :loading="loading"
       :sorted="sort"
       @sort-changed="requestPagination"
+      hasMultipleView
+      @change-view="isTable = !isTable"
     >
       <template v-slot:paginate>
         <Pagination
@@ -20,6 +23,13 @@
         />
       </template>
     </Table>
+    <Calendar
+      v-else
+      :id="userStore.user._id"
+      @create="handleCreate"
+      @update="handleUpdate"
+      @change-view="isTable = !isTable"
+    />
 
     <SidebarForm
       :isOpen="isOpen"
@@ -92,6 +102,7 @@ import { useForm, useFieldArray } from "vee-validate";
 import { useUserStore } from "@/stores/userStores";
 import { required, number } from "@/composable/rules";
 import { onlyEmployee } from "@/composable/auth";
+import Calendar from "@/components/Calendar/Calendar.vue";
 
 const userStore = useUserStore();
 const plugin = useNuxtApp();
@@ -107,6 +118,7 @@ const datasource: any = ref([]);
 const currentPage = ref(1);
 const itemsPerPage = ref(10);
 const totalItems = ref(0);
+const isTable = ref(false);
 
 const sort = ref({
   key: "date",
@@ -165,6 +177,11 @@ const handleCreate = (item: any) => {
   resetForm();
   setValues({});
   currentItem.value = null;
+
+  if (item) {
+    setValues(item);
+  }
+
   isOpen.value = true;
 };
 

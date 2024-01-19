@@ -1,10 +1,22 @@
 <template>
   <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
-      <div class="flex items-end">
+      <div class="flex items-end mb-2">
+        <button
+          v-if="hasMultipleView"
+          class="block items-center text-sm font-semibold transition duration-200 ease-in bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-sm ml-auto mr-2"
+          @click="$emit('change-view')"
+        >
+          <Icon
+            name="mdi:calendar-blank"
+            class="flex-shrink-0 h-6 w-6"
+            aria-hidden="true"
+          />
+        </button>
+
         <button
           v-if="!hideCreate"
-          class="block items-center text-sm font-semibold transition duration-200 ease-in bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-sm mb-2 ml-auto"
+          class="block items-center text-sm font-semibold transition duration-200 ease-in bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-sm "
           @click="$emit('create', item)"
         >
           Criar
@@ -15,205 +27,218 @@
           />
         </button>
       </div>
-      <table class="w-full whitespace-no-wrap">
-        <thead>
-          <tr
-            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-          >
-            <template v-for="column in columns" :key="column">
-              <th class="px-4 py-3">
-                <div :class="`flex justify-${column?.align}`">
-                  <span class="flex gap-1">
-                    {{ column.label }}
-                    <a
-                      v-if="column?.sort"
-                      class="inline-flex items-center text-sm font-semibold rounded-full cursor-pointer"
-                      :class="{ 'opacity-50': sorted?.key !== column.key }"
-                    >
-                      <Icon
-                        v-if="sorted?.order === 1"
-                        name="material-symbols:expand-less"
-                        class="flex-shrink-0 h-4 w-4"
-                        aria-hidden="true"
-                        @click="
-                          $emit('sort-changed', {
-                            sort: {
-                              key: column.key,
-                              order: -1,
-                            },
-                          })
-                        "
-                      />
-                      <Icon
-                        v-else
-                        name="material-symbols:expand-more"
-                        class="flex-shrink-0 h-4 w-4"
-                        aria-hidden="true"
-                        @click="
-                          $emit('sort-changed', {
-                            sort: {
-                              key: column.key,
-                              order: 1,
-                            },
-                          })
-                        "
-                      />
-                    </a>
-                  </span>
-                </div>
-              </th>
-            </template>
-            <th v-if="!hideUpdate || !hideDelete" class="px-4 py-3 text-center">
-              Ações
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-          <template v-if="loading">
-            <tr>
-              <td
-                :colspan="columns.length"
-                class="text-center py-6 md:py-48 text-gray-500"
-              >
-                <div class="loading-container">
-                  <div class="loader"></div>
-                </div>
-              </td>
-            </tr>
-          </template>
-          <template v-else-if="data.length">
+      <slot name="content">
+        <table class="w-full whitespace-no-wrap">
+          <thead>
             <tr
-              v-for="item in data"
-              :key="item"
-              class="text-gray-700 dark:text-gray-400"
+              class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
             >
-              <td
-                v-for="column in columns"
-                :key="column"
-                class="px-4 py-3"
-                :class="`text-${column?.align}`"
+              <template v-for="column in columns" :key="column">
+                <th class="px-4 py-3">
+                  <div :class="`flex justify-${column?.align}`">
+                    <span class="flex gap-1">
+                      {{ column.label }}
+                      <a
+                        v-if="column?.sort"
+                        class="inline-flex items-center text-sm font-semibold rounded-full cursor-pointer"
+                        :class="{ 'opacity-50': sorted?.key !== column.key }"
+                      >
+                        <Icon
+                          v-if="sorted?.order === 1"
+                          name="material-symbols:expand-less"
+                          class="flex-shrink-0 h-4 w-4"
+                          aria-hidden="true"
+                          @click="
+                            $emit('sort-changed', {
+                              sort: {
+                                key: column.key,
+                                order: -1,
+                              },
+                            })
+                          "
+                        />
+                        <Icon
+                          v-else
+                          name="material-symbols:expand-more"
+                          class="flex-shrink-0 h-4 w-4"
+                          aria-hidden="true"
+                          @click="
+                            $emit('sort-changed', {
+                              sort: {
+                                key: column.key,
+                                order: 1,
+                              },
+                            })
+                          "
+                        />
+                      </a>
+                    </span>
+                  </div>
+                </th>
+              </template>
+              <th
+                v-if="!hideUpdate || !hideDelete"
+                class="px-4 py-3 text-center"
               >
-                <slot
-                  :name="`row_${item[column.key]}`"
-                  v-bind="{ column, item }"
+                Ações
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+          >
+            <template v-if="loading">
+              <tr>
+                <td
+                  :colspan="columns.length"
+                  class="text-center py-6 md:py-48 text-gray-500"
                 >
-                  <span v-if="column?.type === 'user'" class="flex">
-                    <div
-                      v-if="item[column.key]"
-                      class="relative w-8 h-8 mr-3 rounded-full md:block"
-                    >
-                      <TableAvatar
-                        :src="item[column.key]?.picture"
-                        :alt="item[column.key]?.name"
-                      />
-                    </div>
-                    <div v-if="item[column.key]">
-                      <p class="font-semibold">{{ item[column.key]?.name ?? item[column.key]?.email }}</p>
-                      <p class="text-xs text-gray-600 dark:text-gray-400">
-                        {{ item[column.key].phone ?? "-" }}
-                      </p>
-                    </div>
-                  </span>
-                  <span v-else-if="column?.type === 'client'" class="flex">
-                    <div
-                      v-if="item[column.key]"
-                      class="relative w-8 h-8 mr-3 rounded-full md:block"
-                    >
-                      <TableAvatar
-                        :alt="item[column.key]?.name"
-                        :src="item[column.key]?.picture"
-                      />
-                    </div>
-                    <div v-if="item[column.key]">
-                      <p class="font-semibold">{{ item[column.key].email }}</p>
-                      <p class="text-xs text-gray-600 dark:text-gray-400">
-                        {{ item[column.key].phone ?? "-" }}
-                      </p>
-                    </div>
-                  </span>
-                  <span
-                    v-else-if="column?.type === 'picture'"
-                    class="flex items-center"
+                  <div class="loading-container">
+                    <div class="loader"></div>
+                  </div>
+                </td>
+              </tr>
+            </template>
+            <template v-else-if="data.length">
+              <tr
+                v-for="item in data"
+                :key="item"
+                class="text-gray-700 dark:text-gray-400"
+              >
+                <td
+                  v-for="column in columns"
+                  :key="column"
+                  class="px-4 py-3"
+                  :class="`text-${column?.align}`"
+                >
+                  <slot
+                    :name="`row_${item[column.key]}`"
+                    v-bind="{ column, item }"
                   >
-                    <div
-                      class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
-                    >
-                      <TableAvatar :alt="item?.name" :src="item?.picture" />
-                    </div>
-                    <div>
-                      <p class="font-semibold">{{ item?.name }}</p>
-                    </div>
-                  </span>
-                  <template v-else-if="column?.type === 'status'">
-                    <span
-                      v-if="column?.validate(item)?.approved"
-                      class="px-3 py-1 font-semibold leading-tight text-black bg-green-500 rounded-full dark:bg-green-700 dark:text-green-100"
-                    >
-                      <template v-if="!column?.withoutText">
-                        {{ getNormalized(item[column.key], column?.type) }}
-                      </template>
+                    <span v-if="column?.type === 'user'" class="flex">
+                      <div
+                        v-if="item[column.key]"
+                        class="relative w-8 h-8 mr-3 rounded-full md:block"
+                      >
+                        <TableAvatar
+                          :src="item[column.key]?.picture"
+                          :alt="item[column.key]?.name"
+                        />
+                      </div>
+                      <div v-if="item[column.key]">
+                        <p class="font-semibold">
+                          {{
+                            item[column.key]?.name ?? item[column.key]?.email
+                          }}
+                        </p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                          {{ item[column.key].phone ?? "-" }}
+                        </p>
+                      </div>
+                    </span>
+                    <span v-else-if="column?.type === 'client'" class="flex">
+                      <div
+                        v-if="item[column.key]"
+                        class="relative w-8 h-8 mr-3 rounded-full md:block"
+                      >
+                        <TableAvatar
+                          :alt="item[column.key]?.name"
+                          :src="item[column.key]?.picture"
+                        />
+                      </div>
+                      <div v-if="item[column.key]">
+                        <p class="font-semibold">
+                          {{ item[column.key].email }}
+                        </p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                          {{ item[column.key].phone ?? "-" }}
+                        </p>
+                      </div>
                     </span>
                     <span
-                      v-if="column?.validate(item)?.danger"
-                      class="px-3 py-1 font-semibold leading-tight text-black bg-red-500 rounded-full dark:bg-red-700 dark:text-green-100"
+                      v-else-if="column?.type === 'picture'"
+                      class="flex items-center"
                     >
-                      <template v-if="!column?.withoutText">
-                        {{ getNormalized(item[column.key], column?.type) }}
-                      </template>
+                      <div
+                        class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                      >
+                        <TableAvatar :alt="item?.name" :src="item?.picture" />
+                      </div>
+                      <div>
+                        <p class="font-semibold">{{ item?.name }}</p>
+                      </div>
                     </span>
-                    <span
-                      v-if="column?.validate(item)?.warning"
-                      class="px-3 py-1 font-semibold leading-tight text-black bg-yellow-500 rounded-full dark:bg-yellow-700 dark:text-green-100"
-                    >
-                      <template v-if="!column?.withoutText">
-                        {{ getNormalized(item[column.key], column?.type) }}
-                      </template>
+                    <template v-else-if="column?.type === 'status'">
+                      <span
+                        v-if="column?.validate(item)?.approved"
+                        class="px-3 py-1 font-semibold leading-tight text-black bg-green-500 rounded-full dark:bg-green-700 dark:text-green-100"
+                      >
+                        <template v-if="!column?.withoutText">
+                          {{ getNormalized(item[column.key], column?.type) }}
+                        </template>
+                      </span>
+                      <span
+                        v-if="column?.validate(item)?.danger"
+                        class="px-3 py-1 font-semibold leading-tight text-black bg-red-500 rounded-full dark:bg-red-700 dark:text-green-100"
+                      >
+                        <template v-if="!column?.withoutText">
+                          {{ getNormalized(item[column.key], column?.type) }}
+                        </template>
+                      </span>
+                      <span
+                        v-if="column?.validate(item)?.warning"
+                        class="px-3 py-1 font-semibold leading-tight text-black bg-yellow-500 rounded-full dark:bg-yellow-700 dark:text-green-100"
+                      >
+                        <template v-if="!column?.withoutText">
+                          {{ getNormalized(item[column.key], column?.type) }}
+                        </template>
+                      </span>
+                    </template>
+                    <span class="" v-else>
+                      {{ getNormalized(item[column.key], column?.type) }}
                     </span>
-                  </template>
-                  <span class="" v-else>
-                    {{ getNormalized(item[column.key], column?.type) }}
-                  </span>
-                </slot>
-              </td>
-              <td v-if="!hideUpdate || !hideDelete" class="px-4 py-3 w-32">
-                <button
-                  v-if="!hideUpdate"
-                  class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in hover:bg-sky-500 mx-auto hover:text-white py-2 px-2 rounded-full"
-                  @click="$emit('update', item)"
-                >
-                  <Icon
-                    name="material-symbols:edit-outline"
-                    class="flex-shrink-0 h-6 w-6"
-                    aria-hidden="true"
-                  />
-                </button>
+                  </slot>
+                </td>
+                <td v-if="!hideUpdate || !hideDelete" class="px-4 py-3 w-32">
+                  <button
+                    v-if="!hideUpdate"
+                    class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in hover:bg-sky-500 mx-auto hover:text-white py-2 px-2 rounded-full"
+                    @click="$emit('update', item)"
+                  >
+                    <Icon
+                      name="material-symbols:edit-outline"
+                      class="flex-shrink-0 h-6 w-6"
+                      aria-hidden="true"
+                    />
+                  </button>
 
-                <button
-                  v-if="!hideDelete"
-                  class="inline-flex items-center text-sm font-semibold transition duration-200 mx-auto ease-in hover:bg-sky-500 hover:text-white py-2 px-2 rounded-full ml-1"
-                  @click="$emit('delete', item)"
+                  <button
+                    v-if="!hideDelete"
+                    class="inline-flex items-center text-sm font-semibold transition duration-200 mx-auto ease-in hover:bg-sky-500 hover:text-white py-2 px-2 rounded-full ml-1"
+                    @click="$emit('delete', item)"
+                  >
+                    <Icon
+                      name="material-symbols:ink-eraser-outline"
+                      class="flex-shrink-0 h-6 w-6"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </td>
+              </tr>
+            </template>
+            <template v-else>
+              <tr>
+                <td
+                  :colspan="columns.length"
+                  class="text-center py-6 md:py-48 text-gray-500"
                 >
-                  <Icon
-                    name="material-symbols:ink-eraser-outline"
-                    class="flex-shrink-0 h-6 w-6"
-                    aria-hidden="true"
-                  />
-                </button>
-              </td>
-            </tr>
-          </template>
-          <template v-else>
-            <tr>
-              <td
-                :colspan="columns.length"
-                class="text-center py-6 md:py-48 text-gray-500"
-              >
-                Sem registros disponíveis.
-              </td>
-            </tr>
-          </template>
-        </tbody>
-      </table>
+                  Sem registros disponíveis.
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </slot>
     </div>
 
     <div
@@ -251,6 +276,10 @@ const props = defineProps({
   hideDelete: {
     type: Boolean,
     default: false,
+  },
+  hasMultipleView: {
+    type: Boolean,
+    default: false
   },
   sorted: {
     type: Object,
