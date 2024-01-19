@@ -1,6 +1,9 @@
 <template>
   <header class="py-2 flex items-center">
-    <button @click="handleReset" class="border rounded py-2 px-4 mr-5">
+    <button
+      @click="handleReset"
+      class="border text-sm sm:text-base rounded py-2 px-2 sm:py-2 sm:px-4 mr-2 sm:mr-5"
+    >
       Hoje
     </button>
     <button class="flex items-center" @click="handlePrevMonth">
@@ -10,7 +13,9 @@
         aria-hidden="true"
       />
     </button>
-    <h2 class="ml-4 capitalize text-xl text-gray-500 font-bold">
+    <h2
+      class="ml-2 sm:ml-4 capitalize text-sm sm:text-xl text-gray-500 font-bold"
+    >
       {{ formattedDate }}
     </h2>
     <button class="flex items-center" @click="handleNextMonth">
@@ -21,28 +26,10 @@
       />
     </button>
 
-    <button
-      class="block items-center text-sm font-semibold transition duration-200 ease-in bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-sm ml-auto mr-2"
-      @click="$emit('change-view')"
-    >
-      <Icon
-        name="mdi:table"
-        class="flex-shrink-0 h-6 w-6"
-        aria-hidden="true"
-      />
-    </button>
+    <IconButton class="ml-auto" @click="$emit('change-view')" icon="mdi:table" />
 
-    <button
-      class="block items-center text-sm font-semibold transition duration-200 ease-in bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-sm"
-      @click="$emit('create')"
-    >
-      Criar
-      <Icon
-        name="material-symbols:add"
-        class="flex-shrink-0 h-6 w-6"
-        aria-hidden="true"
-      />
-    </button>
+    <IconButton  class="ml-1" @click="$emit('create')" label="Criar" icon="material-symbols:add" />
+
   </header>
 </template>
 
