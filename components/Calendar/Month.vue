@@ -7,6 +7,7 @@
           @update="(evt) => $emit('update', evt)"
           :day="day"
           :rowIdx="i"
+          :multipleUsers="multipleUsers"
         />
       </template>
     </template>
@@ -19,6 +20,10 @@ import Day from "@/components/Calendar/Day";
 export default {
   props: {
     month: Array,
+    multipleUsers: {
+      type: Boolean,
+      default: false,
+    }
   },
   components: {
     Day,

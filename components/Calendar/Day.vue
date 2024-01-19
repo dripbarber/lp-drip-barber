@@ -1,7 +1,10 @@
 <template>
   <div class="border border-gray-200 flex flex-col">
-    <header class="flex flex-col items-center">
-      <p v-if="rowIdx === 0" class="text-sm mt-1">
+    <header class="flex flex-col items-center" @click="handleDayClick">
+      <p v-if="rowIdx === 0" class="hidden sm:block text-sm mt-1">
+        {{ day.format("ddd").toUpperCase() }}
+      </p>
+      <p class="sm:hidden text-sm mt-1">
         {{ day.format("ddd").toUpperCase() }}
       </p>
       <p :class="['text-sm p-1 my-1 text-center', getCurrentDayClass]">
@@ -22,8 +25,8 @@
         {{ evt?.startTime }}:
         <span class="capitalize">{{
           evt?.customer?.name ?? evt?.customer?.email
-        }}</span>
-        - {{ evt?.employee?.name }}
+        }}</span
+        ><span v-if="multipleUsers"> - {{ evt?.employee?.name }}</span>
       </div>
     </div>
   </div>
@@ -40,6 +43,10 @@ const props = defineProps({
   },
   rowIdx: {
     type: Number,
+  },
+  multipleUsers: {
+    type: Boolean,
+    required: false,
   },
 });
 
@@ -64,7 +71,16 @@ const handleEventClick = (evt) => {
 };
 
 function getRandomLabel() {
-  const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple", "slate", "purple"];
+  const labelsClasses = [
+    "indigo",
+    "gray",
+    "green",
+    "blue",
+    "red",
+    "purple",
+    "slate",
+    "purple",
+  ];
   const randomIndex = Math.floor(Math.random() * labelsClasses.length);
   return labelsClasses[randomIndex];
 }
@@ -76,10 +92,10 @@ const dayEvents = computed(() => {
         `${item.date.replace("T00:00:00.000Z", "")}T${item.startTime}`
       );
 
-      if(!store.labelBarber[item.employee.name]) {
-        const labelBarber = store.labelBarber
+      if (!store.labelBarber[item.employee.name]) {
+        const labelBarber = store.labelBarber;
         labelBarber[item.employee.name] = getRandomLabel();
-        store.setLabelBarber(labelBarber)
+        store.setLabelBarber(labelBarber);
       }
 
       return {

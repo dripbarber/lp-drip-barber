@@ -2,30 +2,20 @@
   <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
       <div class="flex items-end mb-2">
-        <button
+        <IconButton
           v-if="hasMultipleView"
-          class="block items-center text-sm font-semibold transition duration-200 ease-in bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-sm ml-auto mr-2"
+          class="ml-auto"
           @click="$emit('change-view')"
-        >
-          <Icon
-            name="mdi:calendar-blank"
-            class="flex-shrink-0 h-6 w-6"
-            aria-hidden="true"
-          />
-        </button>
+          icon="mdi:calendar-blank"
+        />
 
-        <button
+        <IconButton
           v-if="!hideCreate"
-          class="block items-center text-sm font-semibold transition duration-200 ease-in bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-sm "
+          class="ml-1"
           @click="$emit('create', item)"
-        >
-          Criar
-          <Icon
-            name="material-symbols:add"
-            class="flex-shrink-0 h-6 w-6"
-            aria-hidden="true"
-          />
-        </button>
+          label="Criar"
+          icon="material-symbols:add"
+        />
       </div>
       <slot name="content">
         <table class="w-full whitespace-no-wrap">
@@ -279,7 +269,7 @@ const props = defineProps({
   },
   hasMultipleView: {
     type: Boolean,
-    default: false
+    default: false,
   },
   sorted: {
     type: Object,

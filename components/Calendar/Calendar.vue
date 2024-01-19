@@ -7,6 +7,7 @@
       />
       <div class="flex flex-1">
         <Month
+          :multipleUsers="!id"
           @create="(evt) => $emit('create', evt)"
           @update="(evt) => $emit('update', evt)"
           :month="getMonth(store.monthIndex)"

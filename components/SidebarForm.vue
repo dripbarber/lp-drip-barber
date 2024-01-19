@@ -2,7 +2,7 @@
   <Transition name="slide-fade">
     <div
       v-if="isOpen"
-      class="fixed top-0 right-0 h-screen w-1/4 bg-white shadow-md flex flex-col z-30"
+      class="fixed top-0 right-0 h-screen w-full sm:w-1/4 bg-white shadow-md flex flex-col z-30"
     >
       <div class="bg-gray-100 text-gray-500 py-4 px-4 flex justify-between">
         <div class="flex items-center justify-center">
