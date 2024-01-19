@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 grid grid-cols-7 grid-rows-5">
+  <div class="flex-1 grid-cols-1 sm:grid-cols-3 grid md:grid-cols-7 md:grid-rows-5">
     <template v-for="(row, i) in month">
       <template v-for="(day, idx) in row" :key="idx">
         <Day
