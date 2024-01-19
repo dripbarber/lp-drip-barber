@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="h-screen flex flex-col">
-      <CalendarHeader @create="$emit('create')"  @change-view="$emit('change-view')"/>
+      <CalendarHeader
+        @create="$emit('create')"
+        @change-view="$emit('change-view')"
+      />
       <div class="flex flex-1">
         <Month
           @create="(evt) => $emit('create', evt)"
@@ -29,10 +32,9 @@ const store = useCalendarStore();
 const props = defineProps({
   id: {
     type: String,
-    default: null
+    default: null,
   },
 });
-
 
 watch(
   () => store.monthIndex,
@@ -47,19 +49,20 @@ const requestAppointment = async () => {
     .flat()
     .map((item) => item.format("YYYY-MM-DD"));
 
-    const response: any = await $fetch(`${api_url}/appointment`, {
-      method: "GET",
-      query: {
-        employee: props.id,
-        startDate: dates[0],
-        endDate: dates[dates.length - 1]
-      },
-      headers: {
-        authorization: `Bearer ${userStore.token}`,
-      },
-    });
+  const response: any = await $fetch(`${api_url}/appointment`, {
+    method: "GET",
+    query: {
+      employee: props.id,
+      startDate: dates[0],
+      endDate: dates[dates.length - 1],
+    },
+    headers: {
+      authorization: `Bearer ${userStore.token}`,
+    },
+  });
 
-    store.setFilteredEvents([...store.filteredEvents, ...response?.appointments]);};
+  store.setFilteredEvents(response?.appointments);
+};
 
 requestAppointment();
 </script>
