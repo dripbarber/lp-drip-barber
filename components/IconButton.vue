@@ -4,11 +4,7 @@
     @click="$emit('click')"
   >
     <span class="hidden sm:inline-block"> {{ label }} </span>
-    <Icon
-      v-if="icon && !loading"
-      :name="icon"
-      class="w-6 h-6 text-white "
-    />
+    <Icon v-if="icon && !loading" :name="icon" class="w-6 h-6 text-white" />
     <Loader class="w-6 h-6 text-white mr-2" v-if="loading" />
   </button>
 </template>
@@ -21,6 +17,10 @@ const { size, loading, disabled } = defineProps({
   size: {
     type: String,
     required: true,
+  },
+  label: {
+    type: String,
+    default: null,
   },
   icon: {
     type: String,
