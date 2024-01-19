@@ -11,7 +11,7 @@
 
         <IconButton
           v-if="!hideCreate"
-          class="ml-1"
+          :class="{'ml-auto': !hasMultipleView}"
           @click="$emit('create', item)"
           label="Criar"
           icon="material-symbols:add"

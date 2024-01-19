@@ -130,17 +130,9 @@
             aria-label="Account"
             aria-haspopup="true"
           >
-            <img
-              v-if="userStore.user?.picture"
-              class="object-cover w-full h-full rounded-full"
+            <TableAvatar
               :src="userStore.user?.picture"
               :alt="userStore.user?.name"
-              loading="lazy"
-            />
-            <Icon
-              v-else
-              name="ph:user-bold"
-              class="object-cover w-full h-full rounded-full"
             />
           </button>
           <template v-if="isProfileMenuOpen">
