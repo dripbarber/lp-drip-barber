@@ -1,7 +1,7 @@
 <template>
   <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
-      <div class="flex items-end mb-2">
+      <div class="flex gap-2 items-end mb-2">
         <IconButton
           v-if="hasMultipleView"
           class="ml-auto"
