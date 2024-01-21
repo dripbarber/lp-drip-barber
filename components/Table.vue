@@ -1,6 +1,6 @@
 <template>
   <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
-    <div class="w-full overflow-x-auto">
+    <div class="w-full">
       <div class="flex gap-2 items-end mb-2">
         <IconButton
           v-if="hasMultipleView"
@@ -11,12 +11,14 @@
 
         <IconButton
           v-if="!hideCreate"
-          :class="{'ml-auto': !hasMultipleView}"
+          :class="{ 'ml-auto': !hasMultipleView }"
           @click="$emit('create', item)"
           label="Criar"
           icon="material-symbols:add"
         />
       </div>
+    </div>
+    <div class="w-full overflow-x-auto">
       <slot name="content">
         <table class="w-full whitespace-no-wrap">
           <thead>
@@ -26,7 +28,7 @@
               <template v-for="column in columns" :key="column">
                 <th class="px-4 py-3">
                   <div :class="`flex justify-${column?.align}`">
-                    <span class="flex gap-1">
+                    <span class="flex gap-1" style="text-wrap: nowrap">
                       {{ column.label }}
                       <a
                         v-if="column?.sort"
@@ -98,8 +100,9 @@
                 <td
                   v-for="column in columns"
                   :key="column"
-                  class="px-4 py-3"
+                  class="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base"
                   :class="`text-${column?.align}`"
+                  style="text-wrap: nowrap"
                 >
                   <slot
                     :name="`row_${item[column.key]}`"
@@ -116,7 +119,10 @@
                         />
                       </div>
                       <div v-if="item[column.key]">
-                        <p class="font-semibold">
+                        <p
+                          class="font-semibold"
+                          :class="{ capitalize: item[column.key]?.name }"
+                        >
                           {{
                             item[column.key]?.name ?? item[column.key]?.email
                           }}
@@ -189,30 +195,32 @@
                     </span>
                   </slot>
                 </td>
-                <td v-if="!hideUpdate || !hideDelete" class="px-4 py-3 w-32">
-                  <button
-                    v-if="!hideUpdate"
-                    class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in hover:bg-sky-500 mx-auto hover:text-white py-2 px-2 rounded-full"
-                    @click="$emit('update', item)"
-                  >
-                    <Icon
-                      name="material-symbols:edit-outline"
-                      class="flex-shrink-0 h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </button>
+                <td v-if="!hideUpdate || !hideDelete" class="sm:w-32">
+                  <div class="flex justify-center w-full gap-1">
+                    <button
+                      v-if="!hideUpdate"
+                      class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in hover:bg-sky-500 hover:text-white rounded-full px-1 py-1 sm:px-2 sm:py-2"
+                      @click="$emit('update', item)"
+                    >
+                      <Icon
+                        name="material-symbols:edit-outline"
+                        class="flex-shrink-0 h-5 w-5 h-6 w-6"
+                        aria-hidden="true"
+                      />
+                    </button>
 
-                  <button
-                    v-if="!hideDelete"
-                    class="inline-flex items-center text-sm font-semibold transition duration-200 mx-auto ease-in hover:bg-sky-500 hover:text-white py-2 px-2 rounded-full ml-1"
-                    @click="$emit('delete', item)"
-                  >
-                    <Icon
-                      name="material-symbols:ink-eraser-outline"
-                      class="flex-shrink-0 h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </button>
+                    <button
+                      v-if="!hideDelete"
+                      class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in hover:bg-sky-500 hover:text-white rounded-full px-1 py-1 sm:px-2 sm:py-2"
+                      @click="$emit('delete', item)"
+                    >
+                      <Icon
+                        name="material-symbols:ink-eraser-outline"
+                        class="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
                 </td>
               </tr>
             </template>
@@ -321,6 +329,17 @@ const getNormalized = (value: any, type: string) => {
 
 
 <style scoped>
+::-webkit-scrollbar-track {
+  background-color: #fffefe;
+}
+::-webkit-scrollbar {
+  height: 5px;
+  background: #f4f4f4;
+}
+::-webkit-scrollbar-thumb {
+  background: #6497b1;
+}
+
 .loading-container {
   display: flex;
   justify-content: center;

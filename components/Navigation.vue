@@ -236,7 +236,7 @@ import { useUserStore } from "@/stores/userStores";
 import { useForm, useFieldArray } from "vee-validate";
 import { required, number } from "@/composable/rules";
 
-const emits = defineEmits(["openSideMenu"]);
+const emits = defineEmits(["open-menu"]);
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
 
@@ -453,7 +453,7 @@ const searchItem = ref("");
 const shortcut = ref("");
 
 function toggleSideMenu() {
-  return emits("openSideMenu");
+  return emits("open-menu");
 }
 
 function toggleProfileMenu() {
