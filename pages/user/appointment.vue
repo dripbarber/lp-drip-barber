@@ -1,6 +1,6 @@
 <template>
   <section class="h-screen overflow-y-auto dark:bg-gray-900">
-    <Navigation />
+    <Navigation :showMenu="false" :showNotification="false" />
     <main class="overflow-y-auto dark:bg-gray-900">
       <div class="container max-w-4xl mx-auto h-full p-4 sm:p-0">
         <template v-if="!itsThanks">
