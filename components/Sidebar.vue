@@ -52,21 +52,33 @@
     @keydown.escape="closeSideMenu"
   >
     <div class="py-4 text-gray-500 dark:text-gray-400">
-      <router-link
-        class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-        to="#"
-      >
-        Drip Barber
-      </router-link>
-      <ul>
-        <li class="relative px-6 py-3" v-for="page in pages" :key="page.name">
+      <div class="flex items-center mx-6">
+        <span
+          class="text-lg font-bold text-gray-800 dark:text-gray-200"
+        >
+          Drip Barber
+        </span>
+
+        <button
+          class="inline-flex items-center text-sm font-semibold transition duration-200 ease-in ml-auto hover:text-gray-800 py-2  rounded-full"
+          @click="closeSideMenu"
+        >
+          <Icon
+            name="material-symbols:close-rounded"
+            class="flex-shrink-0 h-5 w-5"
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      <ul class="my-3">
+        <li class="relative px-6 py-2" v-for="page in pages" :key="page.name">
           <router-link
-            active-class="bg-sky-200"
-            class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            exact-active-class="bg-sky-400 text-white"
+            class="inline-flex items-center w-full text-sm font-semibold transition duration-200 ease-in hover:bg-sky-500 hover:text-white py-2 px-2 rounded-lg"
             :to="`/${page.to}`"
           >
-            <component
-              :is="page.icon"
+            <Icon
+              :name="page.icon"
               class="flex-shrink-0 h-6 w-6"
               aria-hidden="true"
             />

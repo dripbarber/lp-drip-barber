@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="h-screen flex flex-col">
+  <div class="pb-2">
+    <div class="flex flex-col">
       <CalendarHeader
         @create="$emit('create')"
         @change-view="$emit('change-view')"

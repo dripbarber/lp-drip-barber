@@ -1,9 +1,9 @@
 <template>
   <main class="flex">
-    <Sidebar :pages="pages" />
+    <Sidebar :isSideMenuOpen="isOpen" @closeSideMenu="isOpen = !isOpen" :pages="pages" />
 
     <div class="w-full">
-      <Navigation route="employee" />
+      <Navigation @open-menu="isOpen = !isOpen"  route="employee" />
 
       <div class="mx-8 mt-4">
         <slot />
@@ -15,8 +15,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const { isSideMenuOpen } = defineProps(["isSideMenuOpen"]);
-const emits = defineEmits(["closeSideMenu"]);
+const isOpen = ref(false);
 
 const pages = [
   {
@@ -31,7 +30,4 @@ const pages = [
   }
 ];
 
-function closeSideMenu() {
-  return emits("closeSideMenu");
-}
 </script>
