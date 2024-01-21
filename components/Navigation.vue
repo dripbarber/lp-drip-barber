@@ -7,6 +7,7 @@
     >
       <!-- Mobile hamburger -->
       <button
+        v-if="showMenu"
         class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-sky"
         v-on:click="toggleSideMenu"
         aria-label="Menu"
@@ -71,6 +72,7 @@
         <!-- Notifications menu -->
         <li class="relative">
           <button
+            v-if="showNotification"
             class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-sky"
             v-on:click="toggleNotificationsMenu"
             @keydown.escape="toggleNotificationsMenu"
@@ -254,6 +256,14 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  showMenu: {
+    type: String,
+    default: true,
+  },
+  showNotification: {
+    type: String,
+    default: true,
+  }
 });
 
 const state = ref({
