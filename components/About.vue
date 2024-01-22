@@ -65,11 +65,11 @@
   }
 
   const aboutImgs: aboutImgs[] =[
-    {description: "image1", src: "assets/about-item001.jpg", class: ''},
-    {description: "image2", src: "assets/about-item03.jpg", class: ''},
-    {description: "image3", src: "assets/about-item05.jpg", class: 'transform scale-x-[-1]'},
-    {description: "image4", src: "assets/about-item006.jpg", class: 'transform scale-x-[-1]'},
-    {description: "image5", src: "assets/teste5.jpg", class: ''},
-    {description: "image6", src: "assets/teste3.jpg", class: 'transform scale-x-[-1]'},
+    {description: "image1", src: "assets/about-item-1.jpg", class: ''},
+    {description: "image2", src: "assets/about-item-2.jpg", class: ''},
+    {description: "image3", src: "assets/about-item-3.jpg", class: 'transform scale-x-[-1]'},
+    {description: "image4", src: "assets/about-item-4.jpg", class: 'transform scale-x-[-1]'},
+    {description: "image5", src: "assets/about-item-5.jpg", class: ''},
+    {description: "image6", src: "assets/about-item-6.jpg", class: 'transform scale-x-[-1]'},
   ]
 </script>

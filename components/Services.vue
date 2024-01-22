@@ -92,13 +92,13 @@ interface imgCard {
 }
 
 const imgCard: imgCard[] = [
-  { name: "BARBA ALINHADA", link: "#", src: "assets/barba-alinhada-2.jpg", alt: "serviços de corte e barba" },
-  { name: "CAVANHAQUE", link: "#", src: "assets/cavanhaque-2.jpg", alt: "clientes na barbearia" },
-  { name: "JEITINHO NA SOBRANCELHA", link: "#", src: "assets/jeitinho-na-sobrancelha-2.jpg", alt: "clientes na barbearia" },
-  { name: "LIMPEZA DE PELE", link: "#", src: "assets/limpeza-de-pele-2.jpg", alt: "clientes na barbearia" },
-  { name: "LUZES", link: "#", src: "assets/luzes-2.jpg", alt: "clientes na barbearia" },
-  { name: "NEVADO", link: "#", src: "assets/nevado-2.jpg", alt: "clientes na barbearia" },
-  { name: "REGUA", link: "#", src: "assets/regua-3.jpg", alt: "clientes na barbearia" },
+  { name: "BARBA ALINHADA", link: "#", src: "assets/service-1.jpg", alt: "serviços de corte e barba" },
+  { name: "CAVANHAQUE", link: "#", src: "assets/service-2.jpg", alt: "clientes na barbearia" },
+  { name: "JEITINHO NA SOBRANCELHA", link: "#", src: "assets/service-3.jpg", alt: "clientes na barbearia" },
+  { name: "LIMPEZA DE PELE", link: "#", src: "assets/service-4.jpg", alt: "clientes na barbearia" },
+  { name: "LUZES", link: "#", src: "assets/service-5.jpg", alt: "clientes na barbearia" },
+  { name: "NEVADO", link: "#", src: "assets/service-6.jpg", alt: "clientes na barbearia" },
+  { name: "REGUA", link: "#", src: "assets/service-7.jpg", alt: "clientes na barbearia" },
 ];
 
 
