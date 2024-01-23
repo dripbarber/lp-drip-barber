@@ -63,7 +63,6 @@
 </template>
 
 <script setup>
-import { useUserStore } from "@/stores/userStores";
 import { required, email, password } from "@/composable/rules";
 import { useForm } from "vee-validate";
 import useLoading from "@/composable/useLoading";
@@ -101,9 +100,10 @@ const doSignup = (values) => {
     }
 
     useNotify("Usuário criado com sucesso.", "success");
+    
     setTimeout(() => {
       router.push({ path: "/login" });
-    }, 1500);
+    }, 1000);
   });
 };
 
