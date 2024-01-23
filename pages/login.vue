@@ -79,7 +79,7 @@ onMounted(() => {
   redirectUser(userStore.token, userStore.user);
 });
 
-const doLogin = async (values) => {
+const doLogin = (values) => {
   startLoading(async () => {
     const { data, error } = await usePostPublic(values, "/login");
 

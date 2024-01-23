@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { useNotify } from './useNotify';
 
 const loading = ref(false);
 
@@ -14,6 +15,7 @@ export default function useLoading() {
       loading.value = true;
       await asyncFunction();
     } catch (error) {
+      useNotify("Ops! Ocorreu um erro...")
       console.error('Erro durante a operação:', error);
     } finally {
       loading.value = false;
