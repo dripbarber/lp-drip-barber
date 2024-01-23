@@ -1,0 +1,23 @@
+version: '3.7'
+
+networks:
+  network_reservation_management:
+    name: network_reservation_management
+
+services:
+  lp-drip-barber:
+    container_name: lp-drip-barber
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: npm run dev
+    restart: unless-stopped
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
+    ports:
+      - "3000:3000"
+    networks:
+      network_reservation_management:
+
+

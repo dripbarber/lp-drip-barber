@@ -8,7 +8,6 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/i18n',
     'nuxt-swiper',
     '@nuxt/image',
     '@pinia/nuxt',
@@ -21,12 +20,6 @@ export default defineNuxtConfig({
     'nuxt-snackbar',
     'dayjs-nuxt'
   ],
-  i18n: {
-    vueI18n: './i18n.config.ts',
-    compilation: {
-      jit: false,
-    },
-  },
   dayjs: {
     locales: ['pt'],
     defaultLocale: 'pt',
