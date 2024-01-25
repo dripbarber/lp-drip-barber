@@ -5,60 +5,22 @@
   >
     <div class="container hidden md:flex mx-auto px-5 lg:px-44">
       <div class="-m-1 flex flex-wrap md:-m-2">
-        <div class="flex w-1/2 flex-wrap">
-          <div class="w-1/2 p-1 md:p-2">
+        <div
+          v-for="(gallery, index) in imgGallery"
+          :key="index"
+          class="flex w-1/2 flex-wrap"
+        >
+          <div
+            v-for="img in gallery"
+            :key="img.src"
+            :class="img.class"
+            class="p-1 md:p-2"
+          >
             <NuxtImg
               format="webp"
               alt="gallery"
               class="block h-full w-full rounded-lg object-cover object-center"
-              src="assets/gallery-item-2.jpg"
-              loading="lazy"
-            />
-          </div>
-          <div class="w-1/2 p-1 md:p-2">
-            <NuxtImg
-              format="webp"
-              alt="gallery"
-              class="block h-full w-full rounded-lg object-cover object-center"
-              src="assets/gallery-item-3.jpg"
-              loading="lazy"
-            />
-          </div>
-          <div class="w-full p-1 md:p-2">
-            <NuxtImg
-              format="webp"
-              alt="gallery"
-              class="block h-full w-full rounded-lg object-cover object-center"
-              src="assets/gallery-item-1.jpg"
-              loading="lazy"
-            />
-          </div>
-        </div>
-        <div class="flex w-1/2 flex-wrap">
-          <div class="w-full p-1 md:p-2">
-            <NuxtImg
-              format="webp"
-              alt="gallery"
-              class="block h-full w-full rounded-lg object-cover object-center"
-              src="assets/gallery-item-6.jpg"
-              loading="lazy"
-            />
-          </div>
-          <div class="w-1/2 p-1 md:p-2">
-            <NuxtImg
-              format="webp"
-              alt="gallery"
-              class="block h-full w-full rounded-lg object-cover object-center"
-              src="assets/gallery-item-5.jpg"
-              loading="lazy"
-            />
-          </div>
-          <div class="w-1/2 p-1 md:p-2">
-            <NuxtImg
-              format="webp"
-              alt="gallery"
-              class="block h-full w-full rounded-lg object-cover object-center"
-              src="assets/gallery-item-4.jpg"
+              :src="img.src"
               loading="lazy"
             />
           </div>
@@ -77,73 +39,112 @@
           disableOnInteraction: true,
         }"
       >
-        <SwiperSlide>
+        <SwiperSlide v-for="(gallery, index) in imgMobileGallery" :key="index">
           <div class="w-full items-center px-4">
             <NuxtImg
               format="webp"
-              src="assets/gallery-item-1.jpg"
-              class="w-full object-cover object-center rounded-lg"
-              alt="imagem da galeria de fotos"
+              :src="gallery.src"
+              class="object-cover object-center rounded-lg"
+              alt="gallery"
               loading="lazy"
-              width="540"
-              height="474"
+              :class="gallery.class"
+              :width="gallery.width"
+              :height="gallery.height"
             />
             <div class="flex pt-3 overflow-hidden">
               <NuxtImg
+                v-for="item in gallery.children"
+                :key="item.src"
                 format="webp"
-                src="assets/gallery-item-2-2.jpg"
-                class="w-1/2 pr-1 object-cover object-center rounded-lg"
+                :src="item.src"
+                class="object-cover object-center rounded-lg"
                 alt="imagem da galeria de fotos"
                 loading="lazy"
-                width="255"
-                height="374"
-              />
-              <NuxtImg
-                format="webp"
-                src="assets/gallery-item-3-2.jpg"
-                class="w-1/2 pl-1 object-cover object-center rounded-lg"
-                alt="imagem da galeria de fotos"
-                loading="lazy"
-                width="255"
-                height="374"
+                :class="item.class"
+                :width="item.width"
+                :height="item.height"
               />
             </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div class="w-full items-center px-4">
-            <div class="flex pb-3 justify-center">
-              <NuxtImg
-                format="webp"
-                src="assets/gallery-item-4-2.jpg"
-                class="w-1/2 pr-1 object-cover object-center rounded-lg"
-                alt="imagem da galeria de fotos"
-                loading="lazy"
-                width="255"
-                height="374"
-              />
-              <NuxtImg
-                format="webp"
-                src="assets/gallery-item-5-2.jpg"
-                class="w-1/2 pl-1 object-cover object-center rounded-lg"
-                alt="imagem da galeria de fotos"
-                loading="lazy"
-                width="255"
-                height="374"
-              />
-            </div>
-            <NuxtImg
-              format="webp"
-              src="assets/gallery-item-6.jpg"
-              class="w-full object-cover object-center rounded-lg"
-              alt="imagem da galeria de fotos"
-              loading="lazy"
-              width="540"
-              height="474"
-            />
           </div>
         </SwiperSlide>
       </Swiper>
     </div>
   </section>
 </template>
+
+
+<script setup lang="ts">
+const imgGallery = [
+  [
+    {
+      src: "assets/gallery-item-2.jpg",
+      class: "w-1/2",
+    },
+    {
+      src: "assets/gallery-item-3.jpg",
+      class: "w-1/2",
+    },
+    {
+      src: "assets/gallery-item-1.jpg",
+      class: "w-full",
+    },
+  ],
+  [
+    {
+      src: "assets/gallery-item-6.jpg",
+      class: "w-full",
+    },
+    {
+      src: "assets/gallery-item-5.jpg",
+      class: "w-1/2",
+    },
+    {
+      src: "assets/gallery-item-4.jpg",
+      class: "w-1/2",
+    },
+  ],
+];
+
+const imgMobileGallery = [
+  {
+      src: "assets/gallery-item-1.jpg",
+      class: "w-full",
+      width: "540",
+      height: "474",
+      children: [
+        {
+          src: "assets/gallery-item-2-2.jpg",
+          class: "w-1/2 pr-1",
+          width: "255",
+          height: "374",
+        },
+        {
+          src: "assets/gallery-item-3-2.jpg",
+          class: "w-1/2 pl-1",
+          width: "255",
+          height: "374",
+        },
+      ],
+    },
+   {
+      src: "assets/gallery-item-6.jpg",
+      class: "w-full",
+      width: "540",
+      height: "474",
+      children: [
+        {
+          src: "assets/gallery-item-4-2.jpg",
+          class: "w-1/2 pr-1",
+          width: "255",
+          height: "374",
+        },
+        {
+          src: "assets/gallery-item-5-2.jpg",
+          class: "w-1/2 pl-1",
+          width: "255",
+          height: "374",
+        },
+      ],
+    },
+];
+</script>
