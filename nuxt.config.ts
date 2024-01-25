@@ -18,8 +18,18 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@samk-dev/nuxt-vcalendar',
     'nuxt-snackbar',
-    'dayjs-nuxt'
+    'dayjs-nuxt',
+    '@zadigetvoltaire/nuxt-gtm'
   ],
+  gtm: {
+    id: 'GTM-WS7KDGV5',
+    enableRouterSync: true,
+    queryParams: {
+      gtm_auth: 'init',
+      gtm_cookies_win: 'init',
+      gtm_preview: 'init'
+    }
+  },
   dayjs: {
     locales: ['pt'],
     defaultLocale: 'pt',
@@ -27,6 +37,14 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       api_url: process.env.API_URL,
+      gtm: {
+        id: 'GTM-WS7KDGV5',
+        queryParams: {
+          gtm_auth: 'test',
+          gtm_cookies_win: 'test',
+          gtm_preview: 'test'
+        }
+      }
     }
   },
   build: {

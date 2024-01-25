@@ -1,4 +1,7 @@
 <template>
+      <div
+        class="px-6 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 grid gap-8"
+      >
   <div class="form-steps form-text-lg" role="tablist">
     <ul class="flex justify-between overflow-x-auto">
       <template v-for="(item, index) in options" :key="index">
@@ -33,6 +36,7 @@
   </template>
 
   <slot name="footer" />
+  </div>
 </template>
 
 <script setup lang="ts">

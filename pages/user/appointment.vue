@@ -1,199 +1,156 @@
 <template>
-  <section class="h-screen overflow-y-auto dark:bg-gray-900">
-    <Navigation :showMenu="false" :showNotification="false" />
-    <main class="overflow-y-auto dark:bg-gray-900">
-      <div class="container max-w-4xl mx-auto h-full p-4 sm:p-0">
-        <template v-if="!itsThanks">
-          <h2
-            class="my-3 sm:my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-          >
-            Reserve um horário
-          </h2>
-          <p class="mb-6 text-gray-600 dark:text-gray-100">
-            Serviços no melhor estilo brasileiro, faça uma marcação. Nossos
-            barbeiros estão animados para ver você!
-          </p>
+  <UserLayout>
+    <template v-if="!itsThanks">
+      <h2
+        class="my-3 sm:my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+      >
+        Reserve um horário
+      </h2>
+      <p class="mb-6 text-gray-600 dark:text-gray-100">
+        Serviços no melhor estilo brasileiro, faça uma marcação. Nossos
+        barbeiros estão animados para ver você!
+      </p>
 
-          <form
-            class="px-6 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 grid gap-8"
-          >
-            <StepForms
-              v-model="currentStep"
-              :options="['Sede', 'Barbeiro', 'Serviços', 'Data e Hora']"
-            >
-              <template #step_1>
-                <Loading v-if="loading" />
-                <template v-else>
-                  <InputSelectCard
-                    v-model="state.company"
-                    :options="optionsCompanys"
-                    title="name"
-                    text="address"
-                    label="Escolha uma sede"
-                  />
-                </template>
-              </template>
-              <template #step_2>
-                <Loading v-if="loadingBarber" />
-                <template v-else>
-                  <InputSelectAvatar
-                    v-if="state.company"
-                    label="Escolha um barbeiro"
-                    v-model="state.employee"
-                    :options="optionsBarbers"
-                  />
-                </template>
-              </template>
-              <template #step_3>
-                <InputSelectCheckbox
-                  v-if="state.employee"
-                  v-model="state.services"
-                  :options="optionsService"
-                  title="description"
-                  text="about"
-                  label="Escolha os serviços"
-                />
-              </template>
-              <template #step_4>
-                <div>
-                  <div
-                    v-if="state.services.length"
-                    class="mt-4 text-sm flex flex-col md:flex-row md:space-x-5 items-center"
-                  >
-                    <client-only>
-                      <VDatePicker
-                        v-model="state.date"
-                        mode="date"
-                        is-required
-                        class="v-calendar mb-4 w-full"
-                        :is-dark="isDark"
-                        :disabled-dates="[
-                          { start: null, end: new Date() },
-                          ...optionDates,
-                          { start: limitDate, end: null },
-                        ]"
-                      />
-
-                      <div
-                        class="max-h-56 md:max-h-72 w-fit overflow-scroll overflow-x-hidden px-2 flex flex-col items-center md:items-start"
-                        v-if="state.date"
-                      >
-                        <Loading v-if="loadingHour" />
-                        <template v-else>
-                          <label
-                            v-for="(time, index) in optionTimes"
-                            :key="index"
-                            class="flex items-center py-1"
-                          >
-                            <input
-                              type="radio"
-                              v-model="state.startTime"
-                              :value="time"
-                              class="sr-only"
-                            />
-                            <span
-                              class="px-6 py-2 text-sm font-medium hover:text-white transition-colors duration-150 border border-sky-600 hover:border-transparent rounded active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray dark:text-white dark:border-white hover:cursor-pointer"
-                              :class="{
-                                'bg-sky-600 text-white':
-                                  state.startTime === time,
-                              }"
-                            >
-                              {{ time }}
-                            </span>
-                          </label>
-                        </template>
-                      </div>
-                    </client-only>
-                  </div>
-
-                  <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400 font-semibold"
-                      >Mensagem</span
-                    >
-                    <textarea
-                      v-model="state.message"
-                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-sky-400 focus:outline-none focus:shadow-outline-sky dark:focus:shadow-outline-gray resize-none"
-                      rows="3"
-                      placeholder="Envie alguma observação"
-                    ></textarea>
-                  </label>
-                </div>
-              </template>
-
-              <template #footer>
-                <div class="flex justify-between">
-                  <button
-                    class="form-border-width-btn form-shadow-btn focus:form-ring focus:outline-zero disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed form-p-btn-lg form-radius-btn-lg form-text-lg form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary transition-transform transform hover:scale-105"
-                    :disabled="currentStep === 0"
-                    @click="currentStep--"
-                    type="button"
-                  >
-                    Voltar
-                  </button>
-                  <button
-                    v-if="currentStep < 3"
-                    @click="currentStep++"
-                    class="form-border-width-btn form-shadow-btn focus:form-ring focus:outline-zero disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed form-p-btn-lg form-radius-btn-lg form-text-lg form-bg-primary form-color-on-primary form-border-color-btn transition-transform transform hover:scale-105"
-                    type="button"
-                    :disabled="disableContinue"
-                  >
-                    Continuar
-                  </button>
-                  <button
-                    v-else
-                    class="form-border-width-btn form-shadow-btn focus:form-ring focus:outline-zero disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed form-p-btn-lg form-radius-btn-lg form-text-lg form-bg-primary form-color-on-primary form-border-color-btn transition-transform transform hover:scale-105 font-semibold"
-                    :disabled="
-                      !state.employee || !state.date || !state.startTime
-                    "
-                    type="button"
-                    @click="createAppointment"
-                  >
-                    Agendar
-                  </button>
-                </div>
-              </template>
-            </StepForms>
-          </form>
+      <StepForms
+        v-model="currentStep"
+        :options="['Sede', 'Barbeiro', 'Serviços', 'Data e Hora']"
+      >
+        <template #step_1>
+          <InputSelectCard
+            v-model="state.company"
+            :options="optionsCompanys"
+            title="name"
+            text="address"
+            label="Escolha uma sede"
+            :loading="loading"
+          />
         </template>
-        <template v-else>
-          <div class="h-full flex items-center justify-center">
+        <template #step_2>
+          <InputSelectAvatar
+            v-if="state.company"
+            label="Escolha um barbeiro"
+            v-model="state.employee"
+            :options="optionsBarbers"
+            :loading="loadingBarber"
+          />
+        </template>
+        <template #step_3>
+          <InputSelectCheckbox
+            v-if="state.employee"
+            v-model="state.services"
+            :options="optionsService"
+            title="description"
+            text="about"
+            label="Escolha os serviços"
+          />
+        </template>
+        <template #step_4>
+          <div>
             <div
-              class="p-8 mb-8 mt-10 sm:mt-20 bg-white rounded-lg shadow-md dark:bg-gray-800 grid gap-2"
+              v-if="state.services.length"
+              class="mt-4 text-sm flex flex-col md:flex-row md:space-x-5 items-center"
             >
-              <h2
-                class="text-2xl font-semibold text-gray-700 dark:text-gray-200 flex gap-2"
-              >
-                <Icon
-                  name="mdi:calendar-text"
-                  class="h-7 w-7"
-                  aria-hidden="true"
+              <client-only>
+                <VDatePicker
+                  v-model="state.date"
+                  mode="date"
+                  is-required
+                  class="v-calendar mb-4 w-full"
+                  :is-dark="isDark"
+                  :disabled-dates="[
+                    { start: null, end: new Date() },
+                    ...optionDates,
+                    { start: limitDate, end: null },
+                  ]"
                 />
-                Agradecemos por sua reserva!
-              </h2>
-              <p class="mb-6 text-gray-600 dark:text-gray-100">
-                Obrigado por escolher a nossa barbearia!<br />Estamos ansiosos
-                para recebê-lo em breve.
-              </p>
 
-              <div class="grid gap-1">
-                <p><b>Local:</b> {{ getCompanyName(state.company) }}</p>
-                <p><b>Barbeiro:</b> {{ getBarberName(state.employee) }}</p>
-                <p><b>Data:</b> {{ formatDate(state.date) }}</p>
-                <p><b>Hora:</b> {{ state.startTime }}</p>
-                <p><b>Serviços:</b> {{ getServiceDescriptions() }}</p>
-              </div>
+                <div
+                  class="max-h-56 md:max-h-72 w-fit overflow-scroll overflow-x-hidden px-2 flex flex-col items-center md:items-start"
+                  v-if="state.date"
+                >
+                  <InputSelectHour
+                    v-model="state.startTime"
+                    :options="optionTimes"
+                    :loading="loadingHour"
+                  />
+                </div>
+              </client-only>
             </div>
+
+            <TextareaInput
+              label="Mensagem"
+              type="textar"
+              v-model="state.message"
+              rows="3"
+              placeholder="Envie alguma observação"
+            />
           </div>
         </template>
+
+        <template #footer>
+          <div class="flex justify-between">
+            <StepButton
+              :disabled="currentStep === 0"
+              @click="currentStep--"
+              type="secondary"
+            >
+              Voltar
+            </StepButton>
+
+            <StepButton
+              v-if="currentStep < 3"
+              @click="currentStep++"
+              :disabled="disableContinue"
+            >
+              Continuar
+            </StepButton>
+
+            <StepButton
+              v-else
+              @click="createAppointment"
+              :disabled="!state.employee || !state.date || !state.startTime"
+            >
+              Agendar
+            </StepButton>
+          </div>
+        </template>
+      </StepForms>
+    </template>
+    <template v-else>
+      <div class="h-full flex items-center justify-center">
+        <div
+          class="p-8 mb-8 mt-10 sm:mt-20 bg-white rounded-lg shadow-md dark:bg-gray-800 grid gap-2"
+        >
+          <h2
+            class="text-2xl font-semibold text-gray-700 dark:text-gray-200 flex gap-2"
+          >
+            <Icon name="mdi:calendar-text" class="h-7 w-7" aria-hidden="true" />
+            Agradecemos por sua reserva!
+          </h2>
+          <p class="mb-6 text-gray-600 dark:text-gray-100">
+            Obrigado por escolher a nossa barbearia!<br />Estamos ansiosos para
+            recebê-lo em breve.
+          </p>
+
+          <div class="grid gap-1">
+            <p><b>Local:</b> {{ getCompanyName(state.company) }}</p>
+            <p><b>Barbeiro:</b> {{ getBarberName(state.employee) }}</p>
+            <p><b>Data:</b> {{ formatDate(state.date) }}</p>
+            <p><b>Hora:</b> {{ state.startTime }}</p>
+            <p><b>Serviços:</b> {{ getServiceDescriptions() }}</p>
+          </div>
+        </div>
       </div>
-    </main>
-  </section>
+    </template>
+  </UserLayout>
 </template>
 
 <script setup lang="ts">
 import { useThemeStore } from "@/stores/themeStores";
 import { useUserStore } from "@/stores/userStores";
 import { onlyUser } from "@/composable/auth";
+import { useNotify } from "~/composable/useNotify";
+import { usePost } from "~/composable/useHttp";
 
 const optionsBarbers = ref([]);
 const optionsCompanys = ref([]);
@@ -224,9 +181,8 @@ const state = ref({
 
 const itsThanks = ref(false);
 
-
 onMounted(async () => {
-  onlyUser()
+  onlyUser();
   await requestPaginationCompanys();
 });
 
@@ -272,20 +228,10 @@ watch(
 
 const createAppointment = async () => {
   try {
-    const response: any = await $fetch(`${api_url}/appointment`, {
-      method: "POST",
-      body: { ...state.value },
-      headers: {
-        authorization: `Bearer ${userStore.token}`,
-      },
-    });
-
+    const response: any = usePost(state.value, '/appointment')
+    
     if (!response?.appointment) {
-      snackbar.add({
-        type: "error",
-        text: response.message,
-      });
-
+      useNotify(response.message);
       return;
     }
 
@@ -296,10 +242,7 @@ const createAppointment = async () => {
 
     itsThanks.value = true;
   } catch (error) {
-    snackbar.add({
-      type: "error",
-      text: "Ops! Ocorreu um erro...",
-    });
+    useNotify("Ops! Ocorreu um erro...");
   }
 };
 
@@ -319,10 +262,7 @@ const requestPaginationBarbers = async (values: any = {}) => {
     }
     loadingBarber.value = false;
   } catch (error) {
-    snackbar.add({
-      type: "error",
-      text: "Ops! Ocorreu um erro...",
-    });
+    useNotify("Ops! Ocorreu um erro...");
     loadingBarber.value = false;
   }
 };
@@ -345,10 +285,7 @@ const requestPaginationDates = async (values: any = {}) => {
     }
     loading.value = false;
   } catch (error) {
-    snackbar.add({
-      type: "error",
-      text: "Ops! Ocorreu um erro...",
-    });
+    useNotify("Ops! Ocorreu um erro...");
     loading.value = false;
   }
 };
@@ -373,10 +310,7 @@ const requestPaginationHours = async (values: any = {}) => {
     }
     loadingHour.value = false;
   } catch (error) {
-    snackbar.add({
-      type: "error",
-      text: "Ops! Ocorreu um erro...",
-    });
+    useNotify("Ops! Ocorreu um erro...");
     loadingHour.value = false;
   }
 };
@@ -398,10 +332,7 @@ const requestPaginationCompanys = async (values: any = {}) => {
     loading.value = false;
   } catch (error) {
     loading.value = false;
-    snackbar.add({
-      type: "error",
-      text: "Ops! Ocorreu um erro...",
-    });
+    useNotify("Ops! Ocorreu um erro...");
   }
 };
 

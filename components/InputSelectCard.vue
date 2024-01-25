@@ -1,6 +1,9 @@
 <template>
-  <div class="block text-sm grid gap-2">
-    <span class="text-gray-700 dark:text-gray-400 font-semibold text-lg"> {{ label }} </span>
+  <Loading v-if="loading" />
+  <div v-else class="block text-sm grid gap-2">
+    <span class="text-gray-700 dark:text-gray-400 font-semibold text-lg">
+      {{ label }}
+    </span>
 
     <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
       <template v-for="(item, index) in options" :key="index">
@@ -28,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from "vue";
 
 const props = defineProps({
   options: {
@@ -53,18 +56,22 @@ const props = defineProps({
   },
   modelValue: {
     type: String,
-    default: ""
-  }
+    default: "",
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(["update:modelValue"]);
 
 const value = computed({
   get() {
-    return props.modelValue
+    return props.modelValue;
   },
   set(value) {
-    emit('update:modelValue', value)
-  }
-})
+    emit("update:modelValue", value);
+  },
+});
 </script>

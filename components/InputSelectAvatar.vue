@@ -1,5 +1,6 @@
 <template>
-  <div class="block text-sm grid gap-2">
+  <Loading v-if="loading" />
+  <div v-else class="block text-sm grid gap-2">
     <span class="text-gray-700 dark:text-gray-400 font-semibold text-lg">
       {{ label }}
     </span>
@@ -60,6 +61,10 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: "",
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 });
 

@@ -16,7 +16,6 @@ export default function useLoading() {
       await asyncFunction();
     } catch (error) {
       useNotify("Ops! Ocorreu um erro...")
-      console.error('Erro durante a operação:', error);
     } finally {
       loading.value = false;
     }
