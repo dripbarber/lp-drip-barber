@@ -5,7 +5,7 @@
     <div class="w-full">
       <Navigation @open-menu="isOpen = !isOpen" route="admin" />
 
-      <div class="mx-8 mt-4">
+      <div class="mx-2 sm:mx-8 mt-4">
         <slot />
       </div>
     </div>

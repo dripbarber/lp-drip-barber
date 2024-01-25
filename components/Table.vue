@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+  <div class="w-full mb-4 sm:mb-8 overflow-hidden rounded-lg shadow-xs">
     <div class="w-full">
       <div class="flex gap-2 items-end mb-2">
         <IconButton
