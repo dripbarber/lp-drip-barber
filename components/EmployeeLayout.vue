@@ -2,7 +2,7 @@
   <main class="flex">
     <Sidebar :isSideMenuOpen="isOpen" @closeSideMenu="isOpen = !isOpen" :pages="pages" />
 
-    <div class="w-full">
+    <div class="w-scren sm:w-full">
       <Navigation @open-menu="isOpen = !isOpen"  route="employee" />
 
       <div class="mx-2 sm:mx-8 mt-4">
