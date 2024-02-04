@@ -108,7 +108,7 @@
             <StepButton
               v-else
               @click="createAppointment"
-              :disabled="!state.employee || !state.date || !state.startTime"
+              :disabled="!state.employee || !state.date || !state.startTime || loadingSubmit"
             >
               Agendar
             </StepButton>
@@ -160,6 +160,7 @@ const optionDates = ref([]);
 
 const currentStep = ref(0);
 const loading = ref(false);
+const loadingSubmit = ref(false);
 const loadingBarber = ref(false);
 const loadingHour = ref(false);
 
@@ -228,6 +229,7 @@ watch(
 
 const createAppointment = async () => {
   try {
+    loadingSubmit.value = true
     const response: any = usePost(state.value, '/appointment')
     
     if (!response?.appointment) {
@@ -235,13 +237,12 @@ const createAppointment = async () => {
       return;
     }
 
-    snackbar.add({
-      type: "success",
-      text: response?.message,
-    });
+    useNotify(response.message, "success");
 
     itsThanks.value = true;
+    loadingSubmit.value = false
   } catch (error) {
+    loadingSubmit.value = false
     useNotify("Ops! Ocorreu um erro...");
   }
 };
