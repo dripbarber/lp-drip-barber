@@ -52,14 +52,6 @@
         <Footer />
       </template>
     </div>
-    <NoScript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WS7KDGV5"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe>
-    </NoScript>
   </Body>
 </template>
 
@@ -73,12 +65,6 @@ useHead({
   htmlAttrs: {
     lang: "pt",
   },
-  script: [
-    {
-      src: "./google-analytics.js",
-      tagPosition: "head",
-    },
-  ],
   meta: [{ charset: "utf-8" }],
   link: [
     { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },

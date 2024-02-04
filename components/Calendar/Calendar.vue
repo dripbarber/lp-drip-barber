@@ -24,11 +24,13 @@ import CalendarHeader from "@/components/Calendar/CalendarHeader";
 import Month from "@/components/Calendar/Month";
 
 const userStore = useUserStore();
+const { token } = userStore;
 
 const config = useRuntimeConfig();
 const api_url = config.public.api_url;
 
 const store = useCalendarStore();
+const snackbar = useSnackbar();
 
 const props = defineProps({
   id: {
@@ -45,24 +47,31 @@ watch(
 );
 
 const requestAppointment = async () => {
-  const index: number = store.monthIndex ?? 0;
-  const dates = getMonth(index)
-    .flat()
-    .map((item) => item.format("YYYY-MM-DD"));
+  try {
+    const index: number = store.monthIndex ?? 0;
+    const dates = getMonth(index)
+      .flat()
+      .map((item) => item.format("YYYY-MM-DD"));
 
-  const response: any = await $fetch(`${api_url}/appointment`, {
-    method: "GET",
-    query: {
-      employee: props.id,
-      startDate: dates[0],
-      endDate: dates[dates.length - 1],
-    },
-    headers: {
-      authorization: `Bearer ${userStore.token}`,
-    },
-  });
+    const response: any = await $fetch(`${api_url}/appointment`, {
+      method: "GET",
+      query: {
+        employee: props.id,
+        startDate: dates[0],
+        endDate: dates[dates.length - 1],
+      },
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
 
-  store.setFilteredEvents(response?.appointments);
+    store.setFilteredEvents(response?.appointments);
+  } catch (error) {
+    snackbar.add({
+      type: "error",
+      text: "Ops! Ocorreu um erro...",
+    });
+  }
 };
 
 requestAppointment();
