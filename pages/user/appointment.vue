@@ -230,14 +230,15 @@ watch(
 const createAppointment = async () => {
   try {
     loadingSubmit.value = true
-    const response: any = usePost(state.value, '/appointment')
-    
-    if (!response?.appointment) {
-      useNotify(response.message);
+    const response = await usePost(state.value, '/appointment')
+    const { appointment, message }: any = response.data.value 
+
+    if (!appointment) {
+      useNotify(message);
       return;
     }
 
-    useNotify(response.message, "success");
+    useNotify(message, "success");
 
     itsThanks.value = true;
     loadingSubmit.value = false
